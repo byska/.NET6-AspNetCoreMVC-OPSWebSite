@@ -14,4 +14,3 @@ namespace Ops.Core.Entities
         public DateTime? DeletedDate { get; set; }
     }
 }
-//deneme
