@@ -15,7 +15,6 @@ namespace Ops.Repository.Configurations
             builder.HasOne(x => x.Customer).WithMany(x => x.Orders).HasForeignKey(x => x.CustomerId);
             builder.HasOne(x => x.Product).WithMany(x => x.Orders).HasForeignKey(x => x.ProductId);
 
-
             base.Configure(builder);
         }
     }
