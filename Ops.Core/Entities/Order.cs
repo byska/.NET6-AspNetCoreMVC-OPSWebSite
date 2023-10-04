@@ -4,7 +4,7 @@ namespace Ops.Core.Entities
 {
     public class Order : BaseEntity
     {
-        public OrderStatus OrderStatus { get; set; }
+        public OrderStatus OrderStatus { get; set; } = OrderStatus.Taken;
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public int ProductId { get; set; }

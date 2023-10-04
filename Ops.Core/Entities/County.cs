@@ -10,9 +10,9 @@ namespace Ops.Core.Entities
     {
         public County()
         {
-            Customers = new HashSet<Customer>();
+            Addresses = new HashSet<Address>();
         }
         public string Name { get; set; }
-        public ICollection<Customer> Customers { get; set; }
+        public ICollection<Address>? Addresses { get; set; }
     }
 }
