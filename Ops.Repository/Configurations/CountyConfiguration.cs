@@ -14,6 +14,8 @@ namespace Ops.Repository.Configurations
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
 
+            builder.HasOne(x => x.City).WithMany(x => x.Counties).HasForeignKey(x => x.CityId);
+
             base.Configure(builder);
         }
     }

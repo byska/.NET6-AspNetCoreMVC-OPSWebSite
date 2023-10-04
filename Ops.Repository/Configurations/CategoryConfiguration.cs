@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Ops.Repository.Configurations
 {
-    public class ProductTypeConfiguration : BaseEntityConfiguration<ProductType>
+    public class CategoryConfiguration : BaseEntityConfiguration<Category>
     {
-        public override void Configure(EntityTypeBuilder<ProductType> builder)
+        public override void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
 

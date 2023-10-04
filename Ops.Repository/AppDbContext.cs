@@ -23,7 +23,8 @@ namespace Ops.Repository
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductFeature> ProductFeatures { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

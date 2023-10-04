@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.Entities
 {
-    public class ProductType : BaseEntity
+    public class Category : BaseEntity
     {
-        public ProductType()
+        public Category()
         {
-            Products = new HashSet<Product>();
+                Products=new HashSet<Product>();
         }
         public string Name { get; set; }
+
         public ICollection<Product> Products { get; set; }
+
     }
 }
