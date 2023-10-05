@@ -15,8 +15,8 @@ namespace Ops.Core.Repositories
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task<bool> Activate(int id);
-        Task<bool> AddAsync(T entity);
-        Task<bool> AddRangeAsync(IEnumerable<T> entities);
+        Task AddAsync(T entity);
+        Task AddRangeAsync(IEnumerable<T> entities);
         bool Update(T entity);
         bool Remove(T entity);
         bool RemoveRange(IEnumerable<T> entities);

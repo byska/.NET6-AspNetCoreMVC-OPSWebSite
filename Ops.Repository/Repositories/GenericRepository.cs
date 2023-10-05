@@ -28,23 +28,10 @@ namespace Ops.Repository.Repositories
             return Update(item);
         }
 
-        public async Task<bool> AddAsync(T entity)
-        {
-            try
-            {
-                await _dbSet.AddAsync(entity);
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
+        public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
 
-        public async Task<bool> AddRangeAsync(IEnumerable<T> entities)
+        public async Task AddRangeAsync(IEnumerable<T> entities)
         {
-            try
-            {
                 using (TransactionScope scope = new TransactionScope())
                 {
                     foreach (T entity in entities)
@@ -52,15 +39,7 @@ namespace Ops.Repository.Repositories
                         await _dbSet.AddRangeAsync(entities);
                     }
                     scope.Complete();
-                    return true;
                 }
-
-            }
-            catch (Exception)
-            {
-
-                return false;
-            }
         }
 
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression) => await _dbSet.AnyAsync(expression);
