@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.UnitOfWorks
 {
-    public interface IUnitOfWok
+    public interface IUnitOfWork
     {
         Task CommitAsync();
         void Commit();

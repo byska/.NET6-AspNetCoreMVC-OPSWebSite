@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ops.Repository.UnitOfWorks
 {
-    public class UnitOfWork : IUnitOfWok
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
         public UnitOfWork(AppDbContext context)

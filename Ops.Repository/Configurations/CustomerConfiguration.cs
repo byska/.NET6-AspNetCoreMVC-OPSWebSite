@@ -12,7 +12,6 @@ namespace Ops.Repository.Configurations
     {
         public override void Configure(EntityTypeBuilder<Customer> builder)
         {
-            builder.Property(x => x.Addresses).IsRequired();
             builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(11);
 
             base.Configure(builder);

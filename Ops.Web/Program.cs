@@ -1,3 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using Ops.Core.Repositories;
+using Ops.Core.UnitOfWorks;
+using Ops.Repository;
+using Ops.Repository.Repositories;
+using Ops.Repository.UnitOfWorks;
+using System.Reflection;
+
 namespace Ops.Web
 {
     public class Program
@@ -8,6 +16,19 @@ namespace Ops.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+           
+
+            builder.Services.AddDbContext<AppDbContext>(x =>
+            {
+                x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection"), options =>
+                {
+                    options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+                });
+            });
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             var app = builder.Build();
 
