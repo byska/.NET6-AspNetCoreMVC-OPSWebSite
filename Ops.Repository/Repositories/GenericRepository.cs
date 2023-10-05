@@ -66,7 +66,7 @@ namespace Ops.Repository.Repositories
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression) => await _dbSet.AnyAsync(expression);
 
 
-        public IQueryable<T> GetAll(Expression<Func<T, bool>> expression) =>  _dbSet.AsNoTracking().AsQueryable();
+        public IQueryable<T> GetAll() =>  _dbSet.AsNoTracking().AsQueryable();
 
 
         public async Task<T> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
