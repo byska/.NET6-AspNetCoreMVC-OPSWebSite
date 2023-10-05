@@ -1,9 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Ops.Core.Repositories;
+using Ops.Core.Services;
 using Ops.Core.UnitOfWorks;
 using Ops.Repository;
 using Ops.Repository.Repositories;
 using Ops.Repository.UnitOfWorks;
+using Ops.Service.Mapping;
+using Ops.Service.Services;
 using System.Reflection;
 
 namespace Ops.Web
@@ -17,7 +20,7 @@ namespace Ops.Web
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            
+            builder.Services.AddAutoMapper(typeof(MapProfile));
 
             builder.Services.AddDbContext<AppDbContext>(x =>
             {
@@ -29,6 +32,7 @@ namespace Ops.Web
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 
             var app = builder.Build();
 
