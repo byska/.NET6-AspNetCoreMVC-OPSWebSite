@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ops.Core.Intefaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,16 +8,17 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.Repositories
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T> where T : class,IEntity
     {
         Task<T> GetByIdAsync(int id);
         IQueryable<T> GetAll(Expression<Func<T, bool>> expression);
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
-        Task AddAsync(T entity);
-        Task AddRangeAsync(IEnumerable<T> entities);
-        void Update(T entity);
-        void Remove(T entity);
-        void RemoveRange(IEnumerable<T> entities);
+        Task<bool> Activate(int id);
+        Task<bool> AddAsync(T entity);
+        Task<bool> AddRangeAsync(IEnumerable<T> entities);
+        bool Update(T entity);
+        bool Remove(T entity);
+        bool RemoveRange(IEnumerable<T> entities);
     }
 }

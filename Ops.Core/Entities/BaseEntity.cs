@@ -1,8 +1,9 @@
 ﻿using Ops.Core.Enums;
+using Ops.Core.Intefaces;
 
 namespace Ops.Core.Entities
 {
-    public abstract class BaseEntity
+    public abstract class BaseEntity:IEntity
     {
         public int Id { get; set; }
         public Status Status { get; set; }
@@ -12,5 +13,6 @@ namespace Ops.Core.Entities
         public DateTime? ModifiedDate { get; set; }
         public string? DeletedBy { get; set; } = "admin";
         public DateTime? DeletedDate { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

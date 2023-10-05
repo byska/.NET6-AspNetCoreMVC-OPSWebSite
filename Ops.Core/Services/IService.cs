@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ops.Core.Intefaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.Services
 {
-    public interface IService<T> where T : class
+    public interface IService<T> where T : class,IEntity
     {
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
