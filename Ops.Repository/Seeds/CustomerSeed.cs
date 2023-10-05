@@ -13,8 +13,8 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            builder.HasData(new Customer { Id = 1, DateOfBirth = new DateTime(16, 02, 1998), Email = "besteyasak@gmail.com", FirstName = "Beste", LastName = "Yasak", Password = "Beste1998.", PhoneNumber = "05362459825", Status = Core.Enums.Status.Added },
-                            new Customer { Id = 2, DateOfBirth = new DateTime(06, 06, 1997), Email = "huseyingulerman.1997@gmail.com", FirstName = "Hüseyin", LastName = "Gülerman", Password = "Beste1998.", PhoneNumber = "05325841236", Status = Core.Enums.Status.Added });
+            builder.HasData(new Customer { Id = 1, DateOfBirth = new DateTime(1998, 02, 16), Email = "besteyasak@gmail.com", FirstName = "Beste", LastName = "Yasak", Password = "Beste1998.", PhoneNumber = "05362459825", Status = Core.Enums.Status.Added },
+                            new Customer { Id = 2, DateOfBirth = new DateTime(1997, 06, 06), Email = "huseyingulerman.1997@gmail.com", FirstName = "Hüseyin", LastName = "Gülerman", Password = "Beste1998.", PhoneNumber = "05325841236", Status = Core.Enums.Status.Added });
         }
     }
 }

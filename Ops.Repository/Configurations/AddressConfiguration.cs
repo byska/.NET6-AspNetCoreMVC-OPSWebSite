@@ -16,7 +16,7 @@ namespace Ops.Repository.Configurations
             builder.Property(x => x.Description).IsRequired().HasMaxLength(128);
 
             builder.HasOne(x => x.City).WithMany(x => x.Addresses).HasForeignKey(x => x.CityId);
-            builder.HasOne(x => x.County).WithMany(x => x.Addresses).HasForeignKey(x => x.CountyId);
+            builder.HasOne(x => x.County).WithMany(x => x.Addresses).HasForeignKey(x => x.CountyId).OnDelete(DeleteBehavior.NoAction);
             builder.HasOne(x => x.Customer).WithMany(x => x.Addresses).HasForeignKey(x => x.CustomerId);
 
             base.Configure(builder);
