@@ -9,6 +9,7 @@ using Ops.Service.Mapping;
 using Ops.Service.Services;
 using System.Reflection;
 
+
 namespace Ops.Web
 {
     public class Program
@@ -18,7 +19,7 @@ namespace Ops.Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductVMValidator>()); ;
 
             builder.Services.AddAutoMapper(typeof(MapProfile));
 
