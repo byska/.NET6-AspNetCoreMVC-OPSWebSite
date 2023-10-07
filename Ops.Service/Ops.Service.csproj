@@ -7,15 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Validation\CityVMValidator.cs" />
+    <Compile Remove="Validation\CountyVMValidator.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.7.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ops.Repository\Ops.Repository.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Validation\" />
   </ItemGroup>
 
 </Project>
