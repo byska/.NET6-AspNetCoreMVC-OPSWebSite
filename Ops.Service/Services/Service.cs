@@ -32,8 +32,6 @@ namespace Ops.Service.Services
 
         public async Task<T> AddAsync(T entity)
         {
-            entity.CreatedDate = DateTime.Now;
-            entity.CreatedBy = "admin";
 
             await _repository.AddAsync(entity);
             await _uow.CommitAsync();
@@ -42,11 +40,6 @@ namespace Ops.Service.Services
 
         public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
         {
-            foreach (var entity in entities)
-            {
-                entity.CreatedDate= DateTime.Now;
-                entity.CreatedBy = "admin";
-            }
             await _repository.AddRangeAsync(entities);
             await _uow.CommitAsync();
             return entities;
@@ -72,8 +65,6 @@ namespace Ops.Service.Services
 
         public async Task UpdateAsync(T entity)
         {
-            entity.ModifiedBy = "admin";
-            entity.ModifiedDate = DateTime.Now;
             _repository.Update(entity);
             await _uow.CommitAsync();
         }

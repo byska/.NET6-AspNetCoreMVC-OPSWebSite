@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Ops.Core.Entities;
+using Ops.Core.Intefaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,9 @@ namespace Ops.Repository
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-                
+
         }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Admin> Admins { get; set; }
@@ -26,6 +27,74 @@ namespace Ops.Repository
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductFeature> ProductFeatures { get; set; }
 
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            foreach (var item in ChangeTracker.Entries())
+            {
+                if (item.Entity is IEntity entityReference)
+                {
+                    switch (item.State)
+                    {
+                        case EntityState.Added:
+                            {
+                                entityReference.CreatedDate = DateTime.Now;
+                                entityReference.Status = Core.Enums.Status.Added;
+                                break;
+                            }
+                        case EntityState.Modified:
+                            {
+                                Entry(entityReference).Property(x => x.CreatedDate).IsModified = false;
+                                entityReference.ModifiedDate = DateTime.Now;
+                                entityReference.Status = Core.Enums.Status.Modified;
+                                break;
+                            }
+                        case EntityState.Deleted:
+                            {
+                                Entry(entityReference).Property(x => x.CreatedDate).IsModified = false;
+                                Entry(entityReference).Property(x => x.ModifiedDate).IsModified = false;
+                                entityReference.DeletedDate = DateTime.Now;
+                                entityReference.Status = Core.Enums.Status.Deleted;
+                                break;
+                            }
+                    }
+                }
+            }
+            return base.SaveChangesAsync(cancellationToken);
+        }
+        public override int SaveChanges()
+        {
+            foreach (var item in ChangeTracker.Entries())
+            {
+                if (item.Entity is IEntity entityReference)
+                {
+                    switch (item.State)
+                    {
+                        case EntityState.Added:
+                            {
+                                entityReference.CreatedDate = DateTime.Now;
+                                entityReference.Status = Core.Enums.Status.Added;
+                                break;
+                            }
+                        case EntityState.Modified:
+                            {
+                                Entry(entityReference).Property(x => x.CreatedDate).IsModified = false;
+                                entityReference.ModifiedDate = DateTime.Now;
+                                entityReference.Status = Core.Enums.Status.Modified;
+                                break;
+                            }
+                        case EntityState.Deleted:
+                            {
+                                Entry(entityReference).Property(x => x.CreatedDate).IsModified = false;
+                                Entry(entityReference).Property(x => x.ModifiedDate).IsModified = false;
+                                entityReference.DeletedDate = DateTime.Now;
+                                entityReference.Status = Core.Enums.Status.Deleted;
+                                break;
+                            }
+                    }
+                }
+            }
+            return base.SaveChanges();
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
