@@ -1,3 +1,4 @@
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Ops.Core.Repositories;
 using Ops.Core.Services;
@@ -7,7 +8,9 @@ using Ops.Repository.Repositories;
 using Ops.Repository.UnitOfWorks;
 using Ops.Service.Mapping;
 using Ops.Service.Services;
+using Ops.Service.Validation;
 using System.Reflection;
+
 
 
 namespace Ops.Web
@@ -19,7 +22,7 @@ namespace Ops.Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductVMValidator>()); ;
+            builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductVMValidator>()); 
 
             builder.Services.AddAutoMapper(typeof(MapProfile));
 
@@ -30,10 +33,6 @@ namespace Ops.Web
                     options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
                 });
             });
-
-            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-            builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 
             var app = builder.Build();
 
