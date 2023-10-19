@@ -55,7 +55,6 @@ namespace Ops.Repository.Repositories
             try
             {
                 entity.IsActive = false;
-                entity.Status = Core.Enums.Status.Deleted;
                 return Update(entity);
             }
             catch (Exception)
@@ -73,7 +72,6 @@ namespace Ops.Repository.Repositories
                     foreach(T entity in entities)
                     {
                         entity.IsActive = false;
-                        entity.Status = Core.Enums.Status.Deleted;
                         Update(entity);
                     }
                     scope.Complete();
@@ -91,7 +89,6 @@ namespace Ops.Repository.Repositories
         {
             try
             {
-                entity.Status = Core.Enums.Status.Modified;
                 _dbSet.Update(entity);
                 return true;
             }
