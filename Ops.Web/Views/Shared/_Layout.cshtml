@@ -23,7 +23,7 @@
 
 </head>
 <body>
-  @*   <!-- Preloader -->
+   <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="lds-ellipsis">
             <div></div>
@@ -32,7 +32,7 @@
             <div></div>
         </div>
     </div> 
- *@
+ 
     @Html.Partial("_Header")
 
     <div class="container">
@@ -44,6 +44,7 @@
     @Html.Partial("_Footer")
 
     <!-- ##### All Javascript Script ##### -->
+
     <script src="~/footer/main.js"></script>
     <script src="~/footer/jquery-3.2.1.min.js"></script>
     <!-- jQuery-2.2.4 js -->
@@ -52,12 +53,11 @@
     <script src="~/one-music-gh-pages/js/bootstrap/popper.min.js"></script>
     <!-- Bootstrap js -->
     <script src="~/one-music-gh-pages/js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="~/one-music-gh-pages/js/plugins/plugins.js"></script>
     <!-- Active js -->
-    <script src="~/one-music-gh-pages/js/active.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/one-music-gh-pages/js/plugins/plugins.js"></script>
+    <script src="~/one-music-gh-pages/js/active.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
