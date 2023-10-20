@@ -18,10 +18,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Ops.Web.styles.css" asp-append-version="true" />
+    <link href="~/footer/main.css" rel="stylesheet" />
+    <link href="~/footer/util.css" rel="stylesheet" />
 
 </head>
 <body>
-    <!-- Preloader -->
+  @*   <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="lds-ellipsis">
             <div></div>
@@ -30,7 +32,7 @@
             <div></div>
         </div>
     </div> 
-
+ *@
     @Html.Partial("_Header")
 
     <div class="container">
@@ -42,6 +44,8 @@
     @Html.Partial("_Footer")
 
     <!-- ##### All Javascript Script ##### -->
+    <script src="~/footer/main.js"></script>
+    <script src="~/footer/jquery-3.2.1.min.js"></script>
     <!-- jQuery-2.2.4 js -->
     <script src="~/one-music-gh-pages/js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
