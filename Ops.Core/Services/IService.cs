@@ -12,6 +12,7 @@ namespace Ops.Core.Services
     {
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllActiveAsync();
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> Activate(int id);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);

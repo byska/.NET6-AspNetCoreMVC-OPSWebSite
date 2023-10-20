@@ -47,6 +47,10 @@ namespace Ops.Repository.Repositories
 
         public IQueryable<T> GetAll() =>  _dbSet.AsNoTracking().AsQueryable();
 
+        public IQueryable<T> GetAllActive()
+        {
+           return _dbSet.Where(x => x.IsActive).AsNoTracking();
+        }
 
         public async Task<T> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
 

@@ -15,6 +15,7 @@ namespace Ops.Repository.Configurations
             builder.Property(x => x.Size).IsRequired();
             builder.Property(x => x.Description).IsRequired().HasMaxLength(128);
             builder.Property(x => x.Color).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.PhotoUrl).IsRequired().HasMaxLength(100);
 
             builder.HasOne(x => x.Product).WithOne(x => x.ProductFeature).HasForeignKey<ProductFeature>(x => x.ProductId);
 

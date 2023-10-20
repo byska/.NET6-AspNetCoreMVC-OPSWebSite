@@ -12,6 +12,7 @@ namespace Ops.Core.Repositories
     {
         Task<T> GetByIdAsync(int id);
         IQueryable<T> GetAll();
+        IQueryable<T> GetAllActive();
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task<bool> Activate(int id);

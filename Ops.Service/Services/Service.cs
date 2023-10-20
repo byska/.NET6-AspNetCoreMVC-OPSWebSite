@@ -47,6 +47,11 @@ namespace Ops.Service.Services
 
         public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression) => await _repository.AnyAsync(expression);
 
+        public async Task<IEnumerable<T>> GetAllActiveAsync()
+        {
+            return await _repository.GetAllActive().ToListAsync();
+        }
+
         public async Task<IEnumerable<T>> GetAllAsync() => await _repository.GetAll().ToListAsync();
 
         public async Task<T> GetByIdAsync(int id) => await _repository.GetByIdAsync(id);

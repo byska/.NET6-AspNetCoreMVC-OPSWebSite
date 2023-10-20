@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Anasayfa";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+
+<section class="hero-area">
+    <div class="hero-slides owl-carousel">
+        <!-- Single Hero Slide -->
+        @foreach (var item in ViewBag.HomeSlider as List<HomeSlider>)
+        {
+            <div class="single-hero-slide d-flex align-items-center justify-content-center">
+                <!-- Slide Img -->
+                <div class="slide-img bg-img" style="background-image: url(@item.PhotoUrl);"></div>
+                <!-- Slide Content -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="hero-slides-content text-center">
+                                <h6 data-animation="fadeInUp" data-delay="100ms">@item.Subtitle</h6>
+                                <h2 data-animation="fadeInUp" data-delay="300ms">@item.Title <span>@item.Title</span></h2>
+                                <a data-animation="fadeInUp" data-delay="500ms" href="#" class="btn oneMusic-btn mt-50">Alışverişe Başla <i class="fa fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+</section>
+<section class="latest-albums-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading style-2">
+                    <h2>Son Eklenenler</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="albums-slideshow owl-carousel">
+
+                    <!-- Single Album -->
+                    @foreach (var item in ViewBag.NewProducts as List<ProductVM>)
+                    {
+                        <div class="single-album">
+                            <img src="@item.PhotoUrl" alt="">
+                            <div class="album-info">
+                                <a href="#">
+                                    <h5>@item.Name</h5>
+                                </a>
+                                <p>@item.Price</p>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="latest-albums-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading style-2">
+                    <h2>Çok Satanlar</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="albums-slideshow owl-carousel">
+
+                    <!-- Single Album -->
+                    @foreach (var item in ViewBag.BestsellerProducts as List<ProductVM>)
+                    {
+                        <div class="single-album">
+                            <img src="@item.PhotoUrl" alt="">
+                            <div class="album-info">
+                                <a href="#">
+                                    <h5>@item.Name</h5>
+                                </a>
+                                <p>@item.Price</p>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

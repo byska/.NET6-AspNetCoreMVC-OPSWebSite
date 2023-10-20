@@ -58,7 +58,7 @@ namespace Ops.Web
             app.MapAreaControllerRoute(
     name: "Customer",
     areaName: "Customer",
-    pattern: "Customer/{controller=Product}/{action=GetAllProduct}/{id?}"
+    pattern: "Customer/{controller=Home}/{action=index}/{id?}"
     );
 
             app.MapControllerRoute(
