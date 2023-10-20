@@ -194,7 +194,8 @@ namespace Ops.Repository.Migrations
                             CreatedDate = new DateTime(2023, 10, 19, 15, 22, 8, 288, DateTimeKind.Local).AddTicks(8666),
                             IsActive = true,
                             Name = "Tişört",
-                            Status = 1
+                            Status = 1,
+                           
                         },
                         new
                         {
@@ -202,7 +203,8 @@ namespace Ops.Repository.Migrations
                             CreatedDate = new DateTime(2023, 10, 19, 15, 22, 8, 288, DateTimeKind.Local).AddTicks(8672),
                             IsActive = true,
                             Name = "Sweat",
-                            Status = 1
+                            Status = 1,
+                       
                         },
                         new
                         {
@@ -210,7 +212,8 @@ namespace Ops.Repository.Migrations
                             CreatedDate = new DateTime(2023, 10, 19, 15, 22, 8, 288, DateTimeKind.Local).AddTicks(8675),
                             IsActive = true,
                             Name = "Çanta",
-                            Status = 1
+                            Status = 1,
+                     
                         });
                 });
 
@@ -654,7 +657,8 @@ namespace Ops.Repository.Migrations
                             Name = "Tişört",
                             Price = 200m,
                             Status = 1,
-                            Stock = 20
+                            Stock = 20,
+                          
                         },
                         new
                         {
@@ -665,7 +669,8 @@ namespace Ops.Repository.Migrations
                             Name = "Kısa Kollu Tişört",
                             Price = 150m,
                             Status = 1,
-                            Stock = 20
+                            Stock = 20,
+                          
                         },
                         new
                         {
@@ -676,7 +681,8 @@ namespace Ops.Repository.Migrations
                             Name = " Uzun Kollu Tişört",
                             Price = 300m,
                             Status = 1,
-                            Stock = 20
+                            Stock = 20,
+                            
                         },
                         new
                         {
@@ -687,7 +693,8 @@ namespace Ops.Repository.Migrations
                             Name = "Çanta",
                             Price = 400m,
                             Status = 1,
-                            Stock = 20
+                            Stock = 20,
+                         
                         },
                         new
                         {
@@ -698,7 +705,8 @@ namespace Ops.Repository.Migrations
                             Name = "Sweat",
                             Price = 500m,
                             Status = 1,
-                            Stock = 20
+                            Stock = 20,
+                          
                         });
                 });
 

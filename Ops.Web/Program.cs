@@ -1,3 +1,5 @@
+using Autofac.Extensions.DependencyInjection;
+using Autofac;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Ops.Core.Repositories;
@@ -9,6 +11,7 @@ using Ops.Repository.UnitOfWorks;
 using Ops.Service.Mapping;
 using Ops.Service.Services;
 using Ops.Service.Validation;
+using Ops.Web.Modules;
 using System.Reflection;
 
 
@@ -33,6 +36,8 @@ namespace Ops.Web
                     options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
                 });
             });
+            builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+            builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 
             var app = builder.Build();
 
@@ -50,6 +55,11 @@ namespace Ops.Web
             app.UseRouting();
 
             app.UseAuthorization();
+            app.MapAreaControllerRoute(
+    name: "Customer",
+    areaName: "Customer",
+    pattern: "Customer/{controller=Product}/{action=GetAllProduct}/{id?}"
+    );
 
             app.MapControllerRoute(
                 name: "default",
