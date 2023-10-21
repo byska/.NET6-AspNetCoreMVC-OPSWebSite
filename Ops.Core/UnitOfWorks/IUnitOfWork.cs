@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Ops.Core.Intefaces;
+using Ops.Core.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +12,6 @@ namespace Ops.Core.UnitOfWorks
     {
         Task CommitAsync();
         void Commit();
+        IGenericRepository<T> GetRepository<T>() where T : class, IEntity;
     }
 }

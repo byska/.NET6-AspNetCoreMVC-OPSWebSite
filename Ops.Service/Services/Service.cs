@@ -1,82 +1,127 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Ops.Core.Entities;
 using Ops.Core.Repositories;
+using Ops.Core.Result.Abstract;
+using Ops.Core.Result.Concrete;
 using Ops.Core.Services;
 using Ops.Core.UnitOfWorks;
+using Ops.Core.VMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ops.Service.Services
 {
-    public class Service<T> : IService<T> where T : BaseEntity
+    public class Service<TEntity, TRequest, TResponse> : IService<TEntity,TRequest,TResponse> where TEntity : BaseEntity where TRequest : class where TResponse : class
     {
-        private readonly IGenericRepository<T> _repository;
-        private readonly IUnitOfWork _uow;
-        public Service(IGenericRepository<T> repository, IUnitOfWork uow)
+        protected readonly IUnitOfWork _uow;
+        protected readonly IMapper _mapper;
+        public Service( IUnitOfWork uow,IMapper mapper)
         {
-            _repository = repository;
             _uow = uow;
+            _mapper = mapper;
         }
 
-        public async Task<bool> Activate(int id)
+        public async Task<IAppResult<NoContentVM>> Activate(int id)
         {
-            if (id == 0 || await _repository.GetByIdAsync(id) == null)
-                return false;
-            else
-                return await _repository.Activate(id);
+            var entity = await _uow.GetRepository<TEntity>().GetByIdAsync(id);
+           var result=await _uow.GetRepository<TEntity>().Activate(id);
+            if (!result)
+                return AppResult<NoContentVM>.Fail(StatusCodes.Status404NotFound, $"No data was found with {id} id.");
+
+            return AppResult<NoContentVM>.Success(StatusCodes.Status200OK);
         }
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<IAppResult<TResponse>> AddAsync(TRequest request)
         {
-
-            await _repository.AddAsync(entity);
+            var newEntity = _mapper.Map<TEntity>(request);
+            await _uow.GetRepository<TEntity>().AddAsync(newEntity);
             await _uow.CommitAsync();
-            return entity;
+
+            var newResponse = _mapper.Map<TResponse>(newEntity);
+            return AppResult<TResponse>.Success(StatusCodes.Status200OK,newResponse);
         }
 
-        public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
+        public async Task<IAppResult<IEnumerable<TResponse>>> AddRangeAsync(IEnumerable<TRequest> requests)
         {
-            await _repository.AddRangeAsync(entities);
+            var newEntities = _mapper.Map<IEnumerable<TEntity>>(requests);
+            await _uow.GetRepository<TEntity>().AddRangeAsync(newEntities);
             await _uow.CommitAsync();
-            return entities;
+
+            var newResponses = _mapper.Map<IEnumerable<TResponse>>(newEntities);
+            return AppResult< IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, newResponses);
         }
 
-        public async Task<bool> AnyAsync(Expression<Func<T, bool>> expression) => await _repository.AnyAsync(expression);
-
-        public async Task<IEnumerable<T>> GetAllActiveAsync()
+        public async Task<IAppResult<bool>> AnyAsync(Expression<Func<TEntity, bool>> expression)
         {
-            return await _repository.GetAllActive().ToListAsync();
+            var anyEntity = await _uow.GetRepository<TEntity>().AnyAsync(expression);
+
+            return AppResult<bool>.Success(StatusCodes.Status200OK,anyEntity);
+
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync() => await _repository.GetAll().ToListAsync();
-
-        public async Task<T> GetByIdAsync(int id) => await _repository.GetByIdAsync(id);
-
-        public async Task RemoveAsync(T entity)
+        public async Task<IAppResult<IEnumerable<TResponse>>> GetAllActiveAsync()
         {
-           _repository.Remove(entity);
+            var entities = await _uow.GetRepository<TEntity>().GetAllActive().ToListAsync();
+            var responseEntities = _mapper.Map<IEnumerable<TResponse>>(entities);
+
+            return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
+        }
+
+        public async Task<IAppResult<IEnumerable<TResponse>>> GetAllAsync()
+        {
+            var entities = await _uow.GetRepository<TEntity>().GetAll().ToListAsync();
+            var responseEntities = _mapper.Map<IEnumerable<TResponse>>(entities);
+
+            return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
+        }
+
+        public async Task<IAppResult<TResponse>> GetByIdAsync(int id)
+        {
+           var entity = await _uow.GetRepository<TEntity>().GetByIdAsync(id);
+           var response = _mapper.Map<TResponse>(entity);
+
+           return AppResult<TResponse>.Success(StatusCodes.Status200OK, response);
+        }
+
+        public async Task<IAppResult<NoContentVM>> RemoveAsync(int id)
+        {
+            var entity = await _uow.GetRepository<TEntity>().GetByIdAsync(id);
+             _uow.GetRepository<TEntity>().Remove(entity);
             await _uow.CommitAsync();
+            return AppResult<NoContentVM>.Success(StatusCodes.Status204NoContent);
+
         }
 
-        public async Task RemoveRangeAsync(IEnumerable<T> entities)
+        public async Task<IAppResult<NoContentVM>> RemoveRangeAsync(IEnumerable<int> ids)
         {
-           _repository.RemoveRange(entities);
-           await _uow.CommitAsync();
-        }
-
-        public async Task UpdateAsync(T entity)
-        {
-            _repository.Update(entity);
+            var entities = await _uow.GetRepository<TEntity>().Where(x=>ids.Contains(x.Id)).ToListAsync();
+            _uow.GetRepository<TEntity>().RemoveRange(entities);
             await _uow.CommitAsync();
+            return AppResult<NoContentVM>.Success(StatusCodes.Status204NoContent);
         }
 
-        public IQueryable<T> Where(Expression<Func<T, bool>> expression)
+        public async Task<IAppResult<NoContentVM>> UpdateAsync(TRequest request)
         {
-          return _repository.Where(expression);
+            var entity = _mapper.Map<TEntity>(request);
+            _uow.GetRepository<TEntity>().Update(entity);
+            await _uow.CommitAsync();
+
+            return AppResult<NoContentVM>.Success(StatusCodes.Status204NoContent);
+        }
+
+        public async Task<IAppResult<IEnumerable<TResponse>>> Where(Expression<Func<TEntity, bool>> expression)
+        {
+            var entities = await _uow.GetRepository<TEntity>().Where(expression).ToListAsync();
+            var responses= _mapper.Map<IEnumerable<TResponse>>(entities);
+
+            return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responses);
         }
     }
 }

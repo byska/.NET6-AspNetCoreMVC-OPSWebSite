@@ -1,4 +1,6 @@
-﻿using Ops.Core.UnitOfWorks;
+﻿using Ops.Core.Repositories;
+using Ops.Core.UnitOfWorks;
+using Ops.Repository.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,11 @@ namespace Ops.Repository.UnitOfWorks
         public async Task CommitAsync()
         {
            await _context.SaveChangesAsync();
+        }
+
+        IGenericRepository<T> IUnitOfWork.GetRepository<T>()
+        {
+            return new GenericRepository<T>(_context);
         }
     }
 }

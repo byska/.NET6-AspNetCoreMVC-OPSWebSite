@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ops.Core.Entities;
 using Ops.Core.Services;
+using Ops.Core.VMs;
+using Ops.Core.VMs.Create;
 
 namespace Ops.Web.Areas.Customer.Controllers
 {
@@ -8,8 +10,8 @@ namespace Ops.Web.Areas.Customer.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
-        private readonly IService<HomeSlider> _service;
-        public HomeController(IProductService productService,IService<HomeSlider> service)
+        private readonly IService<HomeSlider, HomeSliderCreateVM, HomeSliderVM> _service;
+        public HomeController(IProductService productService,IService<HomeSlider, HomeSliderCreateVM, HomeSliderVM> service)
         {
                _productService = productService;
             _service = service;
@@ -21,7 +23,7 @@ namespace Ops.Web.Areas.Customer.Controllers
            var newProducts= await _productService.GetNewProductsAsync();
             ViewBag.BestsellerProducts=bestsellerProducts;
             ViewBag.NewProducts= newProducts;
-            ViewBag.HomeSlider= homeSlider.ToList();
+            ViewBag.HomeSlider= homeSlider;
             return View();
         }
     }

@@ -1,4 +1,6 @@
 ﻿using Ops.Core.Intefaces;
+using Ops.Core.Result.Abstract;
+using Ops.Core.VMs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.Services
 {
-    public interface IService<T> where T : class,IEntity
+    public interface IService<TEntity,TRequest,TResponse> where TEntity : IEntity where TRequest:class where TResponse : class
     {
-        Task<T> GetByIdAsync(int id);
-        Task<IEnumerable<T>> GetAllAsync();
-        Task<IEnumerable<T>> GetAllActiveAsync();
-        IQueryable<T> Where(Expression<Func<T, bool>> expression);
-        Task<bool> Activate(int id);
-        Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
-        Task<T> AddAsync(T entity);
-        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
-        Task UpdateAsync(T entity);
-        Task RemoveAsync(T entity);
-        Task RemoveRangeAsync(IEnumerable<T> entities);
+        Task<IAppResult<TResponse>> GetByIdAsync(int id);
+        Task<IAppResult<IEnumerable<TResponse>>> GetAllAsync();
+        Task<IAppResult<IEnumerable<TResponse>>> GetAllActiveAsync();
+        Task<IAppResult<IEnumerable<TResponse>>> Where(Expression<Func<TEntity, bool>> expression);
+        Task<IAppResult<NoContentVM>> Activate(int id);
+        Task<IAppResult<bool>> AnyAsync(Expression<Func<TEntity, bool>> expression);
+        Task<IAppResult<TResponse>> AddAsync(TRequest request);
+        Task<IAppResult<IEnumerable<TResponse>>> AddRangeAsync(IEnumerable<TRequest> requests);
+        Task<IAppResult<NoContentVM>> UpdateAsync(TRequest request);
+        Task<IAppResult<NoContentVM>> RemoveAsync(int id);
+        Task<IAppResult<NoContentVM>> RemoveRangeAsync(IEnumerable<int> ids);
     }
 }

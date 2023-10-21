@@ -10,10 +10,10 @@ namespace Ops.Web.Areas.Customer.Controllers
     [Area("Customer")]
     public class ProductController : Controller
 	{
-		private readonly IService<Product> _product;
-		public ProductController(IService<Product> product)
+		private readonly IProductService _productService;
+		public ProductController(IProductService productService)
 		{
-			_product = product;
+			_productService = productService;
 			
 		}
 		public IActionResult Index()
@@ -22,23 +22,23 @@ namespace Ops.Web.Areas.Customer.Controllers
 		}
 		public async Task<IActionResult> GetAllProduct()
 		{
-			var products= await _product.GetAllAsync();
+			var products= await _productService.GetAllAsync();
 
-			return View(products.ToList());
+			return View(products);
 		}
 		
         public async Task<IActionResult> Detail()
         {
-            var products = await _product.GetAllAsync();
+            var products = await _productService.GetAllAsync();
 
-            return View(products.ToList());
+            return View(products);
         }
 		[HttpPost]
         public async Task<IActionResult> Detail(int id)
         {
-            var products = await _product.GetAllAsync();
+            var products = await _productService.GetAllAsync();
 
-            return View(products.ToList());
+            return View(products);
         }
     }
 }
