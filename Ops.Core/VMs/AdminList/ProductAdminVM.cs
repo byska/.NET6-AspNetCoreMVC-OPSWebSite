@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ops.Core.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,10 @@ namespace Ops.Core.VMs.AdminList
         public decimal Price { get; set; }
         public int Stock { get; set; }
         public int Amount { get; set; }
+        public List<string> PhotoUrl { get; set; }
+        public List<Color> Color { get; set; }
+        public List<Size> Size { get; set; }
+        public string Description { get; set; }
+
     }
 }

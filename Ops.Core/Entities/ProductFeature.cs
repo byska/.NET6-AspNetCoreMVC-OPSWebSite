@@ -9,10 +9,10 @@ namespace Ops.Core.Entities
 {
     public class ProductFeature :BaseEntity
     {
-        public Size Size { get; set; }
-        public string Color { get; set; }
+        public List<Size> Size { get; set; }
+        public List<Color> Color { get; set; }
         public string Description { get; set; }
-        public string PhotoUrl { get; set; }
+        public List<string> PhotoUrl { get; set; }
 
         public int ProductId { get; set; }
         public Product Product { get; set; }

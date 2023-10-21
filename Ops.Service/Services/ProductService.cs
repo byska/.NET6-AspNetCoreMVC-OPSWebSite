@@ -36,5 +36,12 @@ namespace Ops.Service.Services
             var productVm = _mapper.Map<List<ProductVM>>(product);
             return productVm;
         }
+
+        public async Task<ProductsWithFeaturesVM> GetProductDetailsById(int id)
+        {
+          var productDetail= await _productRepository.GetProductDetailsById(id);
+            var productWithFeatureDto = _mapper.Map<ProductsWithFeaturesVM>(productDetail);
+            return productWithFeatureDto;
+        }
     }
 }

@@ -26,5 +26,10 @@ namespace Ops.Repository.Repositories
         {
            return await _context.Products.OrderByDescending(x => x.CreatedDate).Include(x=>x.ProductFeature).Take(10).ToListAsync();
         }
+
+        public async Task<Product> GetProductDetailsById(int id)
+        {
+            return await _context.Products.Include(x => x.ProductFeature).FirstOrDefaultAsync(x=>x.Id== id);
+        }
     }
 }

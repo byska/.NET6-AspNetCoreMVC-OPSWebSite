@@ -15,6 +15,8 @@ namespace Ops.Service.Validation
 
             RuleFor(x => x.Description)
                 .NotEmpty().WithMessage("Ürün açıklaması boş olamaz.");
+            RuleFor(x => x.PhotoUrl)
+                .NotEmpty().WithMessage("Ürün açıklaması boş olamaz.");
 
             RuleFor(x => x.ProductId)
                 .NotEmpty().WithMessage("Ürün boş olamaz.")

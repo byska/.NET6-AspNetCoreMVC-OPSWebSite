@@ -27,6 +27,8 @@ namespace Ops.Service.Validation
             RuleFor(x => x.CategoryId)
                 .NotEmpty().WithMessage("Kategori boş olamaz.")
                 .InclusiveBetween(0,int.MaxValue).WithMessage("Geçerli bir kategori seçiniz.");
+            RuleFor(x => x.Amount)
+               .InclusiveBetween(0, int.MaxValue).WithMessage("Geçerli bir miktar giriniz.");
         }
     }
 }

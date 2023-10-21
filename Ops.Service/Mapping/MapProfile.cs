@@ -16,6 +16,11 @@ namespace Ops.Service.Mapping
             CreateMap<Product, ProductVM>()
                 .ForMember(dest=>dest.PhotoUrl,opt=>opt.MapFrom(src=>src.ProductFeature.PhotoUrl))
             .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.ProductFeature.Color));
+            CreateMap<Product, ProductsWithFeaturesVM>()
+                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.ProductFeature.PhotoUrl))
+                .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.ProductFeature.Size))
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.ProductFeature.Color))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.ProductFeature.Description));
         }
     }
 }

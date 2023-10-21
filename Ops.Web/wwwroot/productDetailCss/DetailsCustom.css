@@ -1,0 +1,38 @@
+﻿.color-radio {
+    width: 20px;
+    height: 20px; 
+}
+.white{
+    color:azure;
+}
+.black{
+    color:black;
+}
+.gray{
+    color:dimgray;
+}
+.pink{
+    color:lightpink;
+}
+.purple{
+    color:mediumpurple;
+}
+.green{
+    color:darkolivegreen;
+}
+.beige{
+    color:beige;
+}
+.brown{
+    color:saddlebrown;
+}
+.yellow{
+    color:yellow;
+}
+input[type="radio"][disabled] {
+    color: #999; 
+}
+input[type="radio"]:checked {
+    border: 2px solid gray;
+}
+

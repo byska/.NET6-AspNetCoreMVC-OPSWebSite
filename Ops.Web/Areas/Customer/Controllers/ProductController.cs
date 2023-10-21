@@ -22,23 +22,12 @@ namespace Ops.Web.Areas.Customer.Controllers
 		}
 		public async Task<IActionResult> GetAllProduct()
 		{
-			var products= await _productService.GetAllAsync();
-
-			return View(products);
+			return View(await _productService.GetAllAsync());
 		}
-		
-        public async Task<IActionResult> Detail()
-        {
-            var products = await _productService.GetAllAsync();
-
-            return View(products);
-        }
-		[HttpPost]
+		[HttpGet("{id}")]
         public async Task<IActionResult> Detail(int id)
         {
-            var products = await _productService.GetAllAsync();
-
-            return View(products);
+            return View(await _productService.GetProductDetailsById(id));
         }
     }
 }
