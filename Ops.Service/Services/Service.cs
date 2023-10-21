@@ -8,6 +8,7 @@ using Ops.Core.Result.Concrete;
 using Ops.Core.Services;
 using Ops.Core.UnitOfWorks;
 using Ops.Core.VMs;
+using Ops.Service.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -85,6 +86,9 @@ namespace Ops.Service.Services
         public async Task<IAppResult<TResponse>> GetByIdAsync(int id)
         {
            var entity = await _uow.GetRepository<TEntity>().GetByIdAsync(id);
+            if (entity == null)
+                throw new NotFoundException($"{typeof(TEntity).Name}({id}) does not exist");
+
            var response = _mapper.Map<TResponse>(entity);
 
            return AppResult<TResponse>.Success(StatusCodes.Status200OK, response);
