@@ -12,6 +12,6 @@ namespace Ops.Core.Repositories
     {
         Task<List<Product>> GetNewProductsAsync();
         Task<List<Product>> GetBestsellerProductsAsync();
-        Task<Product> GetProductDetailsById(int id);
+        //Task<Product> GetProductDetailsById(int id);
     }
 }

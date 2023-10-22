@@ -1,5 +1,6 @@
 ﻿@using System.Text.Json;
 @model ProductsWithFeaturesVM
+
 @{
     ViewData["Title"] = Model.Name;
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
@@ -7,6 +8,7 @@
 @{
     var inStockColor = JsonSerializer.Serialize(Model.Color);
     var inStockSize = JsonSerializer.Serialize(Model.Size);
+    ProductWithCategoryVM category = ViewBag.ProductCategory as ProductWithCategoryVM;
 }
 <!-- Product Details Area Start -->
 <div class="single-product-area section-padding-100 clearfix">
@@ -17,8 +19,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mt-50">
                         <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
-                        <li class="breadcrumb-item"><a href="#">Furniture</a></li>
-                        <li class="breadcrumb-item"><a href="#">@Model.</a></li>
+                        <li class="breadcrumb-item"><a href="#">@category.CategoryName</a></li>
                         <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
                     </ol>
                 </nav>

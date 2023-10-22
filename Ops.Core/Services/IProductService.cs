@@ -14,5 +14,6 @@ namespace Ops.Core.Services
         Task<List<ProductVM>> GetNewProductsAsync();
         Task<List<ProductVM>> GetBestsellerProductsAsync();
         Task<ProductsWithFeaturesVM> GetProductDetailsById(int id);
+        Task<ProductWithCategoryVM> GetProductWithCategory(int id);
     }
 }

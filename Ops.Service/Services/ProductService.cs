@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Ops.Core.Entities;
 using Ops.Core.Repositories;
 using Ops.Core.Services;
@@ -26,7 +27,7 @@ namespace Ops.Service.Services
         public async Task<List<ProductVM>> GetBestsellerProductsAsync()
         {
             var product = await _productRepository.GetBestsellerProductsAsync();
-            var productVm= _mapper.Map<List<ProductVM>>(product);
+            var productVm = _mapper.Map<List<ProductVM>>(product);
             return productVm;
         }
 
@@ -39,9 +40,15 @@ namespace Ops.Service.Services
 
         public async Task<ProductsWithFeaturesVM> GetProductDetailsById(int id)
         {
-          var productDetail= await _productRepository.GetProductDetailsById(id);
+          var productDetail= await _productRepository.GetAllByIncludeParametersAsync(x=>x.ProductFeature,x=>x.Id==id).FirstOrDefaultAsync();
             var productWithFeatureDto = _mapper.Map<ProductsWithFeaturesVM>(productDetail);
             return productWithFeatureDto;
+        }
+        public  async Task<ProductWithCategoryVM> GetProductWithCategory(int id) 
+        {
+            var product=await _productRepository.GetAllByIncludeParametersAsync(x=>x.Category,x=>x.Id==id).FirstOrDefaultAsync();
+            var productWithCategory=_mapper.Map<ProductWithCategoryVM>(product);
+            return productWithCategory;
         }
     }
 }

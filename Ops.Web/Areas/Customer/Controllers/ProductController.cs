@@ -19,21 +19,24 @@ namespace Ops.Web.Areas.Customer.Controllers
 		}
 		public IActionResult Index()
 		{
-			return View();
+			 return View();
 		}
 		public async Task<IActionResult> GetAllProduct(int categoryId)
 		{
-			return View(await _productService.GetAllByIncludeParametersAsync(x=>x.ProductFeature,x=>x.CategoryId==categoryId,x=>x.IsActive==true));
+			 return View(await _productService.GetAllByIncludeParametersAsync(x=>x.ProductFeature,x=>x.CategoryId==categoryId,x=>x.IsActive==true));
 		}
 		[HttpGet("{id}")]
         public async Task<IActionResult> Detail(int productId)
         {
-            return View(await _productService.GetProductDetailsById(productId));
+			 var productDetail = await _productService.GetProductDetailsById(productId);
+			var productCategory =await _productService.GetProductWithCategory(productId);
+			ViewBag.ProductCategory=productCategory;
+             return View(productDetail);
         }
 		[HttpGet]
 		public async Task<IActionResult> GetComment(int productId)
 		{
-		var comments=	await _commentService.GetAllByIncludeParametersAsync(x => x.Customer, x => x.ProductId == productId,x=>x.IsActive==true);
+		    var comments=await _commentService.GetAllByIncludeParametersAsync(x => x.Customer, x => x.ProductId == productId,x=>x.IsActive==true);
 			return View(comments);
 		}
     }

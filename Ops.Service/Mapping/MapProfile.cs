@@ -23,6 +23,8 @@ namespace Ops.Service.Mapping
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.ProductFeature.Description));
             CreateMap<Comment, CommentVM>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Customer.FirstName+" "+src.Customer.LastName));
+            CreateMap<Product, ProductWithCategoryVM>()
+               .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Name));
         }
     }
 }
