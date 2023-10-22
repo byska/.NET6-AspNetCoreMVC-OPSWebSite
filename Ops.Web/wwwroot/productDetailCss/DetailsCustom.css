@@ -1,6 +1,44 @@
-﻿.color-radio {
+﻿.star {
+    display: inline-block;
+    font-size: 24px;
+    color: #f0d850;
+    margin-right: 5px;
+}
+.empty-star {
+    color: #ccc; 
+}
+.color-radio, .size-radio {
+    display: none;
+}
+.color-radio,.size-radio {
+    display:inline-block;
     width: 20px;
     height: 20px; 
+    cursor:pointer;
+}
+.size-radio{
+    background-color:beige;
+    border:2px solid gray;
+    text-align:center;
+    line-height:30px;
+    margin-right:10px;
+
+}
+.small{
+    content:'S';
+    font-weight:bold;
+}
+.medium {
+    content: 'M';
+    font-weight: bold;
+}
+.large {
+    content: 'L';
+    font-weight: bold;
+}
+.xlarge {
+    content: 'XL';
+    font-weight: bold;
 }
 .white{
     color:azure;
@@ -29,10 +67,11 @@
 .yellow{
     color:yellow;
 }
-input[type="radio"][disabled] {
+input[type="radio"][name="color"][disabled] {
     color: #999; 
 }
-input[type="radio"]:checked {
+input[type="radio"][name="color"]:checked {
     border: 2px solid gray;
 }
+
 

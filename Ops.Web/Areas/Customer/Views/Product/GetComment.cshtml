@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<CommentVM>
+
+<section class="latest-albums-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading style-2">
+                    <h2>Yorumlar</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="albums-slideshow owl-carousel">
+
+                    <!-- Single Album -->
+                    @foreach (var item in Model as List<CommentVM>)
+                    {
+                        <div class="single-album">                      
+                            <div class="album-info">
+                                    <h5>@item.Name</h5>
+                                    @for(var i=1; i<=item.Mark; i++)
+                                {
+                                    <i class="star filled-star"></i>
+                                }
+                                @for(var i=1; i<=5-item.Mark;i++)
+                                {
+                                    <i class="star empty-star"></i>
+                                }
+                                 <p>@item.Description</p>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

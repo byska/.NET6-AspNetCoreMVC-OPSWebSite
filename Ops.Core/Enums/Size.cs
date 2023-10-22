@@ -8,8 +8,7 @@ namespace Ops.Core.Enums
 {
     public enum Size
     {
-        Standart=1,
-        Small,
+        Small=1,
         Medium,
         Large,
         XLarge,

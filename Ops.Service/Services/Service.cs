@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace Ops.Service.Services
 {
-    public class Service<TEntity, TRequest, TResponse> : IService<TEntity,TRequest,TResponse> where TEntity : BaseEntity where TRequest : class where TResponse : class
+    public class Service<TEntity, TRequest, TResponse> :IService<TEntity,TRequest,TResponse> where TEntity : BaseEntity where TRequest : class where TResponse : class
     {
         protected readonly IUnitOfWork _uow;
         protected readonly IMapper _mapper;
@@ -81,6 +81,14 @@ namespace Ops.Service.Services
             var responseEntities = _mapper.Map<IEnumerable<TResponse>>(entities);
 
             return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
+        }
+
+        public async Task<IAppResult<IEnumerable<TResponse>>> GetAllByIncludeParametersAsync(Expression<Func<TEntity, object>> include, params Expression<Func<TEntity, bool>>[] exps)
+        {
+              var entities = await _uow.GetRepository<TEntity>().GetAllByIncludeParametersAsync(include, exps).ToListAsync();
+            var dtos=_mapper.Map<IEnumerable<TResponse>>(entities);
+
+            return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, dtos);    
         }
 
         public async Task<IAppResult<TResponse>> GetByIdAsync(int id)

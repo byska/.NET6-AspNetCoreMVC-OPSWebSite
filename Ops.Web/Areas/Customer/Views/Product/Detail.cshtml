@@ -6,6 +6,7 @@
 }
 @{
     var inStockColor = JsonSerializer.Serialize(Model.Color);
+    var inStockSize = JsonSerializer.Serialize(Model.Size);
 }
 <!-- Product Details Area Start -->
 <div class="single-product-area section-padding-100 clearfix">
@@ -74,12 +75,38 @@
                             var colorName = Enum.GetName(typeof(Color), color);
                             <input type="radio" name="color" value="@color" id="color_@color" class="color-radio @colorName.ToLower()">
                            
-                            }
-                            
+                            }          
+                    </div>
+                    <script>  
+                        var stockSize = @Html.Raw(inStockSize);
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var inStockSizeList = stockSize.map(function (size) {
+                                return size.toString();
+                            });
+                            var radioButtons = document.querySelectorAll("input[type=radio][name=size]");
+
+                            radioButtons.forEach(function (radioButton) {
+                                var size = radioButton.value;
+                                if (inStockSizeList.includes(size)) {
+                                    radioButton.disabled = false;
+                                } else {
+                                    radioButton.disabled = true;
+                                }
+                            });
+                        });
+                    </script>
+                    <!-- Size Select-->
+                    <div id="sizeSelect">
+                        <label for="color">Beden Seçiniz:</label><br />
+
+                        @foreach (var size in Enum.GetValues(typeof(Size)))
+                        {
+                            var sizeName = Enum.GetName(typeof(Size), size);
+                            <input type="radio" name="size" value="@size" id="size_@size" class="size-radio @sizeName.ToLower()">
+
+                        }
                     </div>
                     <script>
-
-                       
                         var stockColor = @Html.Raw(inStockColor);
                         document.addEventListener("DOMContentLoaded", function () {
                             var inStockColorList = stockColor.map(function (color) {
@@ -91,7 +118,6 @@
                                 var color = radioButton.value;
                                 if (inStockColorList.includes(color)) {
                                     radioButton.disabled = false;
-
                                 } else {
                                     radioButton.disabled = true;
                                 }
@@ -110,6 +136,9 @@
                     <button type="submit" name="addtocart" value="5" class="btn amado-btn">Sepete Ekle</button>
                 </form>
 
+                <div>
+                    @Html.Partial("GetComment")
+                    </div>
             </div>
         </div>
     </div>

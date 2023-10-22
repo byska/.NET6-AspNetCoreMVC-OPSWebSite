@@ -11,23 +11,30 @@ namespace Ops.Web.Areas.Customer.Controllers
     public class ProductController : Controller
 	{
 		private readonly IProductService _productService;
-		public ProductController(IProductService productService)
+		private readonly ICommentService _commentService;
+		public ProductController(IProductService productService, ICommentService commentService)
 		{
 			_productService = productService;
-			
+			_commentService= commentService;
 		}
 		public IActionResult Index()
 		{
 			return View();
 		}
-		public async Task<IActionResult> GetAllProduct()
+		public async Task<IActionResult> GetAllProduct(int categoryId)
 		{
-			return View(await _productService.GetAllAsync());
+			return View(await _productService.GetAllByIncludeParametersAsync(x=>x.ProductFeature,x=>x.CategoryId==categoryId,x=>x.IsActive==true));
 		}
 		[HttpGet("{id}")]
-        public async Task<IActionResult> Detail(int id)
+        public async Task<IActionResult> Detail(int productId)
         {
-            return View(await _productService.GetProductDetailsById(id));
+            return View(await _productService.GetProductDetailsById(productId));
         }
+		[HttpGet]
+		public async Task<IActionResult> GetComment(int productId)
+		{
+		var comments=	await _commentService.GetAllByIncludeParametersAsync(x => x.Customer, x => x.ProductId == productId,x=>x.IsActive==true);
+			return View(comments);
+		}
     }
 }
