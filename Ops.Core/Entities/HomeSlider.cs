@@ -11,5 +11,7 @@ namespace Ops.Core.Entities
         public string PhotoUrl { get; set; } 
         public string? Title { get; set; } 
         public string? Subtitle { get; set; } 
+        public Category Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }

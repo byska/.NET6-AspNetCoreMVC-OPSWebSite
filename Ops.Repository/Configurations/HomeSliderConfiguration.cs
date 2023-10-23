@@ -16,6 +16,9 @@ namespace Ops.Repository.Configurations
             builder.Property(x=>x.Title).IsRequired(false).HasMaxLength(50);
             builder.Property(x=>x.Subtitle).IsRequired(false).HasMaxLength(50);
             base.Configure(builder);
+            
+            builder.HasOne(x=>x.Category).WithMany(x=>x.HomeSliders).HasForeignKey(x=>x.CategoryId);
+            base.Configure(builder);
         }
     }
 }

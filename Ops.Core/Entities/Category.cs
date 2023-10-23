@@ -11,10 +11,12 @@ namespace Ops.Core.Entities
         public Category()
         {
                 Products=new HashSet<Product>();
+                HomeSliders=new HashSet<HomeSlider>();
         }
         public string Name { get; set; }
 
         public ICollection<Product> Products { get; set; }
+        public ICollection<HomeSlider> HomeSliders { get; set; }
 
     }
 }

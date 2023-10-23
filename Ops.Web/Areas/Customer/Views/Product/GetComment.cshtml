@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<CommentVM>
+@model CommentListVM
 
 <section class="latest-albums-area section-padding-100">
     <div class="container">
@@ -16,7 +16,7 @@
                 <div class="albums-slideshow owl-carousel">
 
                     <!-- Single Album -->
-                    @foreach (var item in Model as List<CommentVM>)
+                    @foreach (var item in Model.Comments as List<CommentVM>)
                     {
                         <div class="single-album">                      
                             <div class="album-info">

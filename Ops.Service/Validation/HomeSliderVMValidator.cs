@@ -19,6 +19,9 @@ namespace Ops.Service.Validation
            .MaximumLength(50).WithMessage("Başlık maksimum 50 karakter olmalıdır.");
             RuleFor(x => x.Subtitle)
            .MaximumLength(50).WithMessage("Alt başlık maksimum 50 karakter olmalıdır.");
+            RuleFor(x => x.CategoryId)
+            .NotEmpty().WithMessage("Kategori Seçiniz.")
+            .InclusiveBetween(0, int.MaxValue).WithMessage("Kategori Seçiniz.");
         }
     }
 }

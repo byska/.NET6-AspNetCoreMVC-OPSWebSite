@@ -10,6 +10,10 @@
     var inStockSize = JsonSerializer.Serialize(Model.Size);
     ProductWithCategoryVM category = ViewBag.ProductCategory as ProductWithCategoryVM;
 }
+@{
+    int productId = Model.Id;
+    var commentVM = new CommentListVM { Id = productId, Comments = new List<CommentVM>() };
+}
 <!-- Product Details Area Start -->
 <div class="single-product-area section-padding-100 clearfix">
     <div class="container-fluid">
@@ -18,8 +22,8 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mt-50">
-                        <li class="breadcrumb-item"><a href="#">Anasayfa</a></li>
-                        <li class="breadcrumb-item"><a href="#">@category.CategoryName</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" >Anasayfa</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="Product" asp-action="GetAllProduct" asp-route-id="@category.CategoryId">@category.CategoryName</a></li>
                         <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
                     </ol>
                 </nav>
@@ -138,7 +142,7 @@
                 </form>
 
                 <div>
-                    @Html.Partial("GetComment")
+                    @Html.Partial("GetComment",Model)
                     </div>
             </div>
         </div>

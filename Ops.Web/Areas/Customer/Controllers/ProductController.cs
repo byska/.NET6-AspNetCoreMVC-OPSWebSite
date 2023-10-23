@@ -3,6 +3,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Ops.Core.Entities;
 using Ops.Core.Services;
+using Ops.Core.VMs;
 using Ops.Service.Services;
 
 namespace Ops.Web.Areas.Customer.Controllers
@@ -33,11 +34,17 @@ namespace Ops.Web.Areas.Customer.Controllers
 			ViewBag.ProductCategory=productCategory;
              return View(productDetail);
         }
+		[NonAction]
 		[HttpGet]
 		public async Task<IActionResult> GetComment(int productId)
 		{
 		    var comments=await _commentService.GetAllByIncludeParametersAsync(x => x.Customer, x => x.ProductId == productId,x=>x.IsActive==true);
-			return View(comments);
+			var VM = new CommentListVM
+			{
+				Id = productId,
+				Comments = comments.Data.ToList()
+			};
+			return View(VM);
 		}
     }
 }
