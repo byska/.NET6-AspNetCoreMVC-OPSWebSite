@@ -13,6 +13,11 @@ namespace Ops.Core.Entities
         public ICollection<Size> Sizes { get; set; }
         public ICollection<Color> Colors { get; set; }
         public string Description { get; set; }
+
+
+
+
+
         public List<string> PhotoUrl { get; set; }
 
         public int ProductId { get; set; }
