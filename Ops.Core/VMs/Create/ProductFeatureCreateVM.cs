@@ -1,4 +1,5 @@
-﻿using Ops.Core.Enums;
+﻿using Ops.Core.Entities;
+using Ops.Core.Enums;
 
 namespace Ops.Core.VMs.Create
 {

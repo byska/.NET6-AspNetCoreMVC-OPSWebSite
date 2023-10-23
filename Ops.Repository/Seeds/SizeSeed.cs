@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ops.Core.Enums
+namespace Ops.Repository.Seeds
 {
-    public enum Size
+    public class SizeSeed
     {
-        Small=1,
-        Medium,
-        Large,
-        XLarge,
     }
 }

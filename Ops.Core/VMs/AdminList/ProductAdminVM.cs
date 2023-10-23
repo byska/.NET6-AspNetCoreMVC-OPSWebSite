@@ -1,4 +1,5 @@
-﻿using Ops.Core.Enums;
+﻿using Ops.Core.Entities;
+using Ops.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

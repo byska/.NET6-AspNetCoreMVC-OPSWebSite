@@ -12,10 +12,11 @@ namespace Ops.Repository.Configurations
     {
         public override void Configure(EntityTypeBuilder<ProductFeature> builder)
         {
-            builder.Property(x => x.Size).IsRequired();
+         
             builder.Property(x => x.Description).IsRequired().HasMaxLength(128);
-            builder.Property(x => x.Color).IsRequired();
+          
             builder.Property(x => x.PhotoUrl).IsRequired().HasMaxLength(100);
+
 
             builder.HasOne(x => x.Product).WithOne(x => x.ProductFeature).HasForeignKey<ProductFeature>(x => x.ProductId);
 
