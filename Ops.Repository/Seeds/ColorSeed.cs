@@ -13,7 +13,7 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<Color> builder)
         {
-            builder.HasData(new Color { Id=1, Name="Black", ProductFeatureId= 0});
+            builder.HasData(new Color { Id=1, Name="Black", });
         }
     }
 }

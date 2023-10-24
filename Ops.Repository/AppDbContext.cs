@@ -27,6 +27,10 @@ namespace Ops.Repository
         public DbSet<Category> Categories { get; set; }
         public DbSet<HomeSlider> HomeSlider { get; set; }
         public DbSet<ProductFeature> ProductFeatures { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

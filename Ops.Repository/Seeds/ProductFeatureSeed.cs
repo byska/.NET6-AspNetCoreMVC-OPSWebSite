@@ -14,11 +14,11 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<ProductFeature> builder)
         {
-            builder.HasData(new ProductFeature { Id=1,  Description="30 derecede yıkayınız", ProductId=1, Status=Core.Enums.Status.Added,PhotoUrl = new List<string> { "deneme","deneme" } },
-                new ProductFeature { Id = 2, Description = "30 derecede yıkayınız", ProductId = 2, Status = Core.Enums.Status.Added, PhotoUrl = new List<string> { "deneme", "deneme" } },
-                new ProductFeature { Id = 3,  Description = "30 derecede yıkayınız", ProductId = 3, Status = Core.Enums.Status.Added, PhotoUrl = new List<string> { "deneme", "deneme" } },
-                new ProductFeature { Id = 4,  Description = "30 derecede yıkayınız", ProductId = 4, Status = Core.Enums.Status.Added, PhotoUrl = new List<string> { "deneme", "deneme" } },
-                new ProductFeature { Id = 5, Description = "30 derecede yıkayınız", ProductId = 5, Status = Core.Enums.Status.Added, PhotoUrl = new List<string> { "deneme", "deneme" } });
+            builder.HasData(new ProductFeature { Id=1,  Description="30 derecede yıkayınız", ProductId=1, Status=Core.Enums.Status.Added, },
+                new ProductFeature { Id = 2, Description = "30 derecede yıkayınız", ProductId = 2, Status = Core.Enums.Status.Added,  },
+                new ProductFeature { Id = 3,  Description = "30 derecede yıkayınız", ProductId = 3, Status = Core.Enums.Status.Added, },
+                new ProductFeature { Id = 4,  Description = "30 derecede yıkayınız", ProductId = 4, Status = Core.Enums.Status.Added, },
+                new ProductFeature { Id = 5, Description = "30 derecede yıkayınız", ProductId = 5, Status = Core.Enums.Status.Added, });
         }
     }
 }

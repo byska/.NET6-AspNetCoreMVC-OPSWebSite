@@ -13,7 +13,7 @@ namespace Ops.Repository.Configurations
         public override void Configure(EntityTypeBuilder<Color> builder)
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
-            builder.HasOne(x => x.ProductFeature).WithMany(x => x.Colors).HasForeignKey(x => x.ProductFeatureId);
+            builder.HasMany(x => x.ProductFeatures).WithMany(x => x.Colors);
             base.Configure(builder);
         }
     }

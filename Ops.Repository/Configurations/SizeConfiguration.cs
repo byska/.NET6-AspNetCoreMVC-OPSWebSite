@@ -13,7 +13,7 @@ namespace Ops.Repository.Configurations
         public override void Configure(EntityTypeBuilder<Size> builder)
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
-            builder.HasOne(x => x.ProductFeature).WithMany(x => x.Sizes).HasForeignKey(x => x.ProductFeatureId);
+            builder.HasMany(x => x.ProductFeatures).WithMany(x => x.Sizes);
             base.Configure(builder);
         }
     }

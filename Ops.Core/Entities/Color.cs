@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.Entities
 {
-    public class Color:BaseEntity
+    public class Color : BaseEntity
     {
         public string Name { get; set; }
-        public int ProductFeatureId { get; set; }
-        public ProductFeature ProductFeature { get; set; }
+      
+        public ICollection<ProductFeature> ProductFeatures{ get; set; }
+        public ICollection<Photo>  Photos { get; set; }     
+        public ICollection<Stock> Stocks { get; set; }
+        public Color()
+        {
+          ProductFeatures = new HashSet<ProductFeature>();
+            Stocks=new HashSet<Stock>();
+        }
 
     }
 }
