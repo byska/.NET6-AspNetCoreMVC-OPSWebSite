@@ -14,17 +14,20 @@ namespace Ops.Service.Mapping
         public MapProfile()
         {
             CreateMap<Product, ProductVM>()
-                .ForMember(dest=>dest.PhotoUrl,opt=>opt.MapFrom(src=>src.ProductFeature/*.PhotoUrl*/))
-            .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.ProductFeature/*.Color*/));
+                .ForMember(dest=>dest.Photos,opt=>opt.MapFrom(src=>src.ProductFeature.Photos.Select(cfg=>cfg.PhotoUrl)))
+            .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ProductFeature.ColorProductFeatures.Select(cfg=>cfg.Color.Name)));
+
             CreateMap<Product, ProductsWithFeaturesVM>()
-                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.ProductFeature/*.PhotoUrl*/))
-                .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.ProductFeature/*.Size*/))
-                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.ProductFeature/*.Color*/))
+                .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(src => src.ProductFeature.Photos.Select(x=>x.PhotoUrl)))
+                .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.ProductFeature.SizeProductFeatures.Select(x=>x.Size.Name)))
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.ProductFeature.ColorProductFeatures.Select(x=>x.Color.Name)))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.ProductFeature.Description));
             CreateMap<Comment, CommentVM>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Customer.FirstName+" "+src.Customer.LastName));
             CreateMap<Product, ProductWithCategoryVM>()
-               .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Name));
+               .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+               .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category.Id));
+            CreateMap<HomeSlider,HomeSliderVM>();
         }
     }
 }

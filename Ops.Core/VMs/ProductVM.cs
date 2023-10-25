@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Ops.Core.Entities;
+
 
 namespace Ops.Core.VMs
 {
@@ -12,8 +8,8 @@ namespace Ops.Core.VMs
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public List<string> PhotoUrl { get; set; }
-        public List<Color> Color { get; set; }
+        public List<string> Photos { get; set; }
+        public List<string> Colors { get; set; }
 
     }
 }
