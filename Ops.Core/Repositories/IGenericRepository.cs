@@ -14,6 +14,7 @@ namespace Ops.Core.Repositories
         IQueryable<T> GetAll();
         IQueryable<T> GetAllActive();
         IQueryable<T> GetAllByIncludeParametersAsync(Expression<Func<T, object>> include, params Expression<Func<T, bool>>[] exps);
+        IQueryable<T> GetAllByIncludeAsync(Expression<Func<T, bool>> exp,params Expression<Func<T, object>>[] includes);
         IQueryable<T> Where(Expression<Func<T, bool>> expression);
         Task<bool> AnyAsync(Expression<Func<T, bool>> expression);
         Task<bool> Activate(int id);

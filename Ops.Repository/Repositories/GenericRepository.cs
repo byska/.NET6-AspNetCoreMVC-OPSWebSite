@@ -52,6 +52,16 @@ namespace Ops.Repository.Repositories
            return _dbSet.Where(x => x.IsActive).AsNoTracking();
         }
 
+        public IQueryable<T> GetAllByIncludeAsync(Expression<Func<T, bool>> exp, params Expression<Func<T, object>>[] includes)
+        {
+            var query = _dbSet.Where(exp);
+            if (includes != null)
+            {
+                query = includes.Aggregate(query, (current, include) => current.Include(include));
+            }
+            return query;
+        }
+
         public IQueryable<T> GetAllByIncludeParametersAsync(Expression<Func<T, object>> include, params Expression<Func<T, bool>>[] exps)
         {
             IQueryable<T> query = _dbSet.AsQueryable();

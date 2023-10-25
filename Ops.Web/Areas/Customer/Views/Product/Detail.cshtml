@@ -6,9 +6,12 @@
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 @{
-    var inStockColor = JsonSerializer.Serialize(Model.Color);
+    var inStockColor = JsonSerializer.Serialize(Model.Colors);
     var inStockSize = JsonSerializer.Serialize(Model.Size);
     ProductWithCategoryVM category = ViewBag.ProductCategory as ProductWithCategoryVM;
+    List<ColorVM> colors = ViewBag.Colors as List<ColorVM>;
+    List<SizeVM> sizes = ViewBag.Sizes as List<SizeVM>;
+    List<CommentVM> comments = ViewBag.Comments as List<CommentVM>;
 }
 @{
     int productId = Model.Id;
@@ -35,12 +38,12 @@
                 <div class="single_product_thumb">
                     <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            @foreach (var item in Model.PhotoUrl)
+                            @foreach (var item in Model.Photos)
                             {
                                 <li class="active" data-target="#product_details_slider" style="background-image: url(@item);"></li>
                             }
                         </ol>
-                        @foreach (var item in Model.PhotoUrl)
+                        @foreach (var item in Model.Photos)
                         {
                             <div class="carousel-item">
                                 <a class="gallery_img" href="@item">
@@ -75,41 +78,11 @@
                     <div id="colorSelect">
                         <label for="color">Renk Seçiniz:</label><br />
 
-                            @foreach (var color in Enum.GetValues(typeof(Color)))
+                            @foreach (var color in colors)
                             {
-                            var colorName = Enum.GetName(typeof(Color), color);
-                            <input type="radio" name="color" value="@color" id="color_@color" class="color-radio @colorName.ToLower()">
+                            <input type="radio" name="color" value="@color.Name" id="color_@color.Name" class="color-radio @color.Name.ToLower()">
                            
                             }          
-                    </div>
-                    <script>  
-                        var stockSize = @Html.Raw(inStockSize);
-                        document.addEventListener("DOMContentLoaded", function () {
-                            var inStockSizeList = stockSize.map(function (size) {
-                                return size.toString();
-                            });
-                            var radioButtons = document.querySelectorAll("input[type=radio][name=size]");
-
-                            radioButtons.forEach(function (radioButton) {
-                                var size = radioButton.value;
-                                if (inStockSizeList.includes(size)) {
-                                    radioButton.disabled = false;
-                                } else {
-                                    radioButton.disabled = true;
-                                }
-                            });
-                        });
-                    </script>
-                    <!-- Size Select-->
-                    <div id="sizeSelect">
-                        <label for="color">Beden Seçiniz:</label><br />
-
-                        @foreach (var size in Enum.GetValues(typeof(Size)))
-                        {
-                            var sizeName = Enum.GetName(typeof(Size), size);
-                            <input type="radio" name="size" value="@size" id="size_@size" class="size-radio @sizeName.ToLower()">
-
-                        }
                     </div>
                     <script>
                         var stockColor = @Html.Raw(inStockColor);
@@ -129,6 +102,35 @@
                             });
                         });
                     </script>
+                   
+                    <!-- Size Select-->
+                    <div id="sizeSelect">
+                        <label for="color">Beden Seçiniz:</label><br />
+
+                        @foreach (var size in sizes)
+                        {
+                            <input type="radio" name="size" value="@size.Name" id="size_@size.Name" class="size-radio @size.Name.ToLower()">
+
+                        }
+                    </div>
+                    <script>
+                        var stockSize = @Html.Raw(inStockSize);
+                        document.addEventListener("DOMContentLoaded", function () {
+                            var inStockSizeList = stockSize.map(function (size) {
+                                return size.toString();
+                            });
+                            var radioButtons = document.querySelectorAll("input[type=radio][name=size]");
+
+                            radioButtons.forEach(function (radioButton) {
+                                var size = radioButton.value;
+                                if (inStockSizeList.includes(size)) {
+                                    radioButton.disabled = false;
+                                } else {
+                                    radioButton.disabled = true;
+                                }
+                            });
+                        });
+                    </script>
 
                     <div class="cart-btn d-flex mb-50">
                         <p>Adet</p>
@@ -141,9 +143,45 @@
                     <button type="submit" name="addtocart" value="5" class="btn amado-btn">Sepete Ekle</button>
                 </form>
 
-                <div>
-                    @Html.Partial("GetComment",Model)
-                    </div>
+<section class="latest-albums-area section-padding-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading style-2">
+                    <h2>Yorumlar</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="albums-slideshow owl-carousel">
+
+                    <!-- Single Album -->
+                                    @foreach (var item in comments as List<CommentVM>)
+                    {
+                        <div class="single-album">                      
+                            <div class="album-info">
+                                    <h5>@item.Name</h5>
+                                    @for(var i=1; i<=item.Mark; i++)
+                                {
+                                    <i class="star filled-star"></i>
+                                }
+                                @for(var i=1; i<=5-item.Mark;i++)
+                                {
+                                    <i class="star empty-star"></i>
+                                }
+                                 <p>@item.Description</p>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
             </div>
         </div>
     </div>

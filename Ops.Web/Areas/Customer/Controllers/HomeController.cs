@@ -17,13 +17,13 @@ namespace Ops.Web.Areas.Customer.Controllers
             _service = service;
         }
         public async Task<IActionResult> Index()
-        {
+       {
             var homeSlider= await _service.GetAllActiveAsync();
            var bestsellerProducts= await _productService.GetBestsellerProductsAsync();
            var newProducts= await _productService.GetNewProductsAsync();
             ViewBag.BestsellerProducts=bestsellerProducts;
             ViewBag.NewProducts= newProducts;
-            ViewBag.HomeSlider= homeSlider;
+            ViewBag.HomeSlider= homeSlider.Data;
             return View();
         }
     }

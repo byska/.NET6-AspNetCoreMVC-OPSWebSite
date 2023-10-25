@@ -12,9 +12,7 @@ namespace Ops.Core.VMs
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public List<string> PhotoUrl { get; set; }
         public List<string> Size { get; set; }
-        public List<string> Color { get; set; }
         public string Description { get; set; }
     }
 }

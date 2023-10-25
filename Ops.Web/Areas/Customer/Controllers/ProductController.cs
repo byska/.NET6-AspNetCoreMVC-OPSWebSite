@@ -13,38 +13,38 @@ namespace Ops.Web.Areas.Customer.Controllers
 	{
 		private readonly IProductService _productService;
 		private readonly ICommentService _commentService;
-		public ProductController(IProductService productService, ICommentService commentService)
-		{
-			_productService = productService;
-			_commentService= commentService;
-		}
-		public IActionResult Index()
+		private readonly IColorService _colorService;
+		private readonly ISizeService _sizeService;
+        public ProductController(IProductService productService, ICommentService commentService, IColorService colorService, ISizeService sizeService)
+        {
+            _productService = productService;
+            _commentService = commentService;
+            _colorService = colorService;
+            _sizeService = sizeService;
+        }
+        public IActionResult Index()
 		{
 			 return View();
 		}
-		public async Task<IActionResult> GetAllProduct(int categoryId)
+        public async Task<IActionResult> GetAllProduct(int id)
 		{
-			 return View(await _productService.GetAllByIncludeParametersAsync(x=>x.ProductFeature,x=>x.CategoryId==categoryId,x=>x.IsActive==true));
+           var products= await _productService.GetAllByIncludeParametersAsync(x => x.ProductFeature, x => x.CategoryId == id, x => x.IsActive == true);
+
+             return View(products.Data);
 		}
-		[HttpGet("{id}")]
-        public async Task<IActionResult> Detail(int productId)
+        public async Task<IActionResult> Detail(int id)
         {
-			 var productDetail = await _productService.GetProductDetailsById(productId);
-			var productCategory =await _productService.GetProductWithCategory(productId);
-			ViewBag.ProductCategory=productCategory;
+			var sizes =await _sizeService.GetAllActiveAsync();
+			var colors =await _colorService.GetAllActiveAsync();
+			 var productDetail = await _productService.GetProductDetailsById(id);
+			var productCategory =await _productService.GetProductWithCategory(id);
+            var comments = await _commentService.GetAllByIncludeParametersAsync(x => x.Customer, x => x.ProductId == id, x => x.IsActive == true);
+            ViewBag.ProductCategory=productCategory;
+			ViewBag.Sizes=sizes.Data;
+			ViewBag.Colors=colors.Data;
+			ViewBag.Comments=comments.Data;
              return View(productDetail);
         }
-		[NonAction]
-		[HttpGet]
-		public async Task<IActionResult> GetComment(int productId)
-		{
-		    var comments=await _commentService.GetAllByIncludeParametersAsync(x => x.Customer, x => x.ProductId == productId,x=>x.IsActive==true);
-			var VM = new CommentListVM
-			{
-				Id = productId,
-				Comments = comments.Data.ToList()
-			};
-			return View(VM);
-		}
+		
     }
 }
