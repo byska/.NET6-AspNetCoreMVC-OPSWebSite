@@ -10,8 +10,8 @@ namespace Ops.Core.Entities
 {
     public class ProductFeature :BaseEntity
     {
-        public ICollection<Size> Sizes { get; set; }
-        public ICollection<Color> Colors { get; set; }
+        public ICollection<SizeProductFeature> SizeProductFeatures { get; set; }
+        public ICollection<ColorProductFeature> ColorProductFeatures { get; set; }
         public string Description { get; set; }
         public ICollection<Stock> Stocks { get; set; }
         public ICollection<Photo> Photos { get; set; }
@@ -21,8 +21,8 @@ namespace Ops.Core.Entities
         public ProductFeature()
         {
             Stocks=new HashSet<Stock>();
-            Sizes=new HashSet<Size>();
-            Colors=new HashSet<Color>();
+            SizeProductFeatures=new HashSet<SizeProductFeature>();
+            ColorProductFeatures = new HashSet<ColorProductFeature>();
             Photos=new HashSet<Photo>();
         }
     }

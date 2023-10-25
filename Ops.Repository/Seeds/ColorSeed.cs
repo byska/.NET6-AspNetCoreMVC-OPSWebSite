@@ -14,6 +14,8 @@ namespace Ops.Repository.Seeds
         public void Configure(EntityTypeBuilder<Color> builder)
         {
             builder.HasData(new Color { Id=1, Name="Black", });
+            builder.HasData(new Color { Id=2, Name="Blue", });
+            builder.HasData(new Color { Id=3, Name="Yellow", });
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Ops.Repository.Seeds
         public void Configure(EntityTypeBuilder<Size> builder)
         {
             builder.HasData(new Size { Id=1, Name="Small", });
+            builder.HasData(new Size { Id=2, Name="Medium", });
+            builder.HasData(new Size { Id=3, Name="Large", });
         }
     }
 }

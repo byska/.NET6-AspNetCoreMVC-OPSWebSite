@@ -10,12 +10,12 @@ namespace Ops.Core.Entities
     {
         public string Name { get; set; }
       
-        public ICollection<ProductFeature> ProductFeatures{ get; set; }
+        public ICollection<ColorProductFeature> ColorProductFeatures{ get; set; }
         public ICollection<Photo>  Photos { get; set; }     
         public ICollection<Stock> Stocks { get; set; }
         public Color()
         {
-          ProductFeatures = new HashSet<ProductFeature>();
+          ColorProductFeatures = new HashSet<ColorProductFeature>();
             Stocks=new HashSet<Stock>();
         }
 
