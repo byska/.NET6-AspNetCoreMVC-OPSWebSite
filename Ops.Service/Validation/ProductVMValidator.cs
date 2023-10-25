@@ -20,10 +20,6 @@ namespace Ops.Service.Validation
                 .NotEmpty().WithMessage("Ürün fiyatı boş olamaz.")
                 .GreaterThan(0).WithMessage("Ürün fiyatı pozitif bir değer olmalıdır.");
 
-            RuleFor(x => x.Stock)
-                .NotEmpty().WithMessage("Ürün stok miktarı boş olamaz.")
-                .GreaterThan(0).WithMessage("Ürün stok miktarı pozitif bir değer olmalıdır.");
-
             RuleFor(x => x.CategoryId)
                 .NotEmpty().WithMessage("Kategori boş olamaz.")
                 .InclusiveBetween(0,int.MaxValue).WithMessage("Geçerli bir kategori seçiniz.");
