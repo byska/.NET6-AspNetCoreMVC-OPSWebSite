@@ -8,6 +8,10 @@ namespace Ops.Core.Entities
         {
             Comments = new HashSet<Comment>();
             Orders = new HashSet<Order>();
+            //Stocks=new HashSet<Stock>();
+            SizeProducts=new HashSet<SizeProduct>();
+            ColorProducts = new HashSet<ColorProduct>();
+            Photos=new HashSet<Photo>();
         }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -21,6 +25,12 @@ namespace Ops.Core.Entities
         public ProductFeature ProductFeature { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
+
+
+        public ICollection<SizeProduct> SizeProducts { get; set; }
+        public ICollection<ColorProduct> ColorProducts { get; set; }
+        public Stock Stock { get; set; }
+        public ICollection<Photo> Photos { get; set; }
 
     }
 }

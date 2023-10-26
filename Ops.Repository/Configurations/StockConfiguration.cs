@@ -13,10 +13,10 @@ namespace Ops.Repository.Configurations
         public override void Configure(EntityTypeBuilder<Stock> builder)
         {
             builder.Property(x => x.Stocks).IsRequired();
-            builder.HasOne(x => x.ProductFeature).WithMany(x => x.Stocks).HasForeignKey(x => x.ProductFeatureId);
-            builder.HasOne(x => x.Color).WithMany(x => x.Stocks).HasForeignKey(x => x.ColorId);
-            builder.HasOne(x => x.Size).WithMany(x => x.Stocks).HasForeignKey(x => x.SizeId);
-            base.Configure(builder);
+            builder.HasOne(x => x.Product).WithOne(x => x.Stock).HasForeignKey<Stock>(x => x.ProductId);
+            builder.HasOne(x => x.Color).WithOne(x => x.Stock).HasForeignKey<Stock>(x => x.ColorId);
+            builder.HasOne(x => x.Size).WithOne(x => x.Stock).HasForeignKey<Stock>(x => x.SizeId);
+
         }
     }
 }

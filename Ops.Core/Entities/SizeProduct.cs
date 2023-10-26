@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.Entities
 {
-    public class SizeProductFeature:BaseEntity
+    public class SizeProduct:BaseEntity
     {
-        public int ProductFeatureId { get; set; }
-        public ProductFeature ProductFeature { get; set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
         public int SizeId { get; set; }
         public Size Size { get; set; }
     }

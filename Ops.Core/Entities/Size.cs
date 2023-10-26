@@ -9,12 +9,11 @@ namespace Ops.Core.Entities
     public  class Size:BaseEntity
     {
         public string Name { get; set; }
-        public ICollection<SizeProductFeature> SizeProductFeatures { get; set; }
-        public ICollection<Stock> Stocks { get; set; }
+        public ICollection<SizeProduct> SizeProducts { get; set; }
+        public Stock Stock { get; set; }
         public Size()
         {
-            SizeProductFeatures = new HashSet<SizeProductFeature>();
-            Stocks=new HashSet<Stock>();
+            SizeProducts = new HashSet<SizeProduct>();
         }
 
     }
