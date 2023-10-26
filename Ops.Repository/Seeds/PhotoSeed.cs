@@ -13,9 +13,9 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<Photo> builder)
         {
-            builder.HasData(new Photo { Id=1, PhotoUrl="Deneme",ProductFeatureId=1,ColorId=1 });
-            builder.HasData(new Photo { Id=2, PhotoUrl="Deneme",ProductFeatureId=1,ColorId=1 });
-            builder.HasData(new Photo { Id=3, PhotoUrl="Deneme",ProductFeatureId=1,ColorId=1 });
+            builder.HasData(new Photo { Id=1, PhotoUrl="Deneme",ProductId=1,ColorId=1 });
+            builder.HasData(new Photo { Id=2, PhotoUrl="Deneme", ProductId=1,ColorId=1 });
+            builder.HasData(new Photo { Id=3, PhotoUrl="Deneme", ProductId=1,ColorId=1 });
         }
     }
 }

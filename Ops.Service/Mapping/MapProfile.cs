@@ -14,13 +14,13 @@ namespace Ops.Service.Mapping
         public MapProfile()
         {
             CreateMap<Product, ProductVM>()
-                .ForMember(dest=>dest.Photos,opt=>opt.MapFrom(src=>src.ProductFeature.Photos.Select(cfg=>cfg.PhotoUrl)))
-            .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ProductFeature.ColorProductFeatures.Select(cfg=>cfg.Color.Name.ToString())));
+                .ForMember(dest=>dest.Photos,opt=>opt.MapFrom(src=>src.Photos.Select(cfg=>cfg.PhotoUrl)))
+            .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ColorProducts.Select(cfg=>cfg.Color.Name)));
 
             CreateMap<Product, ProductsWithFeaturesVM>()
-                .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.ProductFeature.Photos.Select(x=>x.PhotoUrl)))
-                .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.ProductFeature.SizeProductFeatures.Select(x=>x.Size.Name)))
-                .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ProductFeature.ColorProductFeatures.Select(x=>x.Color.Name)))
+                .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.Photos.Select(x=>x.PhotoUrl)))
+                .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.SizeProducts.Select(x=>x.Size.Name)))
+                .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ColorProducts.Select(x=>x.Color.Name)))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.ProductFeature.Description));
             CreateMap<Comment, CommentVM>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Customer.FirstName+" "+src.Customer.LastName));

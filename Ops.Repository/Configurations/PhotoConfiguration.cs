@@ -13,7 +13,7 @@ namespace Ops.Repository.Configurations
         public override void Configure(EntityTypeBuilder<Photo> builder)
         {
             builder.Property(x => x.PhotoUrl).IsRequired();
-            builder.HasOne(x => x.ProductFeature).WithMany(x=>x.Photos).HasForeignKey(x => x.ProductFeatureId);
+            builder.HasOne(x => x.Product).WithMany(x=>x.Photos).HasForeignKey(x => x.ProductId);
             builder.HasOne(x=>x.Color).WithMany(x=>x.Photos).HasForeignKey(x=>x.ColorId);
             base.Configure(builder);
         }

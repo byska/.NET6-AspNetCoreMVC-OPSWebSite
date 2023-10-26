@@ -14,8 +14,8 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<Stock> builder)
         {
-            builder.HasData(new Stock { Id=1, Stocks=10,ProductFeatureId=1,ColorId=1,SizeId=1 });
-            builder.HasData(new Stock { Id=2, Stocks=20,ProductFeatureId=2,ColorId=1,SizeId=1 });
+            builder.HasData(new Stock { Id=1, Stocks=10,ProductId=1,ColorId=1,SizeId=1 });
+            builder.HasData(new Stock { Id=2, Stocks=20,ProductId=2,ColorId=1,SizeId=1 });
         }
     }
 }

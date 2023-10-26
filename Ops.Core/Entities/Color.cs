@@ -10,13 +10,16 @@ namespace Ops.Core.Entities
     {
         public string Name { get; set; }
       
-        public ICollection<ColorProductFeature> ColorProductFeatures{ get; set; }
-        public ICollection<Photo>  Photos { get; set; }     
-        public ICollection<Stock> Stocks { get; set; }
+        public ICollection<ColorProduct> ColorProducts{ get; set; }
+        public Stock Stock { get; set; }
+        public ICollection<Photo> Photos { get; set; }
+      
+
+
         public Color()
         {
-          ColorProductFeatures = new HashSet<ColorProductFeature>();
-            Stocks=new HashSet<Stock>();
+            ColorProducts=new HashSet<ColorProduct>();
+            Photos=new HashSet<Photo>();
         }
 
     }
