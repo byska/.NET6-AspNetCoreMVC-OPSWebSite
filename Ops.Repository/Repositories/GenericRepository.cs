@@ -55,6 +55,7 @@ namespace Ops.Repository.Repositories
         public IQueryable<T> GetAllByIncludeAsync(Expression<Func<T, bool>> exp, params Expression<Func<T, object>>[] includes)
         {
             var query = _dbSet.Where(exp);
+            query = query.Where(x=>x.IsActive==true);
             if (includes != null)
             {
                 query = includes.Aggregate(query, (current, include) => current.Include(include));
