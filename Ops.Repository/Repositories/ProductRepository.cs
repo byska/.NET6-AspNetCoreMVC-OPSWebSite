@@ -24,6 +24,7 @@ namespace Ops.Repository.Repositories
 
         public async Task<List<Product>> GetNewProductsAsync()
         {
+            
            return await _context.Products.OrderByDescending(x => x.CreatedDate).Include(x=>x.ProductFeature).Take(10).ToListAsync();
         }
 
@@ -31,5 +32,9 @@ namespace Ops.Repository.Repositories
         //{
         //    return await _context.Products.Include(x => x.ProductFeature).FirstOrDefaultAsync(x=>x.Id== id);
         //}
+        public async Task<List<Product>> GetProductsWithColorPhotos(int id)
+        {
+           return await _context.Products.Include(x=>x.Photos).Include(x => x.ColorProducts).ThenInclude(x => x.Color).Where(x=>x.CategoryId==id).ToListAsync();
+        }
     }
 }

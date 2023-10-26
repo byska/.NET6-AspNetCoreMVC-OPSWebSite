@@ -28,8 +28,9 @@ namespace Ops.Web.Areas.Customer.Controllers
 		}
         public async Task<IActionResult> GetAllProduct(int id)
 		{
-            var products = await _productService.GetAllByIncludeAsync(x => x.CategoryId == id, x => x.ProductFeature,x=>x.Photos,x=>x.ColorProducts);
-            return View(products.Data);
+            var products = await _productService.GetProductsWithColorPhoto(id);
+
+            return View(products);
 		}
         public async Task<IActionResult> Detail(int id)
         {

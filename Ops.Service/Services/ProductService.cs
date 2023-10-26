@@ -56,6 +56,11 @@ namespace Ops.Service.Services
             var productWithCategory=_mapper.Map<ProductWithCategoryVM>(product);
             return productWithCategory;            
         }
-       
+        public async Task<List<ProductVM>> GetProductsWithColorPhoto(int id)
+        {
+            var product = await _productRepository.GetProductsWithColorPhotos(id);
+            var productWithCategory = _mapper.Map<List<ProductVM>>(product);
+            return productWithCategory;
+        }
     }
 }
