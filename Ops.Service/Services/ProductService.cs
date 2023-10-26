@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Ops.Core.Entities;
 using Ops.Core.Repositories;
+using Ops.Core.Result.Abstract;
+using Ops.Core.Result.Concrete;
 using Ops.Core.Services;
 using Ops.Core.UnitOfWorks;
 using Ops.Core.VMs;
@@ -24,31 +27,32 @@ namespace Ops.Service.Services
             _mapper = mapper;
         }
 
-        public async Task<List<ProductVM>> GetBestsellerProductsAsync()
+
+        public async Task<IAppResult<List<ProductVM>>> GetBestsellerProductsAsync()
         {
             var product = await _productRepository.GetBestsellerProductsAsync();
             var productVm = _mapper.Map<List<ProductVM>>(product);
-            return productVm;
+            return AppResult<List<ProductVM>>.Success(StatusCodes.Status200OK,productVm);
         }
 
-        public async Task<List<ProductVM>> GetNewProductsAsync()
+        public async Task<IAppResult<List<ProductVM>>> GetNewProductsAsync()
         {
             var product = await _productRepository.GetNewProductsAsync();
             var productVm = _mapper.Map<List<ProductVM>>(product);
-            return productVm;
+            return AppResult<List<ProductVM>>.Success(StatusCodes.Status200OK,productVm);
         }
 
         public async Task<ProductsWithFeaturesVM> GetProductDetailsById(int id)
         {
           var productDetail= await _productRepository.GetAllByIncludeParametersAsync(x=>x.ProductFeature,x=>x.Id==id).FirstOrDefaultAsync();
             var productWithFeatureDto = _mapper.Map<ProductsWithFeaturesVM>(productDetail);
-            return productWithFeatureDto;
+           return productWithFeatureDto;
         }
         public  async Task<ProductWithCategoryVM> GetProductWithCategory(int id) 
         {
             var product=await _productRepository.GetAllByIncludeParametersAsync(x=>x.Category,x=>x.Id==id).FirstOrDefaultAsync();
             var productWithCategory=_mapper.Map<ProductWithCategoryVM>(product);
-            return productWithCategory;
+            return productWithCategory;            
         }
     }
 }
