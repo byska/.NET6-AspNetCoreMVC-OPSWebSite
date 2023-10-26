@@ -45,7 +45,7 @@
                 <div class="albums-slideshow owl-carousel">
 
                     <!-- Single Album -->
-                    @foreach (var item in ViewBag.NewProducts as List<ProductVM>)
+                    @foreach (var item in ViewBag.NewProducts)
                     {
                         <div class="single-album">
                             <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">

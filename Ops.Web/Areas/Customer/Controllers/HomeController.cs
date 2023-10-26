@@ -21,8 +21,8 @@ namespace Ops.Web.Areas.Customer.Controllers
             var homeSlider= await _service.GetAllActiveAsync();
            var bestsellerProducts= await _productService.GetBestsellerProductsAsync();
            var newProducts= await _productService.GetNewProductsAsync();
-            ViewBag.BestsellerProducts=bestsellerProducts;
-            ViewBag.NewProducts= newProducts;
+            ViewBag.BestsellerProducts=bestsellerProducts.Data;
+            ViewBag.NewProducts= newProducts.Data;
             ViewBag.HomeSlider= homeSlider.Data;
             return View();
         }

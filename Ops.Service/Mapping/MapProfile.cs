@@ -15,7 +15,7 @@ namespace Ops.Service.Mapping
         {
             CreateMap<Product, ProductVM>()
                 .ForMember(dest=>dest.Photos,opt=>opt.MapFrom(src=>src.ProductFeature.Photos.Select(cfg=>cfg.PhotoUrl)))
-            .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ProductFeature.ColorProductFeatures.Select(cfg=>cfg.Color.Name)));
+            .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ProductFeature.ColorProductFeatures.Select(cfg=>cfg.Color.Name.ToString())));
 
             CreateMap<Product, ProductsWithFeaturesVM>()
                 .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.ProductFeature.Photos.Select(x=>x.PhotoUrl)))

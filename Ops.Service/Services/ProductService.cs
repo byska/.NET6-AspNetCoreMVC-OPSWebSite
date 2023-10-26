@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Ops.Core.Entities;
+using Ops.Core.Intefaces;
 using Ops.Core.Repositories;
 using Ops.Core.Result.Abstract;
 using Ops.Core.Result.Concrete;
@@ -12,6 +13,7 @@ using Ops.Core.VMs.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -54,5 +56,6 @@ namespace Ops.Service.Services
             var productWithCategory=_mapper.Map<ProductWithCategoryVM>(product);
             return productWithCategory;            
         }
+       
     }
 }
