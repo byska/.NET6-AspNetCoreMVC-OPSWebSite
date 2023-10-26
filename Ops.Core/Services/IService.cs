@@ -16,6 +16,7 @@ namespace Ops.Core.Services
         Task<IAppResult<IEnumerable<TResponse>>> GetAllAsync();
         Task<IAppResult<IEnumerable<TResponse>>> GetAllActiveAsync();
         Task<IAppResult<IEnumerable<TResponse>>> GetAllByIncludeParametersAsync(Expression<Func<TEntity, object>> include, params Expression<Func<TEntity, bool>>[] exps);
+        Task<IAppResult<IEnumerable<TResponse>>> GetAllByIncludeAsync(Expression<Func<TEntity, bool>> exp, params Expression<Func<TEntity, object>>[] includes);
         Task<IAppResult<IEnumerable<TResponse>>> Where(Expression<Func<TEntity, bool>> expression);
         Task<IAppResult<NoContentVM>> Activate(int id);
         Task<IAppResult<bool>> AnyAsync(Expression<Func<TEntity, bool>> expression);

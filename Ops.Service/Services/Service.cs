@@ -83,6 +83,13 @@ namespace Ops.Service.Services
             return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, responseEntities);
         }
 
+        public async Task<IAppResult<IEnumerable<TResponse>>> GetAllByIncludeAsync(Expression<Func<TEntity, bool>> exp, params Expression<Func<TEntity, object>>[] includes)
+        {
+          var entities=await _uow.GetRepository<TEntity>().GetAllByIncludeAsync(exp, includes).ToListAsync();
+            var dtos = _mapper.Map<IEnumerable<TResponse>>(entities);
+            return AppResult<IEnumerable<TResponse>>.Success(StatusCodes.Status200OK, dtos);
+        }
+
         public async Task<IAppResult<IEnumerable<TResponse>>> GetAllByIncludeParametersAsync(Expression<Func<TEntity, object>> include, params Expression<Func<TEntity, bool>>[] exps)
         {
               var entities = await _uow.GetRepository<TEntity>().GetAllByIncludeParametersAsync(include, exps).ToListAsync();
