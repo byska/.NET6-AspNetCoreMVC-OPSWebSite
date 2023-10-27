@@ -1,93 +1,65 @@
 ﻿@{
     ViewData["Title"] = "Ürünler";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 @model List<ProductVM>;
 
-<h1>GetAllProduct</h1>
 
-<!-- Sorting -->
-<div class="product-sorting d-flex">
-    <div class="sort-by-date d-flex align-items-center mr-15">
-        <p>Sort by</p>
-        <form action="#" method="get">
-            <select name="select" id="sortBydate">
-                <option value="value">Date</option>
-                <option value="value">Newest</option>
-                <option value="value">Popular</option>
-            </select>
-        </form>
-    </div>
-    <div class="view-product d-flex align-items-center">
-        <p>View</p>
-        <form action="#" method="get">
-            <select name="select" id="viewProduct">
-                <option value="value">12</option>
-                <option value="value">24</option>
-                <option value="value">48</option>
-                <option value="value">96</option>
-            </select>
-        </form>
-    </div>
-</div>
+
+<div class="single-product-area section-padding-100 clearfix">
+    <div class="container-fluid">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <!-- Single Product Area -->
+                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                    <div class="single-product-wrapper">
+
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"><img src="~/img/tshirt-1.jpeg" alt="@item.Name" style="max-width: 100px; max-height: 100px; "></a>
+                            <!-- Hover Thumb -->
+                            @*   <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"><img src="~/img/tshirt-1.jpeg" alt="@item.Name" style="max-width: 100px; max-height: 100px; "></a>*@
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="product-description d-flex align-items-center justify-content-between">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data">
+                                <div class="line"></div>
+                                <p class="product-price">@item.Price</p>
+
+                                <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)">
+                                    <h6>@item.Name</h6>
+                                </a>
+                            </div>
+                            <!-- Renk seçimini burada yapabilirsiniz -->
+                            <div class="product-colors">
+                                @foreach (var color in item.Colors)
+                                {
+                                    <span class="color-box" style="background-color: @item.Colors;"></span>
+                                }
+                            </div>
+
+                            <!-- Ratings & Cart -->
+                            <div class="ratings-cart text-right">
+                                <div class="ratings">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <div class="cart">
+                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <!-- Single Product Area -->
-        <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-            <div class="single-product-wrapper">
-             @*   @if (!string.IsNullOrEmpty(item.Image))
-                {
-                    <img src="@item.Image" alt="@item.Image" />
-                }*@
-                <!-- Product Image -->
-                <div class="product-img">
-                    <img src="img/product-img/product1.jpg" alt="">
-                    <!-- Hover Thumb -->
-                    <img class="hover-img" src="img/product-img/product2.jpg" alt="">
-                </div>
-
-                <!-- Product Description -->
-                <div class="product-description d-flex align-items-center justify-content-between">
-                    <!-- Product Meta Data -->
-                    <div class="product-meta-data">
-                        <div class="line"></div>
-                        <p class="product-price">@item.Price</p>
-                      @*  <a class="btn btn-sm btn-primary" asp-area="Customer"   asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id">
-                          <h6>@item.Name</h6>
-                        </a>
-                        <a asp-area="Customer" asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
-                            <h6>@item.Name</h6>
-                        </a>*@
-                        <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)">
-                            <h6>@item.Name</h6>
-                        </a>
-
-                       
-                    
-                       
-                    </div>
-                    <!-- Ratings & Cart -->
-                    <div class="ratings-cart text-right">
-                        <div class="ratings">
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                        </div>
-                        <div class="cart">
-                            <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
-    }
+    </div>
 </div>
 <script>
     function redirectToProductDetail(productId) {
