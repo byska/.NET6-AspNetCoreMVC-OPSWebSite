@@ -10,8 +10,6 @@ namespace Ops.Core.VMs
 {
     public class ProductsWithFeaturesVM:ProductVM
     {
-        public string Name { get; set; }
-        public decimal Price { get; set; }
         public List<string> Size { get; set; }
         public string Description { get; set; }
     }

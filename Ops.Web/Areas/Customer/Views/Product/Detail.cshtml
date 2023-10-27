@@ -2,7 +2,14 @@
 @model ProductsWithFeaturesVM
 
 @{
-    ViewData["Title"] = Model.Name;
+    if (Model != null)
+    {
+        ViewData["Title"] = Model.Name;
+    }
+    else
+    {
+        ViewData["Title"] = "Ürün Adı Belirtilmemiş";
+    }
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 @{
@@ -13,10 +20,7 @@
     List<SizeVM> sizes = ViewBag.Sizes as List<SizeVM>;
     List<CommentVM> comments = ViewBag.Comments as List<CommentVM>;
 }
-@{
-    int productId = Model.Id;
-    var commentVM = new CommentListVM { Id = productId, Comments = new List<CommentVM>() };
-}
+
 <!-- Product Details Area Start -->
 <div class="single-product-area section-padding-100 clearfix">
     <div class="container-fluid">
@@ -72,7 +76,7 @@
                 </div>
 
                 <!-- Add to Cart Form -->
-                <form class="cart clearfix" method="post">
+                 <form class="cart clearfix" method="post">
 
                     <!-- Color Select-->
                     <div id="colorSelect">
@@ -141,9 +145,9 @@
                         </div>
                     </div>
                     <button type="submit" name="addtocart" value="5" class="btn amado-btn">Sepete Ekle</button>
-                </form>
+                </form> 
 
-<section class="latest-albums-area section-padding-100">
+ <section class="latest-albums-area section-padding-100">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -181,7 +185,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> 
             </div>
         </div>
     </div>

@@ -17,7 +17,6 @@ namespace Ops.Core.Services
         Task<IAppResult<List<ProductVM>>> GetBestsellerProductsAsync();
         Task<ProductsWithFeaturesVM> GetProductDetailsById(int id);
         Task<ProductWithCategoryVM> GetProductWithCategory(int id);
-        Task<List<ProductVM>> GetProductsWithColorPhoto(int id);
-
+        Task<IAppResult<List<ProductVM>>> GetProductsWithColorPhoto(int id);
     }
 }

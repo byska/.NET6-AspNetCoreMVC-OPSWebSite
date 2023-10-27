@@ -30,7 +30,7 @@ namespace Ops.Web.Areas.Customer.Controllers
 		{
             var products = await _productService.GetProductsWithColorPhoto(id);
 
-            return View(products);
+            return View(products.Data);
 		}
         public async Task<IActionResult> Detail(int id)
         {

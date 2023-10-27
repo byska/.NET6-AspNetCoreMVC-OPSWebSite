@@ -19,7 +19,7 @@ namespace Ops.Service.Mapping
 
             CreateMap<Product, ProductsWithFeaturesVM>()
                 .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.Photos.Select(x=>x.PhotoUrl)))
-                .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.SizeProducts.Select(x=>x.Size.Name)))
+                .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.SizeProducts.Select(x=>x.Size.Name).ToList()))
                 .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ColorProducts.Select(x => x.Color.Name.ToString()).ToList()))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.ProductFeature.Description));
             CreateMap<Comment, CommentVM>()

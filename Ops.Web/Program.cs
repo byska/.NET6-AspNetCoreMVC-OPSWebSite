@@ -55,15 +55,24 @@ namespace Ops.Web
             app.UseRouting();
 
             app.UseAuthorization();
-            app.MapAreaControllerRoute(
-    name: "Customer",
-    areaName: "Customer",
-    pattern: "Customer/{controller=Home}/{action=index}/{id?}"
-    );
+            app.UseEndpoints(endpoints =>
+            {
 
-            app.MapControllerRoute(
-                name: "default",
+                endpoints.MapAreaControllerRoute(
+                name: "Customer",
+                areaName: "Customer",
                 pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "Admin",
+                    areaName: "Admin",
+                    pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Account}/{action=SignIn}/{id?}");
+
+            });
 
             app.Run();
         }

@@ -46,7 +46,7 @@ namespace Ops.Service.Services
 
         public async Task<ProductsWithFeaturesVM> GetProductDetailsById(int id)
         {
-          var productDetail= await _productRepository.GetAllByIncludeParametersAsync(x=>x.ProductFeature,x=>x.Id==id).FirstOrDefaultAsync();
+          var productDetail= await _productRepository.GetProductDetailsById(id);
             var productWithFeatureDto = _mapper.Map<ProductsWithFeaturesVM>(productDetail);
            return productWithFeatureDto;
         }
@@ -56,11 +56,11 @@ namespace Ops.Service.Services
             var productWithCategory=_mapper.Map<ProductWithCategoryVM>(product);
             return productWithCategory;            
         }
-        public async Task<List<ProductVM>> GetProductsWithColorPhoto(int id)
+        public async Task<IAppResult<List<ProductVM>>> GetProductsWithColorPhoto(int id)
         {
             var product = await _productRepository.GetProductsWithColorPhotos(id);
             var productWithCategory = _mapper.Map<List<ProductVM>>(product);
-            return productWithCategory;
+            return AppResult<List<ProductVM>>.Success(StatusCodes.Status200OK, productWithCategory);
         }
     }
 }
