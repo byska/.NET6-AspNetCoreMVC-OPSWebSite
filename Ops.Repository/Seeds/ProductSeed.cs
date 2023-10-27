@@ -14,7 +14,7 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<Product> builder)
         {
-            builder.HasData(new Product { Id=1, CategoryId=1, Name="Tişört", Price=200, Status=Status.Added },
+            builder.HasData(new Product { Id=1, CategoryId=1, Name="Tişört", Price=200, Status=Status.Added,Amount=200 },
                 new Product { Id = 2, CategoryId=1,  Name = "Kısa Kollu Tişört", Price = 150,  Status = Status.Added,Amount=10 },
                 new Product { Id = 3, CategoryId = 1, Name = " Uzun Kollu Tişört", Price = 300,  Status = Status.Added,Amount=2 },
                 new Product { Id = 4, CategoryId = 3, Name = "Çanta", Price = 400, Status = Status.Added,Amount=20 },
