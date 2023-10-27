@@ -15,7 +15,7 @@ namespace Ops.Repository.Seeds
         {
             builder.HasData(new Size { Id=1, Name="Small", });
             builder.HasData(new Size { Id=2, Name="Medium", });
-            builder.HasData(new Size { Id=3, Name="Large", });
+            builder.HasData(new Size { Id=3, Name="Large",  });
         }
     }
 }
