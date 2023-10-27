@@ -32,6 +32,7 @@ namespace Ops.Web.Areas.Customer.Controllers
 
             return View(products.Data);
 		}
+
         public async Task<IActionResult> Detail(int id)
         {
 			var sizes =await _sizeService.GetAllActiveAsync();

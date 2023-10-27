@@ -29,7 +29,7 @@
             <div class="col-12">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mt-50">
-                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index" >Anasayfa</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
                         <li class="breadcrumb-item"><a asp-controller="Product" asp-action="GetAllProduct" asp-route-id="@category.CategoryId">@category.CategoryName</a></li>
                         <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
                     </ol>
@@ -76,17 +76,17 @@
                 </div>
 
                 <!-- Add to Cart Form -->
-                 <form class="cart clearfix" method="post">
+                <form class="cart clearfix" method="post">
 
                     <!-- Color Select-->
                     <div id="colorSelect">
                         <label for="color">Renk Seçiniz:</label><br />
 
-                            @foreach (var color in colors)
-                            {
+                        @foreach (var color in colors)
+                        {
                             <input type="radio" name="color" value="@color.Name" id="color_@color.Name" class="color-radio @color.Name.ToLower()">
-                           
-                            }          
+
+                        }
                     </div>
                     <script>
                         var stockColor = @Html.Raw(inStockColor);
@@ -106,7 +106,7 @@
                             });
                         });
                     </script>
-                   
+
                     <!-- Size Select-->
                     <div id="sizeSelect">
                         <label for="color">Beden Seçiniz:</label><br />
@@ -145,50 +145,50 @@
                         </div>
                     </div>
                     <button type="submit" name="addtocart" value="5" class="btn amado-btn">Sepete Ekle</button>
-                </form> 
+                </form>
 
- <section class="latest-albums-area section-padding-100">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="section-heading style-2">
-                    <h2>Yorumlar</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12">
-                <div class="albums-slideshow owl-carousel">
-
-                    <!-- Single Album -->
-                                    @foreach (var item in comments as List<CommentVM>)
-                    {
-                        <div class="single-album">                      
-                            <div class="album-info">
-                                    <h5>@item.Name</h5>
-                                    @for(var i=1; i<=item.Mark; i++)
-                                {
-                                    <i class="star filled-star"></i>
-                                }
-                                @for(var i=1; i<=5-item.Mark;i++)
-                                {
-                                    <i class="star empty-star"></i>
-                                }
-                                 <p>@item.Description</p>
+                <section class="latest-albums-area section-padding-100">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="section-heading style-2">
+                                    <h2>Yorumlar</h2>
+                                </div>
                             </div>
                         </div>
-                    }
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="albums-slideshow owl-carousel">
+
+                                    <!-- Single Album -->
+                                    @foreach (var item in comments as List<CommentVM>)
+                                    {
+                                        <div class="single-album">
+                                            <div class="album-info">
+                                                <h5>@item.Name</h5>
+                                                @for (var i = 1; i<=item.Mark; i++)
+                                                {
+                                                    <i class="star filled-star"></i>
+                                                }
+                                                @for (var i = 1; i<=5-item.Mark; i++)
+                                                {
+                                                    <i class="star empty-star"></i>
+                                                }
+                                                <p>@item.Description</p>
+                                            </div>
+                                        </div>
+                                    }
 
 
-                </div>
-            </div>
-        </div>
-    </div>
-</section> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
 </div>
-        </div>
+     
 
