@@ -10,7 +10,6 @@ namespace Ops.Core.Entities
             Orders = new HashSet<Order>();
             //Stocks=new HashSet<Stock>();
             SizeProducts=new HashSet<SizeProduct>();
-            ColorProducts = new HashSet<ColorProduct>();
             Photos=new HashSet<Photo>();
         }
         public string Name { get; set; }
@@ -28,7 +27,6 @@ namespace Ops.Core.Entities
 
 
         public ICollection<SizeProduct> SizeProducts { get; set; }
-        public ICollection<ColorProduct> ColorProducts { get; set; }
         public Stock Stock { get; set; }
         public ICollection<Photo> Photos { get; set; }
 

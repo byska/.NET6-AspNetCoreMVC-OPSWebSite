@@ -9,8 +9,6 @@ namespace Ops.Core.Entities
     public class Color : BaseEntity
     {
         public string Name { get; set; }
-      
-        public ICollection<ColorProduct> ColorProducts{ get; set; }
         public Stock Stock { get; set; }
         public ICollection<Photo> Photos { get; set; }
       
@@ -18,7 +16,6 @@ namespace Ops.Core.Entities
 
         public Color()
         {
-            ColorProducts=new HashSet<ColorProduct>();
             Photos=new HashSet<Photo>();
         }
 
