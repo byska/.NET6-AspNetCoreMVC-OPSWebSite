@@ -9,20 +9,22 @@
 }
 .color-radio, .size-radio {
     display: none;
+    background-color: black;
 }
-.color-radio,.size-radio {
-    display:inline-block;
+.color-radio, .size-radio {
+    display: inline-block;
     width: 20px;
-    height: 20px; 
-    cursor:pointer;
+    height: 20px;
+    cursor: pointer;
+    background-color: black;
 }
-.size-radio{
-    background-color:beige;
-    border:2px solid gray;
-    text-align:center;
-    line-height:30px;
-    margin-right:10px;
-
+.size-radio {
+    background-color: beige;
+    border: 2px solid gray;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 10px;
+    background-color: black;
 }
 .small{
     content:'S';
@@ -40,33 +42,41 @@
     content: 'XL';
     font-weight: bold;
 }
-.white{
-    color:azure;
+.white {
+    color: azure;
+    background-color: white;
 }
 .black{
     color:black;
     background-color:black;
 }
-.gray{
-    color:dimgray;
+.gray {
+    color: dimgray;
+    background-color: gray;
 }
-.pink{
-    color:lightpink;
+.pink {
+    color: lightpink;
+    background-color: pink;
 }
-.purple{
-    color:mediumpurple;
+.purple {
+    color: mediumpurple;
+    background-color: purple;
 }
-.green{
-    color:darkolivegreen;
+.green {
+    color: darkolivegreen;
+    background-color: green;
 }
-.beige{
-    color:beige;
+.beige {
+    color: beige;
+    background-color: beige;
 }
-.brown{
-    color:saddlebrown;
+.brown {
+    color: saddlebrown;
+    background-color: brown;
 }
-.yellow{
-    color:yellow;
+.yellow {
+    color: yellow;
+    background-color: yellow;
 }
 input[type="radio"][name="color"][disabled] {
     color: #999; 

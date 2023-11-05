@@ -3,56 +3,35 @@
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 @model List<ProductVM>;
-
-
-
 <div class="single-product-area section-padding-100 clearfix">
     <div class="container-fluid">
         <div class="row">
             @foreach (var item in Model)
             {
                 <!-- Single Product Area -->
-                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                <div class="col-12 col-sm-4 col-md-12 col-xl-4">
                     <div class="single-product-wrapper">
-
                         <!-- Product Image -->
-                        <div class="product-img">
-                            <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"><img src="~/img/tshirt-1.jpeg" alt="@item.Name" style="max-width: 100px; max-height: 100px; "></a>
-                            <!-- Hover Thumb -->
-                            @*   <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"><img src="~/img/tshirt-1.jpeg" alt="@item.Name" style="max-width: 100px; max-height: 100px; "></a>*@
-                        </div>
-
+                        @foreach(var item2 in item.Photos)
+                        {
+                            <div class="product-img">
+                                <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"><img  src="~/img/@item2" alt="@item.Name" style="max-width: 100px; max-height: 100px; "></a>
+                                <!-- Hover Thumb -->
+                                <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"><img class="hover-img" src="~/img/@item2" alt="@item.Name" style="max-width: 100px; max-height: 100px; "></a>
+                            </div>
+                        }
+                       
+                           
+                       
                         <!-- Product Description -->
                         <div class="product-description d-flex align-items-center justify-content-between">
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price">@item.Price</p>
-
                                 <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)">
                                     <h6>@item.Name</h6>
                                 </a>
-                            </div>
-                            <!-- Renk seçimini burada yapabilirsiniz -->
-                            <div class="product-colors">
-                                @foreach (var color in item.Colors)
-                                {
-                                    <span class="color-box" style="background-color: @item.Colors;"></span>
-                                }
-                            </div>
-
-                            <!-- Ratings & Cart -->
-                            <div class="ratings-cart text-right">
-                                <div class="ratings">
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                </div>
-                                <div class="cart">
-                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -14,11 +14,11 @@ namespace Ops.Service.Mapping
         public MapProfile()
         {
             CreateMap<Product, ProductVM>()
-                .ForMember(dest=>dest.Photos,opt=>opt.MapFrom(src=>src.Photos.Select(cfg=>cfg.PhotoUrl)))
+                .ForMember(dest=>dest.Photos,opt=>opt.MapFrom(src=>src.Photos.Select(cfg=>cfg.PhotoUrl).ToList()))
             .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ColorProducts.Select(x=>x.Color.Name.ToString()).ToList()));
 
             CreateMap<Product, ProductsWithFeaturesVM>()
-                .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.Photos.Select(x=>x.PhotoUrl)))
+                .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.Photos.Select(x=>x.PhotoUrl).ToList()))
                 .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.SizeProducts.Select(x=>x.Size.Name).ToList()))
                 .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ColorProducts.Select(x => x.Color.Name.ToString()).ToList()))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.ProductFeature.Description));
