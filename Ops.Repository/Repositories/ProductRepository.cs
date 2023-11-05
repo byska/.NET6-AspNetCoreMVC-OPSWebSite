@@ -38,7 +38,7 @@ namespace Ops.Repository.Repositories
         }
         public async Task<Product> GetProductDetailsById(int id)
         {
-            return await _context.Products.Include(x=>x.ProductFeature).Include(x => x.SizeProducts).ThenInclude(x => x.Size).Include(x => x.Photos).Include(x => x.ColorProducts).ThenInclude(x => x.Color).FirstOrDefaultAsync(x => x.CategoryId == id);
+            return await _context.Products.Include(x=>x.ProductFeature).Include(x => x.SizeProducts).ThenInclude(x => x.Size).Include(x => x.Photos).Include(x => x.ColorProducts).ThenInclude(x => x.Color).FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }
