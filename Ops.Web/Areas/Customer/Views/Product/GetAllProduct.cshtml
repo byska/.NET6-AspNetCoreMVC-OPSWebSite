@@ -14,15 +14,13 @@
                 <div class="col-12 col-sm-4 col-md-12 col-xl-4">
                     <div class="single-product-wrapper">
                         <!-- Product Image -->
-                        <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"></a>
-                        <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"></a>
                         <div class="product-img">
                             <div id="carousel-@item.Id" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     @for (int i = 0; i < item.Photos.Count; i++)
                                     {
                                         <div class="carousel-item @(i == 0 ? "active" : "")">
-                                            <img src="~/img/@item.Photos[i]" class="d-block w-100" alt="@item.Name">
+                                            <a href="javascript:void(0);" onclick="redirectToProductDetail(@item.Id)"> <img src="~/img/@item.Photos[i]" class="d-block w-100" alt="@item.Name"></a>
                                         </div>
                                     }
                                 </div>
