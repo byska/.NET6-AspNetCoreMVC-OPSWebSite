@@ -10,10 +10,12 @@ namespace Ops.Web.Areas.Customer.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IMessageService _messageService;
         private readonly IService<HomeSlider, HomeSliderCreateVM, HomeSliderVM> _service;
-        public HomeController(IProductService productService,IService<HomeSlider, HomeSliderCreateVM, HomeSliderVM> service)
+        public HomeController(IProductService productService,IService<HomeSlider, HomeSliderCreateVM, HomeSliderVM> service,IMessageService messageService)
         {
                _productService = productService;
+            _messageService = messageService;
             _service = service;
         }
         public async Task<IActionResult> Index()
@@ -24,6 +26,30 @@ namespace Ops.Web.Areas.Customer.Controllers
             ViewBag.BestsellerProducts=bestsellerProducts.Data;
             ViewBag.NewProducts= newProducts.Data;
             ViewBag.HomeSlider= homeSlider.Data;
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Contact(MessageCreateVM message)
+        {
+          var result= await _messageService.AddAsync(message);
+            if (result.Errors == null)
+            {
+                TempData["result"] = "Mesajınız başarıyla alınmıştır.";
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                TempData["result"] = "Mesajınız gönderilememiştir.";
+                return View(message);
+            }
+
+        }
+        public IActionResult About()
+        {
             return View();
         }
     }

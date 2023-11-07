@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewData["Title"] = "İletişim";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+@model MessageCreateVM
+@if(TempData["result"] !=null)
+{
+    <script>
+        alert("@TempData["result"]");
+       </script>
+}
+
+<section class="contact-area section-padding-100-0">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 col-lg-3">
+                <div class="contact-content mb-100">
+                    <!-- Title -->
+                    <div class="contact-title mb-50">
+                        <h5>İletişim Bilgileri</h5>
+                    </div>
+
+                    <!-- Single Contact Info -->
+                    <div class="single-contact-info d-flex align-items-center">
+                        <div class="icon mr-30">
+                            <span class="icon-smartphone"></span>
+                        </div>
+                        <p>0543 745 0620</p>
+                    </div>
+
+                    <!-- Single Contact Info -->
+                    <div class="single-contact-info d-flex align-items-center">
+                        <div class="icon mr-30">
+                            <span class="icon-mail"></span>
+                        </div>
+                        <p>orangepressstore@gmail.com</p>
+                    </div>
+
+                    <!-- Contact Social Info -->
+                    <div class="contact-social-info mt-50">
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Trendyol"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="section-heading">
+                    <h2>BİZE ULAŞIN!</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <!-- Contact Form Area -->
+                <div class="contact-form-area">
+                    <form asp-action="Contact" method="post">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <input asp-for="Name" type="text" class="form-control" id="name" placeholder="İsim">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="form-group">
+                                    <input asp-for="Email" type="email" class="form-control" id="email" placeholder="E-mail">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <input asp-for="Subject" type="text" class="form-control" id="subject" placeholder="Konu">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <textarea asp-for="Description" name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Mesajınızı Giriniz"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12 text-center">
+                                <button class="btn oneMusic-btn mt-30" type="submit">Gönder <i class="fa fa-angle-double-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Contact Area End ##### -->
+
+
