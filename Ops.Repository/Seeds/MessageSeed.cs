@@ -13,7 +13,7 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<Message> builder)
         {
-            builder.HasData(new Message { Name = "Beste", Email = "beyasak@hotmail.com", Subject = "Bilgi Alma", Description = "Fiziksel bir mağazanız bulunuyor mu acaba?" });
+            builder.HasData(new Message { Id=1, Name = "Beste", Email = "beyasak@hotmail.com", Subject = "Bilgi Alma", Description = "Fiziksel bir mağazanız bulunuyor mu acaba?" });
         }
     }
 }

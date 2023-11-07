@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Ops.Core.VMs;
+using Ops.Core.VMs.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Ops.Service.Validation
 {
-    public class CommentVMValidator : AbstractValidator<CommentVM>
+    public class CommentVMValidator : AbstractValidator<CommentCreateVM>
     {
         public CommentVMValidator()
         {
