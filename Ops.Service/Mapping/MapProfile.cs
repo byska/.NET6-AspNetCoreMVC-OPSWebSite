@@ -30,6 +30,7 @@ namespace Ops.Service.Mapping
             CreateMap<HomeSlider,HomeSliderVM>();
             CreateMap<Size, SizeVM>();
             CreateMap<Color, ColorVM>();
+            CreateMap<Comment, CommentVM>().ForMember(dest=>dest.ProductName,opt=>opt.MapFrom(src=>src.Product.Name));
         }
     }
 }

@@ -12,6 +12,6 @@ namespace Ops.Core.VMs
         public string Description { get; set; }
         public int Mark { get; set; }
         public string Name { get; set; } 
-        public int ProductId { get; set; }
+        public string ProductName { get; set; }
     }
 }

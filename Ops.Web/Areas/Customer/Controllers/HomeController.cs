@@ -11,11 +11,13 @@ namespace Ops.Web.Areas.Customer.Controllers
     {
         private readonly IProductService _productService;
         private readonly IMessageService _messageService;
+        private readonly ICommentService _commentService; 
         private readonly IService<HomeSlider, HomeSliderCreateVM, HomeSliderVM> _service;
-        public HomeController(IProductService productService,IService<HomeSlider, HomeSliderCreateVM, HomeSliderVM> service,IMessageService messageService)
+        public HomeController(IProductService productService,IService<HomeSlider, HomeSliderCreateVM, HomeSliderVM> service,IMessageService messageService,ICommentService commentService)
         {
                _productService = productService;
             _messageService = messageService;
+            _commentService = commentService;
             _service = service;
         }
         public async Task<IActionResult> Index()
@@ -48,9 +50,10 @@ namespace Ops.Web.Areas.Customer.Controllers
             }
 
         }
-        public IActionResult About()
+        public async Task<IActionResult> About()
         {
-            return View();
+          var comments= await _commentService.GetAllActiveAsync();
+            return View(comments.Data);
         }
     }
 }

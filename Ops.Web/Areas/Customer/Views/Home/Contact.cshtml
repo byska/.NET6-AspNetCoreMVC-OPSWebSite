@@ -11,6 +11,7 @@
        </script>
 }
 
+
 <section class="contact-area section-padding-100-0">
     <div class="container">
         <div class="row">
@@ -41,7 +42,7 @@
                     <!-- Contact Social Info -->
                     <div class="contact-social-info mt-50">
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Trendyol"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
+                        <a href="https://www.trendyol.com/magaza/orange-press-store-m-877656?sst=0" data-toggle="tooltip" data-placement="top" title="Trendyol"><i class="fa fa-dribbble" aria-hidden="true"></i></a>
                     </div>
 
                 </div>
@@ -54,40 +55,34 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12">
-                <!-- Contact Form Area -->
-                <div class="contact-form-area">
-                    <form asp-action="Contact" method="post">
-                        <div class="row">
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <input asp-for="Name" type="text" class="form-control" id="name" placeholder="İsim">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-lg-4">
-                                <div class="form-group">
-                                    <input asp-for="Email" type="email" class="form-control" id="email" placeholder="E-mail">
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <input asp-for="Subject" type="text" class="form-control" id="subject" placeholder="Konu">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <textarea asp-for="Description" name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Mesajınızı Giriniz"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-12 text-center">
-                                <button class="btn oneMusic-btn mt-30" type="submit">Gönder <i class="fa fa-angle-double-right"></i></button>
-                            </div>
-                        </div>
-                    </form>
+        <form asp-action="Contact" method="post">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="text-black">İsim Soyisim</label>
+                        <input asp-for="Name" type="text" class="form-control" id="fname">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="text-black" >Konu</label>
+                        <input asp-for="Subject" type="text" class="form-control" id="lname">
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label class="text-black">E-mail</label>
+                <input asp-for="Email" type="email" class="form-control" id="email">
+            </div>
+
+            <div class="form-group mb-5">
+                <label class="text-black">Mesajınız</label>
+                <textarea asp-for="Description" name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary-hover-outline">Gönder</button>
+        </form>
+      
     </div>
 </section>
 <!-- ##### Contact Area End ##### -->
