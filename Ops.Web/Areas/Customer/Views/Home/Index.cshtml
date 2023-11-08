@@ -2,8 +2,8 @@
     ViewData["Title"] = "Anasayfa";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
-
-<section class="hero-area">
+<div class="container" >
+    <section class="hero-area col-12">
     <div class="hero-slides owl-carousel">
         <!-- Single Hero Slide -->
         @foreach (var item in ViewBag.HomeSlider)
@@ -30,7 +30,7 @@
 
     </div>
 </section>
-<section class="latest-albums-area section-padding-100">
+<section class="latest-albums-area section-padding-100 col-12">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -64,7 +64,7 @@
         </div>
     </div>
 </section>
-<section class="latest-albums-area section-padding-100">
+<section class="latest-albums-area section-padding-100 col-12">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -98,4 +98,4 @@
         </div> 
     </div>
 </section>
-
+</div>

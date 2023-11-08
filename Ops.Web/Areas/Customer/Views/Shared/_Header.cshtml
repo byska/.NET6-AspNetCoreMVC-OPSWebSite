@@ -32,16 +32,17 @@
                                 <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="2">Tişört Oversize</a></li>
                                 <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="3">Hoodie</a></li>
                                 <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="4">Sweatshirt</a></li>
-                                 <li>
-                                    <a href="#">Aksesuar</a>
-                                    <ul class="dropdown">
-                                        <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="5">Kol Çantası</a></li>
-                                        <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="6">Cüzdan</a></li>
-                                        <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="7">Baf</a></li>
-                                    </ul>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Aksesuar
+                                    </a>
+                                    <div class="dropdown-menu" @*aria-labelledby="navbarDropdown"*@>
+                                        <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="5" class="dropdown-item">Kol Çantası</a>
+                                        <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="6" class="dropdown-item">Cüzdan</a>
+                                        <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="7" class="dropdown-item">Baf</a>
+                                    </div>
                                 </li>
-                               
-                               
                                 <li><a asp-action="Contact" asp-controller="Home">İletişim</a></li>
                             </ul>
 
