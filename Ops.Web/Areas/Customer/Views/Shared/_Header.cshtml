@@ -1,70 +1,43 @@
-﻿  <!-- ##### Header Area Start ##### -->
-<header class="header-area">
-    <!-- Navbar Area -->
-    <div class="oneMusic-main-menu">
-        <div class="classy-nav-container breakpoint-off">
-            <div class="container">
-                <!-- Menu -->
-                <nav class="classy-navbar justify-content-between" id="oneMusicNav">
+﻿
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top py-lg-0 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
+    <a asp-action="Index" asp-controller="Home" class="navbar-brand ms-4 ms-lg-0">
+        <h1 class="text-primary m-0">OPS</h1>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav mx-auto p-4 p-lg-0">
+            <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active">Anasayfa</a>
+            <a asp-action="About" asp-controller="Home" class="nav-item nav-link">Hakkımızda</a>
+            <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="1" class="nav-item nav-link">Tişört Regular</a>
+            <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="2" class="nav-item nav-link">Tişört Oversize</a>
+            <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="3" class="nav-item nav-link">Hoodie</a>
+            <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="4" class="nav-item nav-link">Sweatshirt</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Aksesuar</a>
+                <div class="dropdown-menu m-0">
+                    <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="5" class="dropdown-item">Kol Çantası</a>
+                    <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="6" class="dropdown-item">Cüzdan</a>
+                    <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="7" class="dropdown-item">Baf</a>
+                </div>
+            </div>
+            <a asp-action="Contact" asp-controller="Home" class="nav-item nav-link">İletişim</a>
+        </div>
+        <div class=" d-none d-lg-flex">
+            <div class="login-register-cart-button d-flex align-items-center">
+                <!-- Login/Register -->
+                <div class="login-register-btn mr-50">
+                    <a href="login.html" id="loginBtn">Giriş Yap / Üye Ol</a>
+                </div>
 
-                    <!-- Nav brand -->
-                    <a asp-action="Index" asp-controller="Home" class="nav-brand"><img src="~/one-music-gh-pages/img/core-img/logo.png" alt=""></a>
-
-                    <!-- Navbar Toggler -->
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
-                    </div>
-
-                    <!-- Menu -->
-                    <div class="classy-menu">
-
-                        <!-- Close Button -->
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-
-                        <!-- Nav Start -->
-                        <div class="classynav">
-                            <ul>
-                                <li><a asp-action="Index" asp-controller="Home">Anasayfa</a></li>
-                                <li><a asp-action="About" asp-controller="Home" >Hakkımızda</a></li>
-                                <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="1">Tişört Regular</a></li>
-                                <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="2">Tişört Oversize</a></li>
-                                <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="3">Hoodie</a></li>
-                                <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="4">Sweatshirt</a></li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Aksesuar
-                                    </a>
-                                    <div class="dropdown-menu" @*aria-labelledby="navbarDropdown"*@>
-                                        <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="5" class="dropdown-item">Kol Çantası</a>
-                                        <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="6" class="dropdown-item">Cüzdan</a>
-                                        <a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="7" class="dropdown-item">Baf</a>
-                                    </div>
-                                </li>
-                                <li><a asp-action="Contact" asp-controller="Home">İletişim</a></li>
-                            </ul>
-
-                            <!-- Login/Register & Cart Button -->
-                            <div class="login-register-cart-button d-flex align-items-center">
-                                <!-- Login/Register -->
-                                <div class="login-register-btn mr-50">
-                                    <a href="login.html" id="loginBtn">Giriş Yap / Üye Ol</a>
-                                </div>
-
-                                <!-- Cart Button -->
-                                <div class="cart-btn">
-                                    <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Nav End -->
-
-                    </div>
-                </nav>
+                <!-- Cart Button -->
+                <div class="cart-btn">
+                    <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                </div>
             </div>
         </div>
     </div>
-</header>
-<!-- ##### Header Area End ##### -->
+</nav>
+<!-- Navbar End -->
