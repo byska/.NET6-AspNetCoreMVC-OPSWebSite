@@ -21,174 +21,132 @@
     List<CommentVM> comments = ViewBag.Comments as List<CommentVM>;
 }
 
-<!-- Product Details Area Start -->
-<div class="single-product-area section-padding-100 clearfix">
-    <div class="container-fluid">
+        <!-- Product Details Area Start -->
+        <div class="single-product-area section-padding-100 clearfix">
+            <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-12">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mt-50">
-                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Anasayfa</a></li>
-                        <li class="breadcrumb-item"><a asp-controller="Product" asp-action="GetAllProduct" asp-route-id="@category.CategoryId">@category.CategoryName</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-lg-7">
-                <div class="single_product_thumb">
-                    <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            @foreach (var item in Model.Photos)
-                            {
-                                <li class="active" data-target="#product_details_slider" style="background-image: url(@item);"></li>
-                            }
-                        </ol>
-                        @foreach (var item in Model.Photos)
-                        {
-                            <div class="carousel-item">
-                                <a class="gallery_img" href="@item">
-                                    <img class="d-block w-100" src="@item" alt="Slide">
-                                </a>
-                            </div>
-                        }
-
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mt-50">
+                        <li class="breadcrumb-item"><a asp-area="Customer" asp-controller="Home" asp-action="Index" asp-route-id="">Anasayfa</a></li>
+                        <li class="breadcrumb-item"><a asp-area="Customer" asp-controller="Product" asp-action="GetAllProduct" asp-route-id="@category.CategoryId">@category.CategoryName</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">@category.Name</li>
+                            </ol>
+                        </nav>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-5">
-            <div class="single_product_desc">
-                <!-- Product Meta Data -->
-                <div class="product-meta-data">
-                    <div class="line"></div>
-                    <p class="product-price">@Model.Price</p>
-                    <a href="product-details.html">
-                        <h6>@Model.Name</h6>
+
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                <div id="carousel-@Model.Id" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        @for (int i = 0; i < Model.Photos.Count; i++)
+                        {
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <a href="javascript:void(0);" onclick="redirectToProductDetail(@Model.Id)"> <img src="~/img/@Model.Photos[i]" class="d-block w-100" alt="@Model.Name"></a>
+                            </div>
+                        }
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-@Model.Id" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-@Model.Id" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
                     </a>
                 </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="single_product_desc">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data">
+                                <div class="line"></div>
+                                <p class="product-price">@Model.Price ₺</p>
+                                    <h6>@Model.Name</h6>
+                                <!-- Ratings & Review -->
+                               
+                                <!-- Avaiable --> <!--Stok Durumu-->
+                       @* @if(Model.Stock == null)
+                        {
+                            <p class="avaibility"><i class="fa fa-check-circle text-success"></i>Stok</p>
+                        }
+                        else
+                        {
+                            <p class="avaibility"><i class="fa fa-circle"></i>Stok</p>
+                        }*@
+                       
+                            </div>
 
-                <div class="short_overview my-5">
-                    <p>@Model.Description</p>
+                            <div class="short_overview my-5">
+                                <p>@Model.Description</p>
+                            </div>
+
+                            <!-- Add to Cart Form -->
+                            <form class="cart clearfix" method="post">
+                        @if (Model.Stock==null)
+                        {
+                              <div class="cart-btn d-flex mb-50">
+                                <p>Adet</p>
+                                <div class="quantity disabled">
+                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                    <input type="number" class="qty-text" id="qty" step="1" min="0" max="0" name="quantity" value="1">
+                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                            <button type="submit" name="addtocart" value="5" class="btn amado-btn disabled">Sepete Ekle</button>
+                        }
+                        else
+                        {
+                               <div class="cart-btn d-flex mb-50">
+                                <p>Adet</p>
+                                <div class="quantity">
+                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="@Model.Stock" name="quantity" value="1">
+                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+                                </div>
+                            </div>
+                            <button type="submit" name="addtocart" value="5" class="btn amado-btn">Sepete Ekle</button>
+                        }
+
+                              
+                               
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Add to Cart Form -->
-                <form class="cart clearfix" method="post">
-
-                  @*   <!-- Color Select-->
-                    <div id="colorSelect">
-                        <label for="color">Renk Seçiniz:</label><br />
-
-                        @foreach (var color in colors)
-                        {
-                            <input type="radio" name="color" value="@color.Name" id="color_@color.Name" class="color-radio @color.Name.ToLower()">
-
-                        }
-                    </div>
-                    <script>
-                        var stockColor = @Html.Raw(inStockColor);
-                        document.addEventListener("DOMContentLoaded", function () {
-                            var inStockColorList = stockColor.map(function (color) {
-                                return color.toString();
-                            });
-                            var radioButtons = document.querySelectorAll("input[type=radio][name=color]");
-
-                            radioButtons.forEach(function (radioButton) {
-                                var color = radioButton.value;
-                                if (inStockColorList.includes(color)) {
-                                    radioButton.disabled = false;
-                                } else {
-                                    radioButton.disabled = true;
-                                }
-                            });
-                        });
-                    </script> *@
-
-                    <!-- Size Select-->
-                    <div id="sizeSelect">
-                        <label for="color">Beden Seçiniz:</label><br />
-
-                        @foreach (var size in sizes)
-                        {
-                            <input type="radio" name="size" value="@size.Name" id="size_@size.Name" class="size-radio @size.Name.ToLower()">
-
-                        }
-                    </div>
-                    <script>
-                        var stockSize = @Html.Raw(inStockSize);
-                        document.addEventListener("DOMContentLoaded", function () {
-                            var inStockSizeList = stockSize.map(function (size) {
-                                return size.toString();
-                            });
-                            var radioButtons = document.querySelectorAll("input[type=radio][name=size]");
-
-                            radioButtons.forEach(function (radioButton) {
-                                var size = radioButton.value;
-                                if (inStockSizeList.includes(size)) {
-                                    radioButton.disabled = false;
-                                } else {
-                                    radioButton.disabled = true;
-                                }
-                            });
-                        });
-                    </script>
-
-                    <div class="cart-btn d-flex mb-50">
-                        <p>Adet</p>
-                        <div class="quantity">
-                            <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                            <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-                        </div>
-                    </div>
-                    <button type="submit" name="addtocart" value="5" class="btn amado-btn">Sepete Ekle</button>
-                </form>
-
-                <section class="latest-albums-area section-padding-100">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="section-heading style-2">
-                                    <h2>Yorumlar</h2>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="albums-slideshow owl-carousel">
-
-                                    <!-- Single Album -->
-                                    @foreach (var item in comments as List<CommentVM>)
-                                    {
-                                        <div class="single-album">
-                                            <div class="album-info">
-                                                <h5>@item.Name</h5>
-                                                @for (var i = 1; i<=item.Mark; i++)
-                                                {
-                                                    <i class="star filled-star"></i>
-                                                }
-                                                @for (var i = 1; i<=5-item.Mark; i++)
-                                                {
-                                                    <i class="star empty-star"></i>
-                                                }
-                                                <p>@item.Description</p>
-                                            </div>
-                                        </div>
-                                    }
-
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
             </div>
         </div>
+        <!-- Product Details Area End -->
     </div>
-</div>
-     
+    <!-- ##### Main Content Wrapper End ##### -->
 
+
+    <!-- Burası indirim kuponu uygulanabilir alan. -->
+
+
+   @* <!-- ##### Newsletter Area Start ##### -->
+    <section class="newsletter-area section-padding-100-0">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Newsletter Text -->
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="newsletter-text mb-100">
+                        <h2>Subscribe for a <span>25% Discount</span></h2>
+                        <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
+                    </div>
+                </div>
+                <!-- Newsletter Form -->
+                <div class="col-12 col-lg-6 col-xl-5">
+                    <div class="newsletter-form mb-100">
+                        <form action="#" method="post">
+                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
