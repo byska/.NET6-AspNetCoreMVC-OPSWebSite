@@ -8,13 +8,9 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <!-- Title -->
     <title>@ViewData["Title"]</title>
-
-   
-    <!-- Favicon -->
-
+    @*"~/productdetailcss/detailscustom.css"*@
     <link rel="stylesheet" href="~/productDetailCss/DetailsCustom.css" />
-
-
+ 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,34 +31,42 @@
     <!-- Template Stylesheet -->
     <link href="~/baker/css/style.css" rel="stylesheet">
 
-    <link rel="icon" href="~/one-music-gh-pages/img/core-img/favicon.ico">
+
+
+
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="~/one-music-gh-pages/style.css">
+    <link href="~/css/core-style.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Ops.Web.styles.css" asp-append-version="true" />
+    <link href="~/productdetailcss/core-style.css" rel="stylesheet" />
     <link href="~/footer/main.css" rel="stylesheet" />
     <link href="~/footer/util.css" rel="stylesheet" />
 
 </head>
 <body>
-    <!-- Spinner Start -->
+     <!-- Spinner Start -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-grow text-primary" role="status"></div>
     </div>
     <!-- Spinner End -->
-    @Html.Partial("_Header")
 
+    @Html.Partial("_Header") 
 
-            @RenderBody()
  
+    @RenderBody()
+
 
     @Html.Partial("_Footer")
 
     <!-- ##### All Javascript Script ##### -->
 
     <script src="~/footer/main.js"></script>
+    <script src="~/productdetailcss/active.js"></script>
+    <script src="~/productdetailcss/plugins.js"></script>
+    <script src="~/productdetailcss/popper.min.js"></script>
     <script src="~/footer/jquery-3.2.1.min.js"></script>
     <!-- jQuery-2.2.4 js -->
     <script src="~/one-music-gh-pages/js/jquery/jquery-2.2.4.min.js"></script>
@@ -80,14 +84,17 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/baker/lib/wow/wow.min.js"></script>
-    <script src="~/baker/lib/easing/easing.min.js"></script>
-    <script src="~/baker/lib/waypoints/waypoints.min.js"></script>
-    <script src="~/baker/lib/counterup/counterup.min.js"></script>
-    <script src="~/baker/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/baker/lib/wow/wow.min.js"></script> 
+     <script src="~/baker/lib/easing/easing.min.js"></script> 
+    <script src="~/baker/lib/waypoints/waypoints.min.js"></script> 
+     <script src="~/baker/lib/counterup/counterup.min.js"></script> 
+     <script src="~/baker/lib/owlcarousel/owl.carousel.min.js"></script>
 
 
     <script src="~/baker/js/main.js"></script>
+
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
