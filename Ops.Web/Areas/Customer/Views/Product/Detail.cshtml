@@ -82,7 +82,7 @@
                     </div>
 
                     <!-- Add to Cart Form -->
-                    <form class="cart clearfix" method="post">
+                    @*<form class="cart clearfix" method="post">
                         <div class="cart-btn d-flex mb-50">
                             <p>Adet</p>
                             <div class="quantity disabled">
@@ -92,12 +92,52 @@
                             </div>
                         </div>
                         <button type="submit" name="addtocart" value="5" class="btn amado-btn">Sepete Ekle</button>
+                    </form>*@
+
+                    <form class="cart clearfix" method="post">
+                        <div class="cart-btn d-flex mb-50">
+                            <label for="quantity">Adet</label>
+                            <div class="quantity">
+                                <button type="button" class="qty-btn" onclick="updateQuantity(-1)">-</button>
+                                <input type="number" class="qty-text" id="quantity" step="1" min="1" max="10" name="quantity" value="1">
+                                <button type="button" class="qty-btn" onclick="updateQuantity(1)">+</button>
+                            </div>
+                        </div>
+                        <button type="submit" name="addtocart" value="5" class="btn amado-btn disabled">Sepete Ekle</button>
                     </form>
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<script>
+    function increaseQuantity() {
+        var quantityInput = document.getElementById('quantity');
+        var currentQuantity = parseInt(quantityInput.value, 10);
+
+        if (!isNaN(currentQuantity) && currentQuantity < 10) {
+            quantityInput.value = currentQuantity + 1;
+        }
+    }
+
+    function decreaseQuantity() {
+        var quantityInput = document.getElementById('quantity');
+        var currentQuantity = parseInt(quantityInput.value, 10);
+
+        if (!isNaN(currentQuantity) && currentQuantity > 1) {
+            quantityInput.value = currentQuantity - 1;
+        }
+    }
+</script>
 
 <!-- Active js -->
 
