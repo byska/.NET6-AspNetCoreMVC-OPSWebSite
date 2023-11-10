@@ -34,7 +34,11 @@ Paragrap        : 18px/1.6 '', Arial, sans-serif;
 Input, textarea : 14px/1.6 '', Arial, sans-serif;
 -------------------------------------------------------------------*/
 
-
+:root {
+    --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-primary: "Roboto", sans-serif;
+    --font-secondary: "Work Sans", sans-serif;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
@@ -97,16 +101,20 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   src: url('../fonts/Montserrat/Montserrat-Bold.ttf'); 
 }
 
-
 /*//////////////////////////////////////////////////////////////////
 [ RS PLUGIN ]*/
 
 /*------------------------------------------------------------------
 [ Bootstrap ]*/
-.container {max-width: 1380px;}
+.opsFooter .container {
+    max-width: 1380px;
+   
+}
 
 @media (max-width: 1600px) {
-  .container {max-width: 1200px;}
+    .opsFooter .container {
+        max-width: 1200px;
+    }
 }
 
 /*------------------------------------------------------------------
@@ -2122,14 +2130,18 @@ input.num-product::-webkit-inner-spin-button {
 /*==================================================================
     TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 ==================================================================*/
-.cl0 {color: #fff;}
+.opsFooter .cl0 {
+    color: #fff;
+}
 .cl1 {color: #717fe0;}
 .cl2 {color: #333;}
 .cl3 {color: #666;}
 .cl4 {color: #999;}
 .cl5 {color: #222;}
 .cl6 {color: #888;}
-.cl7 {color: #b2b2b2;}
+.opsFooter .cl7 {
+    color: #b2b2b2;
+}
 .cl8 {color: #555;}
 .cl9 {color: #aaa;}
 .cl10 {color: #1d1d1d;}
@@ -2139,10 +2151,10 @@ input.num-product::-webkit-inner-spin-button {
 /*//////////////////////////////////////////////////////////////////
 [ S-Text 0 - 15 ]*/
 .stext-101 {
-  font-family: Poppins-Medium;
-  font-size: 15px;
-  line-height: 1.466667;
-  text-transform: uppercase;
+    font-family: var(--font-primary);
+    font-size: 15px;
+    line-height: 1.466667;
+    text-transform: uppercase;
 }
 
 .stext-102 {
@@ -2176,10 +2188,10 @@ input.num-product::-webkit-inner-spin-button {
   line-height: 1.2;
 }
 
-.stext-107 {
-  font-family: Poppins-Regular;
-  font-size: 13px;
-  line-height: 1.923;
+.opsFooter .stext-107 {
+    font-family: var(--font-default);
+    font-size: 13px;
+    line-height: 1.923;
 }
 
 .stext-108 {
@@ -2245,11 +2257,11 @@ input.num-product::-webkit-inner-spin-button {
 
 
 /*---------------------------------------------*/
-.stext-301 {
-  font-family: Montserrat-Bold;
-  font-size: 15px;
-  line-height: 1.6;
-  text-transform: uppercase;
+.opsFooter .stext-301 {
+    font-family: var(--font-default);
+    font-size: 15px;
+    line-height: 1.6;
+    text-transform: uppercase;
 }
 
 
@@ -2547,8 +2559,8 @@ input.num-product::-webkit-inner-spin-button {
 
 /*//////////////////////////////////////////////////////////////////
 [ Width ]*/
-.size-201 {
-  max-width: 270px;
+.opsFooter .size-201 {
+    max-width: 270px;
 }
 
 .size-202 {
@@ -2643,7 +2655,9 @@ input.num-product::-webkit-inner-spin-button {
 .bg0 {background-color: #fff;}
 .bg1 {background-color: #717fe0;}
 .bg2 {background-color: #e6e6e6;}
-.bg3 {background-color: #222;}
+.opsFooter,.bg3{
+    background-color: #222;
+}
 .bg5 {background-color: rgba(0,0,0,0.5);}
 .bg6 {background-color: #f2f2f2;}
 .bg7 {background-color: #333;}
@@ -3051,7 +3065,9 @@ input.num-product::-webkit-inner-spin-button {
 
 .hov-cl0:hover {color: #fff;}
 .hov-bg0:hover {background-color: #fff;}
-.hov-cl1:hover {color: #717fe0;}
+.opsFooter .hov-cl1:hover {
+    color: #717fe0;
+}
 .hov-bg1:hover {background-color: #717fe0;}
 
 /*---------------------------------------------*/
