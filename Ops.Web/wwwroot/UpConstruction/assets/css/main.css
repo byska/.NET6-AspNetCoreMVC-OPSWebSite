@@ -47,13 +47,16 @@ body .opsHeader{
     text-decoration: none;
 }
 .loginOps {
+    font-family: var(--font-primary);
     background-color: var(--color-primary);
     border-radius: 20px;
-    color:#222;
-    text-align:center;
-    padding:14px 16px;
-    box-sizing:border-box;
-    margin-left:auto;
+    color: #222;
+    text-align: center;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    margin-left: 80px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 .opsHeader h1,
 h2,
