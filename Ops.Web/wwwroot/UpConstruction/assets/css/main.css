@@ -34,7 +34,7 @@
 body .opsHeader{
   font-family: var(--font-default);
   color: var(--color-default);
-  overflow-x: hidden;
+  /*overflow-x: hidden;*/
 }
 
 .opsHeader a {
@@ -322,7 +322,6 @@ h6 {
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
-    overflow-x: hidden;
     padding: 0;
 }
 
@@ -488,7 +487,7 @@ h6 {
             padding: 50px 0 10px 0;
             margin: 0;
             background: rgba(0, 0, 0, 0.8);
-            overflow-y: auto;
+            /*overflow-y: auto; buradaki scroll yatay sayfa boyutu için kullanýlmýþ. Bunun yerine responsive bir çözüm ile bu gerekliliði kaldýrmak daha þýk bir görünüm verir. */
             transition: 0.3s;
             z-index: 9998;
         }
