@@ -18,5 +18,7 @@ namespace Ops.Core.VMs
         public int Stock { get; set; }
         public List<string> Size { get; set; }
         public string Description { get; set; }
+        public List<string> Comments { get; set; }
+        public List<string> CommentCustumerNames { get; set; }
     }
 }
