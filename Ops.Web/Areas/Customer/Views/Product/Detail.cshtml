@@ -36,13 +36,13 @@
         </div>
 
         <div class="row">
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-lg-3">
                 <div id="carousel-@Model.Id" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @for (int i = 0; i < Model.Photos.Count; i++)
                         {
                             <div class="carousel-item @(i == 0 ? "active" : "")">
-                                <a href="javascript:void(0);" onclick="redirectToProductDetail(@Model.Id)"> <img src="~/img/@Model.Photos[i]" class="d-block w-100" alt="@Model.Name"></a>
+                                <a href="javascript:void(0);" onclick="redirectToProductDetail(@Model.Id)"> <img src="~/img/@Model.Photos[i]" class="d-block w-100 " alt="@Model.Name"></a>
                             </div>
                         }
                     </div>
@@ -56,7 +56,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-12 col-lg-4">
+            <div class="col-12 col-lg-5">
                 <div class="single_product_desc">
                     <!-- Product Meta Data -->
                     <div class="product-meta-data">
@@ -75,13 +75,13 @@
                         }*@
 
                     </div>
-                  <br />
+                    <br />
                     <div class="short_overview my-5">
                         <p id="product-description">@Model.Description</p>
                     </div>
                     <!-- Add to Cart Form -->
                     <form class="cart clearfix" method="post">
-                        <div class="cart-btn d-flex mb-50">
+                        <div class="cart-btn d-flex" id="Adet">
                             <label for="quantity">Adet</label>
                             <div class="quantity">
                                 <button type="button" class="qty-btn" onclick="decreaseQuantity()">-</button>
@@ -89,11 +89,12 @@
                                 <button type="button" class="qty-btn" onclick="increaseQuantity()">+</button>
                             </div>
                         </div>
-
-                        <div class="cart-btn d-flex mb-50">
+                        <div class="cart-btn d-flex" id="Adet">
                             <label for="size">Beden</label>
-                            <div class="custom-dropdown">
-                                <span id="selectedSize">Seçiniz</span>
+                            <div class="custom-dropdown ">
+                                <label id="selectedSize">
+                                    Seçiniz
+                                </label>
                                 <div class="dropdown-content">
                                     <a href="#" onclick="selectSize('S')">S</a>
                                     <a href="#" onclick="selectSize('M')">M</a>
@@ -104,38 +105,42 @@
                             </div>
                             <input type="hidden" id="size" name="size" value="">
                         </div>
-
                         <button type="submit" name="addtocart" value="5" class="btn amado-btn">Sepete Ekle</button>
                     </form>
-
-
-
                 </div>
             </div>
-            <div class="col-12 col-lg-4">
-                <div id="carousel-@Model.Id" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        @for (int i = 0; i < Model.Photos.Count; i++)
-                        {
-                            <div class="carousel-item @(i == 0 ? "active" : "")">
-                                <a href="javascript:void(0);" onclick="redirectToProductDetail(@Model.Id)"> <img src="~/img/@Model.Photos[i]" class="d-block w-100" alt="@Model.Name"></a>
+            <div class="col-12 col-lg-4 " id="comments">
+                <div>
+                    @foreach (var comment in comments)
+                    {
+                        <div class="comment">
+                            <p><strong class="form-name">@comment.Name</strong> @comment.Description</p>
+                            <div class="rating">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <span class="star @(i <= comment.Mark ? "filled" : "")">&#9733;</span>
+                                }
                             </div>
-                        }
-                    </div>
-                    <a class="carousel-control-prev" href="#carousel-@Model.Id" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carousel-@Model.Id" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var formNames = document.querySelectorAll('.form-name');
 
+        formNames.forEach(function (nameElement) {
+            var fullName = nameElement.textContent.trim();
+            var firstName = fullName.charAt(0);
+            var stars = '*'.repeat(fullName.length - 1);
+            var hiddenStars = '<span class="hidden">' + stars + '</span>';
+            nameElement.innerHTML = '<span class="visible">' + firstName + hiddenStars + '</span>';
+        });
+    });
+</script>
 <script>
     function selectSize(size) {
         document.getElementById('selectedSize').textContent = size;
@@ -184,30 +189,29 @@
 </script>
 
 <!-- Active js -->
-
 <!-- Product Details Area End -->
 <!-- ##### Main Content Wrapper End ##### -->
 <!-- Burası indirim kuponu uygulanabilir alan. -->
 @* <!-- ##### Newsletter Area Start ##### -->
-    <section class="newsletter-area section-padding-100-0">
-        <div class="container">
+            <section class="newsletter-area section-padding-100-0">
+            <div class="container">
             <div class="row align-items-center">
-                <!-- Newsletter Text -->
-                <div class="col-12 col-lg-6 col-xl-7">
-                    <div class="newsletter-text mb-100">
-                        <h2>Subscribe for a <span>25% Discount</span></h2>
-                        <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
-                    </div>
-                </div>
-                <!-- Newsletter Form -->
-                <div class="col-12 col-lg-6 col-xl-5">
-                    <div class="newsletter-form mb-100">
-                        <form action="#" method="post">
-                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
-                            <input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
+            <!-- Newsletter Text -->
+            <div class="col-12 col-lg-6 col-xl-7">
+            <div class="newsletter-text mb-100">
+            <h2>Subscribe for a <span>25% Discount</span></h2>
+            <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
             </div>
-        </div>
-    </section>*@
+            </div>
+            <!-- Newsletter Form -->
+            <div class="col-12 col-lg-6 col-xl-5">
+            <div class="newsletter-form mb-100">
+            <form action="#" method="post">
+            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
+            <input type="submit" value="Subscribe">
+            </form>
+            </div>
+            </div>
+            </div>
+            </div>
+            </section>*@

@@ -10,6 +10,8 @@ namespace Ops.Core.VMs
         public decimal Price { get; set; }
         public List<string> Photos { get; set; }
         public List<string> Colors { get; set; }
+        public List<string> Comments { get; set; }
+        public List<string> CommentCustumerNames { get; set; }
         public int Stock { get; set; }
 
     }

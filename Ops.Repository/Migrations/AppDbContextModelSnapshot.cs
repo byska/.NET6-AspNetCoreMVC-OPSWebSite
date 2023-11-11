@@ -75,7 +75,7 @@ namespace Ops.Repository.Migrations
                             Id = 1,
                             CityId = 1,
                             CountyId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6456),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9272),
                             CustomerId = 1,
                             Description = "Üsküdar metrobüse yakın",
                             IsActive = true,
@@ -86,7 +86,7 @@ namespace Ops.Repository.Migrations
                             Id = 2,
                             CityId = 1,
                             CountyId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6465),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9287),
                             CustomerId = 2,
                             Description = "Acıbadem metroya yakın",
                             IsActive = true,
@@ -145,7 +145,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6580),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9700),
                             Email = "orangepressstore@gmail.com",
                             FirstName = "Ayşe Nur",
                             IsActive = true,
@@ -191,7 +191,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6624),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9982),
                             IsActive = true,
                             Name = "Tişört Regular",
                             Status = 1
@@ -199,7 +199,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6646),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9989),
                             IsActive = true,
                             Name = "Tişört Oversize",
                             Status = 1
@@ -207,7 +207,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6650),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9990),
                             IsActive = true,
                             Name = "Hoodie",
                             Status = 1
@@ -215,7 +215,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6651),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9992),
                             IsActive = true,
                             Name = "Sweatshirt",
                             Status = 1
@@ -223,7 +223,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6651),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9993),
                             IsActive = true,
                             Name = "Kol Çantası",
                             Status = 1
@@ -231,7 +231,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6652),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9995),
                             IsActive = true,
                             Name = "Cüzdan",
                             Status = 1
@@ -239,7 +239,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6653),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 958, DateTimeKind.Local).AddTicks(9996),
                             IsActive = true,
                             Name = "Baf",
                             Status = 1
@@ -282,7 +282,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6702),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(344),
                             IsActive = true,
                             Name = "Istanbul",
                             Status = 1
@@ -290,7 +290,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6704),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(349),
                             IsActive = true,
                             Name = "Ankara",
                             Status = 1
@@ -333,7 +333,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6799),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(680),
                             IsActive = true,
                             Name = "Black",
                             Status = 0
@@ -341,7 +341,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6803),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(694),
                             IsActive = true,
                             Name = "Blue",
                             Status = 0
@@ -349,7 +349,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6804),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(697),
                             IsActive = true,
                             Name = "Yellow",
                             Status = 0
@@ -398,7 +398,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6751),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(521),
                             IsActive = true,
                             ProductId = 1,
                             Status = 0
@@ -407,7 +407,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             ColorId = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6754),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(532),
                             IsActive = true,
                             ProductId = 1,
                             Status = 0
@@ -416,7 +416,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 3,
                             ColorId = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6755),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(535),
                             IsActive = true,
                             ProductId = 2,
                             Status = 0
@@ -425,7 +425,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 4,
                             ColorId = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6756),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(538),
                             IsActive = true,
                             ProductId = 3,
                             Status = 0
@@ -482,7 +482,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6847),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(847),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler",
                             IsActive = true,
@@ -493,7 +493,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6848),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(850),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler",
                             IsActive = true,
@@ -504,7 +504,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6849),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(851),
                             CustomerId = 2,
                             Description = "Çok güzel ürünler",
                             IsActive = true,
@@ -515,12 +515,111 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6850),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(853),
                             CustomerId = 2,
                             Description = "Çok güzel ürünler",
                             IsActive = true,
                             Mark = 5,
                             ProductId = 2,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(854),
+                            CustomerId = 1,
+                            Description = "Çok demode",
+                            IsActive = true,
+                            Mark = 1,
+                            ProductId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(855),
+                            CustomerId = 2,
+                            Description = "Kibar duruyor ama pahalı",
+                            IsActive = true,
+                            Mark = 2,
+                            ProductId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(857),
+                            CustomerId = 1,
+                            Description = "Ehhhhh fena sayılmaz. Birdaha almam ama. :)",
+                            IsActive = true,
+                            Mark = 3,
+                            ProductId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(858),
+                            CustomerId = 2,
+                            Description = "Çok güzel ürünler. Baya beğendim. Alınır",
+                            IsActive = true,
+                            Mark = 4,
+                            ProductId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(859),
+                            CustomerId = 1,
+                            Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
+                            IsActive = true,
+                            Mark = 5,
+                            ProductId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(861),
+                            CustomerId = 1,
+                            Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
+                            IsActive = true,
+                            Mark = 2,
+                            ProductId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(862),
+                            CustomerId = 1,
+                            Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
+                            IsActive = true,
+                            Mark = 5,
+                            ProductId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(863),
+                            CustomerId = 1,
+                            Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
+                            IsActive = true,
+                            Mark = 1,
+                            ProductId = 1,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(864),
+                            CustomerId = 1,
+                            Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
+                            IsActive = true,
+                            Mark = 2,
+                            ProductId = 1,
                             Status = 1
                         });
                 });
@@ -567,7 +666,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6915),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(1117),
                             IsActive = true,
                             Name = "Fatih",
                             Status = 1
@@ -576,7 +675,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6917),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(1148),
                             IsActive = true,
                             Name = "Üsküdar",
                             Status = 1
@@ -585,7 +684,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 3,
                             CityId = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6917),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(1154),
                             IsActive = true,
                             Name = "Kızılay",
                             Status = 1
@@ -594,7 +693,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 4,
                             CityId = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6918),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(1156),
                             IsActive = true,
                             Name = "Çankaya",
                             Status = 1
@@ -660,7 +759,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6962),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(1482),
                             DateOfBirth = new DateTime(1998, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "besteyasak@gmail.com",
                             FirstName = "Beste",
@@ -673,7 +772,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(6968),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(1495),
                             DateOfBirth = new DateTime(1997, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "huseyingulerman.1997@gmail.com",
                             FirstName = "Hüseyin",
@@ -735,7 +834,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7015),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(1831),
                             IsActive = true,
                             PhotoUrl = "img/bg-img/bg-1.jpg",
                             Status = 1,
@@ -746,7 +845,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7017),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(1837),
                             IsActive = true,
                             PhotoUrl = "img/bg-img/bg-2.jpg",
                             Status = 1,
@@ -806,7 +905,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7064),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2076),
                             Description = "Fiziksel bir mağazanız bulunuyor mu acaba?",
                             Email = "beyasak@hotmail.com",
                             IsActive = true,
@@ -860,7 +959,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7109),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2225),
                             CustomerId = 1,
                             IsActive = true,
                             OrderStatus = 1,
@@ -870,7 +969,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7111),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2228),
                             CustomerId = 1,
                             IsActive = true,
                             OrderStatus = 4,
@@ -880,7 +979,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7112),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2230),
                             CustomerId = 1,
                             IsActive = true,
                             OrderStatus = 3,
@@ -890,7 +989,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7112),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2231),
                             CustomerId = 2,
                             IsActive = true,
                             OrderStatus = 2,
@@ -945,7 +1044,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7158),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2445),
                             IsActive = true,
                             PhotoUrl = "tshirt-1.jpeg",
                             ProductId = 1,
@@ -955,7 +1054,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7161),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2457),
                             IsActive = true,
                             PhotoUrl = "tshirt-2.jpeg",
                             ProductId = 1,
@@ -965,7 +1064,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 3,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7162),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2461),
                             IsActive = true,
                             PhotoUrl = "tshirt-1.jpeg",
                             ProductId = 1,
@@ -975,7 +1074,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 4,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7164),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2464),
                             IsActive = true,
                             PhotoUrl = "tshirt-2.jpeg",
                             ProductId = 2,
@@ -985,7 +1084,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 5,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7165),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2466),
                             IsActive = true,
                             PhotoUrl = "tshirt-1.jpeg",
                             ProductId = 3,
@@ -995,7 +1094,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 6,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7202),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2472),
                             IsActive = true,
                             PhotoUrl = "tshirt-2.jpeg",
                             ProductId = 4,
@@ -1052,7 +1151,7 @@ namespace Ops.Repository.Migrations
                             Id = 1,
                             Amount = 200,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7304),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2793),
                             IsActive = true,
                             Name = "Tişört",
                             Price = 200m,
@@ -1063,7 +1162,7 @@ namespace Ops.Repository.Migrations
                             Id = 2,
                             Amount = 10,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7309),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2803),
                             IsActive = true,
                             Name = "Kısa Kollu Tişört",
                             Price = 150m,
@@ -1074,7 +1173,7 @@ namespace Ops.Repository.Migrations
                             Id = 3,
                             Amount = 2,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7310),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2805),
                             IsActive = true,
                             Name = " Uzun Kollu Tişört",
                             Price = 300m,
@@ -1085,7 +1184,7 @@ namespace Ops.Repository.Migrations
                             Id = 4,
                             Amount = 20,
                             CategoryId = 5,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7311),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2807),
                             IsActive = true,
                             Name = "Çanta",
                             Price = 400m,
@@ -1096,7 +1195,7 @@ namespace Ops.Repository.Migrations
                             Id = 5,
                             Amount = 20,
                             CategoryId = 6,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7312),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2810),
                             IsActive = true,
                             Name = "Cüzdan",
                             Price = 400m,
@@ -1107,7 +1206,7 @@ namespace Ops.Repository.Migrations
                             Id = 6,
                             Amount = 20,
                             CategoryId = 3,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7314),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2812),
                             IsActive = true,
                             Name = "Hoodie",
                             Price = 400m,
@@ -1118,7 +1217,7 @@ namespace Ops.Repository.Migrations
                             Id = 7,
                             Amount = 20,
                             CategoryId = 7,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7315),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2814),
                             IsActive = true,
                             Name = "Baf",
                             Price = 400m,
@@ -1129,10 +1228,54 @@ namespace Ops.Repository.Migrations
                             Id = 8,
                             Amount = 100,
                             CategoryId = 4,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7316),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2816),
                             IsActive = true,
                             Name = "Sweat",
                             Price = 500m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Amount = 10,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2953),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 250m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Amount = 10,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2955),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 350m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Amount = 10,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2958),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 450m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Amount = 10,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2960),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 1050m,
                             Status = 1
                         });
                 });
@@ -1179,7 +1322,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7253),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2623),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 1,
@@ -1188,7 +1331,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7254),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2626),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 2,
@@ -1197,7 +1340,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7254),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2627),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 3,
@@ -1206,7 +1349,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7255),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2628),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 4,
@@ -1215,7 +1358,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7256),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(2630),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 5,
@@ -1259,7 +1402,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7451),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(3276),
                             IsActive = true,
                             Name = "Small",
                             Status = 0
@@ -1267,7 +1410,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7453),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(3287),
                             IsActive = true,
                             Name = "Medium",
                             Status = 0
@@ -1275,7 +1418,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7455),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(3290),
                             IsActive = true,
                             Name = "Large",
                             Status = 0
@@ -1323,7 +1466,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7381),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(3130),
                             IsActive = true,
                             ProductId = 1,
                             SizeId = 1,
@@ -1332,7 +1475,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7384),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(3144),
                             IsActive = true,
                             ProductId = 2,
                             SizeId = 2,
@@ -1341,7 +1484,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7385),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(3147),
                             IsActive = true,
                             ProductId = 3,
                             SizeId = 3,
@@ -1402,7 +1545,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7505),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(3425),
                             IsActive = true,
                             ProductId = 1,
                             SizeId = 1,
@@ -1413,7 +1556,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 11, 9, 15, 24, 18, 798, DateTimeKind.Local).AddTicks(7507),
+                            CreatedDate = new DateTime(2023, 11, 11, 15, 13, 48, 959, DateTimeKind.Local).AddTicks(3437),
                             IsActive = true,
                             ProductId = 2,
                             SizeId = 1,

@@ -56,6 +56,7 @@ h6 {
 .cart-btn {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 label {
@@ -69,10 +70,12 @@ label {
 
 .qty-btn {
     cursor: pointer;
+    padding: 5px; /* Boyutu küçültmek için */
     padding: 10px;
-    background-color: #ccc; /* buton rengi */
+    background-color: whitesmoke;
+    /*background-color: #e9c0c0;*/ /* buton rengi */
     color: white;
-    font-size: 16px;
+    font-size: 12px; /* Boyutu küçültmek için */
     border: none;
     margin: 0;
     user-select: none; /* metni seçilemez yapar */
@@ -83,7 +86,7 @@ label {
     }
 
 .qty-text {
-    width: 50px;
+    width: 30px; /* Boyutu küçültmek için */
     text-align: center;
 }
 
@@ -137,7 +140,7 @@ label {
 
     .dropdown-content a {
         color: black;
-        padding: 12px 16px;
+        padding: 8px 12px; /* Boyutu küçültmek için */
         text-decoration: none;
         display: block;
     }
@@ -152,15 +155,63 @@ label {
 
 
 
+.rating {
+    color: #ffdd00; /* Dolu yýldýz rengi */
+    font-size: 24px; /* Yýldýz boyutu */
+}
+
+.star {
+    cursor: pointer;
+    color: #ccc; /* Gri renk */
+    opacity: 0.5; /* Yarý saydamlýk */
+}
+
+.filled {
+    color: #ffdd00; /* Dolu yýldýz rengi */
+    opacity: 1;
+}
+/* Boþ yýldýz rengi */
+.star::before {
+    content: '\2605'; /* Boþ yýldýz karakteri */
+    color: #ffffff; /* Beyaz renk */
+    position: absolute;
+    left: 0;
+    z-index: -1;
+}
 
 
 
+.form-name {
+    display: inline-block;
+    font-weight: bold;
+}
+
+.visible {
+    position: relative;
+}
+
+.hidden {
+    display: inline-block;
+    
+    color: black;
+}
 
 
 
+.comment {
+   
+    border-bottom: 1px solid #ddd; /* Her yorumun altýna çizgi ekler */
+  
+}
+#comments {
+    max-height: 300px; /* veya istediðiniz bir maksimum yükseklik deðeri */
+    overflow-y: auto;
 
-
-
+    padding: 10px; /* Yorumlara boþluk ekler */
+}
+#Adet {
+    background-color: whitesmoke;
+}
 #product-name {
     color: #242424;
     font-weight: 400;
@@ -187,7 +238,7 @@ label {
     font-weight: 400;
 }
 #olbreadcrumb {
-    background-color: red;
+    background-color: whitesmoke;
     font-size: 14px;
     text-transform: uppercase;
     color: #242424;
@@ -249,8 +300,8 @@ ol {
     }
 
 img {
-    height: 50;
-    width:50;
+    height: 100;
+    width:100;
     max-width: 100%;
 }
 
