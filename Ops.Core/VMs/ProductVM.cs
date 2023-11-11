@@ -8,7 +8,7 @@ namespace Ops.Core.VMs
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public List<string> Photos { get; set; }
+        public string Photo { get; set; }
         public List<string> Colors { get; set; }
         public List<string> Comments { get; set; }
         public List<string> CommentCustumerNames { get; set; }
