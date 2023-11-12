@@ -25,7 +25,7 @@ namespace Ops.Repository.Repositories
         public async Task<List<Product>> GetNewProductsAsync()
         {
             
-           return await _context.Products.OrderByDescending(x => x.CreatedDate).Include(x=>x.ProductFeature).Take(10).ToListAsync();
+           return await _context.Products.OrderByDescending(x => x.CreatedDate).Include(x=>x.Photos).Include(x=>x.ProductFeature).Take(10).ToListAsync();
         }
 
         //public async Task<Product> GetProductDetailsById(int id)
