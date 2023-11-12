@@ -128,19 +128,7 @@
         </div>
     </div>
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var formNames = document.querySelectorAll('.form-name');
 
-        formNames.forEach(function (nameElement) {
-            var fullName = nameElement.textContent.trim();
-            var firstName = fullName.charAt(0);
-            var stars = '*'.repeat(fullName.length - 1);
-            var hiddenStars = '<span class="hidden">' + stars + '</span>';
-            nameElement.innerHTML = '<span class="visible">' + firstName + hiddenStars + '</span>';
-        });
-    });
-</script>
 <script>
     function selectSize(size) {
         document.getElementById('selectedSize').textContent = size;
@@ -166,7 +154,19 @@
     }
 </script>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var formNames = document.querySelectorAll('.form-name');
 
+        formNames.forEach(function (nameElement) {
+            var fullName = nameElement.textContent.trim();
+            var firstName = fullName.charAt(0);
+            var stars = '*'.repeat(fullName.length - 1);
+            var hiddenStars = '<span class="hidden">' + stars + '</span>';
+            nameElement.innerHTML = '<span class="visible">' + firstName + hiddenStars + '</span>';
+        });
+    });
+</script>
 
 <script>
     function increaseQuantity() {

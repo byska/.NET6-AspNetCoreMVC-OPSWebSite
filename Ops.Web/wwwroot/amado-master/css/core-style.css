@@ -61,6 +61,8 @@ h6 {
 
 label {
     margin-right: 10px;
+   font-style:italic;
+font-family:"Roboto" ,sans-serif;
 }
 
 .quantity {
