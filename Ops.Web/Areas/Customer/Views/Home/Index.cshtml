@@ -11,7 +11,7 @@
         {
             <div class="single-hero-slide d-flex align-items-center justify-content-center">
                 <!-- Slide Img -->
-                <div class="slide-img bg-img" style="background-image: url(@item.PhotoUrl);"></div>
+                <div class="slide-img bg-img" style="background-image: url(/one-music-gh-pages/@item.PhotoUrl);"></div>
                 <!-- Slide Content -->
                 <div class="container">
                     <div class="row">
@@ -19,7 +19,7 @@
                             <div class="hero-slides-content text-center">
                                 <h6 data-animation="fadeInUp" data-delay="100ms">@item.Subtitle</h6>
                                 <h2 data-animation="fadeInUp" data-delay="300ms">@item.Title <span>@item.Title</span></h2>
-                                <a asp-controller="Product" asp-action="GetAllProduct" asp-route-id="@item.CategoryId" data-animation="fadeInUp" data-delay="500ms" class="btn oneMusic-btn mt-50">Alışverişe Başla <i class="fa fa-angle-double-right"></i></a>
+                                <a asp-controller="Product" asp-action="GetAllProduct" asp-route-id="@item.CategoryId" data-animation="fadeInUp" data-delay="500ms" class="btn oneMusic-btn mt-50 text-center">Alışverişe Başla <i class="fa fa-angle-double-right "></i></a>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,8 @@
                     {
                         <div class="single-album">
                             <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
-                                <img src="@item.Photo" alt="">
+
+                                <img src="~/img/@item.Photo" alt="">
                             </a>                        
                             <div class="album-info">
                                 <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
