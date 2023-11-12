@@ -18,6 +18,10 @@
 body {
   font-family: "Archivo Narrow", sans-serif;
   font-size: 14px; }
+::-webkit-selection {
+    color: #fff;
+    background: #feb900;
+}
 
 
 
