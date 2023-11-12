@@ -18,7 +18,19 @@
 body {
   font-family: "Archivo Narrow", sans-serif;
   font-size: 14px; }
+::-webkit-selection {
+    color: #fff;
+    background: #feb900;
+}
 
+::-moz-selection {
+    color: #fff;
+    background: #feb900;
+}
+::selection {
+    color: #fff;
+    background: #feb900;
+}
 h1,
 h2,
 h3,

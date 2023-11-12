@@ -217,7 +217,7 @@ h6 {
                 margin-left: 5px;
             }
 
-        /* .opsHeader .navbar > ul > li > a:before {
+             .opsHeader .navbar > ul > li > a:before {
             content: "";
             position: absolute;
             width: 100%;
@@ -229,21 +229,21 @@ h6 {
             width: 0px;
             transition: all 0.3s ease-in-out 0s;
         }
-
+                
         .opsHeader .navbar a:hover:before,
         .opsHeader .navbar li:hover > a:before,
         .opsHeader .navbar .active:before {
             visibility: visible;
             width: 100%;
         }
-
+             
         .opsHeader .navbar a:hover,
         .opsHeader .navbar .active,
         .opsHeader .navbar .active:focus,
         .opsHeader .navbar li:hover > a {
             color: #fff;
         }
-            */
+           
         .opsHeader .navbar .dropdown ul {
             display: block;
             position: absolute;

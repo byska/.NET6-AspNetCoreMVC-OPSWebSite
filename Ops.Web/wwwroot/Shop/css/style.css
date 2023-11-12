@@ -53,20 +53,6 @@
     margin: 0 0 20px 0;
 }
 
-::-webkit-selection {
-  color: #fff;
-  background: #feb900;
-}
-
-::-moz-selection {
-  color: #fff;
-  background: #feb900;
-}
-
-::selection {
-  color: #fff;
-  background: #feb900;
-}
 
 .fh5co-nav {
   padding: 18px 0;
