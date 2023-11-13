@@ -90,7 +90,7 @@ h6,
 .navbar .dropdown-toggle::after {
     border: none;
     content: "\f107";
-    font-family: "Font Awesome 5 Free";
+    font-family: "Roboto", sans-serif;
     font-weight: 900;
     vertical-align: middle;
     margin-left: 8px;
@@ -390,14 +390,14 @@ h6,
     transition: .3s;
 }
 
-.footer .btn.btn-link::before {
-    position: relative;
-    content: "\f105";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    color: var(--light);
-    margin-right: 10px;
-}
+    .footer .btn.btn-link::before {
+        position: relative;
+        content: "\f105";
+        font-family: "Roboto", sans-serif;
+        font-weight: 900;
+        color: var(--light);
+        margin-right: 10px;
+    }
 
 .footer .btn.btn-link:hover {
     color: var(--primary);
