@@ -2653,7 +2653,7 @@ input.num-product::-webkit-inner-spin-button {
 ==================================================================*/
 .bg-none {background-color: transparent;}
 .bg0 {background-color: #fff;}
-.bg1 {background-color: #717fe0;}
+.bg1 {background-color: #feb900;}
 .bg2 {background-color: #e6e6e6;}
 .opsFooter,.bg3{
     background-color: #222;
@@ -3107,7 +3107,7 @@ input.num-product::-webkit-inner-spin-button {
 .hov-btn2:hover {
   border-color: #fff;
   background-color: #fff;
-  color: #717fe0;
+  color: #feb900;
 }
 
 /*---------------------------------------------*/

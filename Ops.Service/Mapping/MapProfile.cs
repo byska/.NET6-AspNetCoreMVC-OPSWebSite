@@ -34,6 +34,7 @@ namespace Ops.Service.Mapping
             CreateMap<HomeSlider,HomeSliderVM>();
             CreateMap<Size, SizeVM>();
             CreateMap<Color, ColorVM>();
+            CreateMap<Category, CategoryVM>();
         }
     }
 }

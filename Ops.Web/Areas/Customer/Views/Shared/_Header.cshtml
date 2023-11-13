@@ -4,7 +4,7 @@
 <header id="header" class="opsHeader header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between" >
 
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a asp-action="Index" asp-controller="Home" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1>OPS<span>.</span></h1>
@@ -32,9 +32,8 @@
                 </li>
 
                 <li><a asp-action="Contact" asp-controller="Home">İletişim</a></li>
-                <button class="loginOps">
-                    Giriş Yap/Üye Ol
-                </button>
+                <li><a asp-action="#" asp-controller="#"> <span class="icon-ops"><i class="fas fa-shopping-cart"></i></span></a></li>
+                <li><a asp-action="#" asp-controller="#"> <span class="icon-ops"><i class="fa-solid fa-user"></i></span></a></li>
                 
             </ul>
         </nav><!-- .navbar -->

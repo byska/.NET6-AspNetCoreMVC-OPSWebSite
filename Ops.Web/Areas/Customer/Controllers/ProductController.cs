@@ -15,12 +15,14 @@ namespace Ops.Web.Areas.Customer.Controllers
 		private readonly ICommentService _commentService;
 		private readonly IColorService _colorService;
 		private readonly ISizeService _sizeService;
-        public ProductController(IProductService productService, ICommentService commentService, IColorService colorService, ISizeService sizeService)
+		private readonly ICategoryService _categoryService;
+        public ProductController(IProductService productService, ICommentService commentService, IColorService colorService, ISizeService sizeService, ICategoryService categoryService)
         {
             _productService = productService;
             _commentService = commentService;
             _colorService = colorService;
             _sizeService = sizeService;
+            _categoryService = categoryService;
         }
         public IActionResult Index()
 		{
@@ -29,7 +31,8 @@ namespace Ops.Web.Areas.Customer.Controllers
         public async Task<IActionResult> GetAllProduct(int id)
 		{
             var products = await _productService.GetProductsWithColorPhoto(id);
-
+           var category=await _categoryService.GetByIdAsync(id);
+            ViewBag.Category = category.Data;
             return View(products.Data);
 		}
         [HttpGet]
