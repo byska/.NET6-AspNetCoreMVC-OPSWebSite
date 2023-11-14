@@ -58,34 +58,35 @@
             </div>
             <div class="col-12 col-lg-5">
                 <div class="single_product_desc">
-                    <!-- Product Meta Data -->
-                    <div class="product-meta-data">
-                        <div class="line"></div>
-                        <p class="product-price" id="product-priceid">@Model.Price ₺</p>
-                        <h6 id="product-name">@Model.Name</h6>
-                        <!-- Ratings & Review -->
-                        <!-- Avaiable --> <!--Stok Durumu-->
-                        @* @if(Model.Stock == null)
-                        {
-                        <p class="avaibility"><i class="fa fa-check-circle text-success"></i>Stok</p>
-                        }
-                        else
-                        {
-                        <p class="avaibility"><i class="fa fa-circle"></i>Stok</p>
-                        }*@
+                    <form class="cart clearfix" method="post" asp-area="Customer" asp-controller="Product" asp-action="Order">
+                        <!-- Product Meta Data -->
+                        <div class="product-meta-data">
+                            <div class="line"></div>
+                            <p asp-for="@Model.Price" class="product-price" id="product-priceid">@Model.Price ₺</p>
+                            <h6 asp-for="@Model.Name" id="product-name">@Model.Name</h6>
+                            <!-- Ratings & Review -->
+                            <!-- Avaiable --> <!--Stok Durumu-->
+                            @* @if(Model.Stock == null)
+                            {
+                            <p class="avaibility"><i class="fa fa-check-circle text-success"></i>Stok</p>
+                            }
+                            else
+                            {
+                            <p class="avaibility"><i class="fa fa-circle"></i>Stok</p>
+                            }*@
 
-                    </div>
-                    <br />
-                    <div class="short_overview my-5">
-                        <p id="product-description">@Model.Description</p>
-                    </div>
-                    <!-- Add to Cart Form -->
-                    <form class="cart clearfix" method="post">
+                        </div>
+                        <br />
+                        <div class="short_overview my-5">
+                            <p id="product-description">@Model.Description</p>
+                        </div>
+                        <!-- Add to Cart Form -->
+
                         <div class="cart-btn d-flex" id="Adet">
                             <label for="quantity">Adet</label>
                             <div class="quantity">
                                 <button type="button" class="qty-btn" onclick="decreaseQuantity()">-</button>
-                                <input type="number" class="qty-text" id="quantity" step="1" min="1" max="10" name="quantity" value="1">
+                                <input  type="number" class="qty-text" id="quantity" step="1" min="1" max="10" name="quantity" value="1">
                                 <button type="button" class="qty-btn" onclick="increaseQuantity()">+</button>
                             </div>
                         </div>

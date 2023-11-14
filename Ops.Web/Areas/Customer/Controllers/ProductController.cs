@@ -5,6 +5,7 @@ using Ops.Core.Entities;
 using Ops.Core.Services;
 using Ops.Core.VMs;
 using Ops.Service.Services;
+using System.Drawing;
 
 namespace Ops.Web.Areas.Customer.Controllers
 {
@@ -49,6 +50,51 @@ namespace Ops.Web.Areas.Customer.Controllers
 			ViewBag.Comments=comments.Data;
              return View(productDetail);
         }
-		
+        public async Task<IActionResult> GetAllAccessory(int id)
+        {
+            List<int> digits = GetDigits(id);
+            ViewBag.Digits = digits;
+            var accessory = await _productService.GetProductsWithColorPhoto(digits[0]);
+            var accessory1 = await _productService.GetProductsWithColorPhoto(digits[1]);
+            var accessory2 = await _productService.GetProductsWithColorPhoto(digits[2]);
+            var category = await _categoryService.GetByIdAsync(digits[0]);
+            var category1 = await _categoryService.GetByIdAsync(digits[1]);
+            var category2 = await _categoryService.GetByIdAsync(digits[2]);
+            ViewBag.accessory = accessory.Data;
+            ViewBag.accessory1 = accessory1.Data;
+            ViewBag.accessory2 = accessory2.Data;
+            ViewBag.category = category.Data;
+            ViewBag.category1 = category1.Data;
+            ViewBag.category2 = category2.Data;
+            return View();
+        }
+        private List<int> GetDigits(int number)
+        {
+            List<int> digits = new List<int>();
+
+            while (number > 0)
+            {
+                digits.Add(number % 10);
+                number /= 10;
+            }
+
+            digits.Reverse(); // Ters çevirme işlemi, çünkü sondan başa doğru ekledik
+
+            return digits;
+        }
+
+        /// <summary>
+        /// Sepete ekle butonu için açıldı. durumuna bakılacak
+        /// </summary>
+        /// <param name="size"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Order(string size,int quantity)
+        {
+            
+            return View();
+        }
+
     }
 }
