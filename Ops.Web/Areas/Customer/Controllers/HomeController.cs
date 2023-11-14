@@ -52,7 +52,7 @@ namespace Ops.Web.Areas.Customer.Controllers
         }
         public async Task<IActionResult> About()
         {
-          var comments= await _commentService.GetAllActiveAsync();
+            var comments = await _commentService.GetAllByIncludeAsync(x => x.IsActive == true,x=>x.Product,x=>x.Customer) ;
             return View(comments.Data);
         }
     }

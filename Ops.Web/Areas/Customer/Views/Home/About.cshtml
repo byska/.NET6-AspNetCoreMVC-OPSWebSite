@@ -13,14 +13,11 @@
 			<div class="col-lg-7 about-img" style="background-image: url(/one-music-gh-pages/img/bg-img/breadcumb3.jpg);"></div>
 
 			<div class="col-lg-7">
-				<h2>Consequatur eius et magnam</h2>
+				<h2 style="color:#feb900;">Orange Press Store</h2>
 				<div class="our-story">
-					<h4>Est 1988</h4>
-					<h3>Our Story</h3>
+					<h3>BİZ KİMİZ?</h3>
 					<p>
-						Inventore aliquam beatae at et id alias. Ipsa dolores amet consequuntur minima quia maxime autem.
-						Quidem id sed ratione. Tenetur provident autem in reiciendis rerum at dolor. Aliquam consectetur
-						laudantium temporibus dicta minus dolor.
+						Hayattan ve doğadan edindiğimiz deneyimlerle beslenen ürünler tasarlıyoruz. Ürünlerimizi üretirken ve sana ulaştırırken doğaya duyarlı davranıyoruz. Anılara ortak olmayı ve yeni anılar oluşturmayı çok seviyoruz. Giyim ve aksesuar ürünlerimiz bizim hikayemizden çıkıp senin hikayen olmaya geliyor. Senin hikayende yanında olduğumuz için çok mutluyuz.
 					</p>
 					<ul>
 						<li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea commo</span></li>
@@ -39,56 +36,49 @@
 	</div>
 </section>
 <!-- End About Section -->
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials" class="testimonialsOps section-bg p-t-50">
+    <div class="container" data-aos="fade-up">
 
-<!-- Start Testimonial Slider -->
-<div class="testimonial-section before-footer-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-7 mx-auto text-center">
-				<h2 class="section-title">Yorumlar</h2>
-			</div>
-		</div>
+        <div class="section-header">
+            <h2>Yorumlar</h2>
+            <p>
+                Kullanıcı deneyimlerini aşağıdan inceleyebilirsiniz.
+            </p>
+        </div>
+        <div class="slides-2 swiper p-t-50">
+            <div class="swiper-wrapper">
+        @foreach(var item in Model)
+        {
+           
 
-		<div class="row justify-content-center">
-			<div class="col-lg-12">
-				<div class="testimonial-slider-wrap text-center">
+                    <div class="swiper-slide">
+                        <div class="testimonial-wrap">
+                            <div class="testimonial-item">
+                                <h3>@item.Name</h3>
+                                <h4>@item.ProductName</h4>
+                                <div class="stars">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <span class="star @(i <= item.Mark ? "filled" : "")">&#9733;</span>
+                                    }
+                                   @*  <i class=""></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i> *@
+                                </div>
+                                <p>
+                                    <i class="bi bi-quote quote-icon-left"></i>
+                                    @item.Description
+                                    <i class="bi bi-quote quote-icon-right"></i>
+                                </p>
+                            </div>
+                        </div>
+                   
+       
+         </div><!-- End testimonial item -->
+                }
 
-					<div id="testimonial-nav">
-						<span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
-						<span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
-					</div>
-
-					<div class="testimonial-slider">
-						@foreach(var item in Model)
-						{
-							<div class="item">
-								<div class="row justify-content-center">
-									<div class="col-lg-8 mx-auto">
-
-										<div class="testimonial-block text-center">
-											<blockquote class="mb-5">
-												<p>@item.Description</p>
-											</blockquote>
-
-											<div class="author-info">
-												<h3 class="font-weight-bold">@item.Mark</h3>
-												<h3 class="font-weight-bold">@item.Name</h3>
-												<span class="position d-block mb-3">@item.ProductName</span>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
-							
-						}
-						
-
-					</div>
-
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- End Testimonial Slider -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        </div>
+    </div>
+</section><!-- End Testimonials Section -->
