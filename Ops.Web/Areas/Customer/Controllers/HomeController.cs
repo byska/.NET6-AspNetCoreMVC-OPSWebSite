@@ -37,7 +37,19 @@ namespace Ops.Web.Areas.Customer.Controllers
         [HttpPost]
         public async Task<IActionResult> Contact(MessageCreateVM message)
         {
-            if (ModelState.IsValid)
+            ModelState.Clear();
+            if (!ModelState.IsValid)
+            {
+                foreach (var error in ModelState.Values)
+                {
+                    // Log the error messages
+                    Console.WriteLine(error.Errors[1].ErrorMessage);
+                }
+
+                // Diğer işlemler
+                return View(message);
+            }
+            else
             {
                 var result = await _messageService.AddAsync(message);
                 if (result.Errors == null)
@@ -51,8 +63,6 @@ namespace Ops.Web.Areas.Customer.Controllers
                     return View(message);
                 }
             }
-             return View(message);
-
         }
         public async Task<IActionResult> About()
         {

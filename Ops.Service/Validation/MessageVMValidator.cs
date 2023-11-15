@@ -12,6 +12,7 @@ namespace Ops.Service.Validation
     {
         public MessageVMValidator()
         {
+
             RuleFor(x => x.Name)
           .NotEmpty().WithMessage("İsim alanı boş olamaz.")
           .MaximumLength(255).WithMessage("İsim en fazla 50 karakter olmalıdır.");

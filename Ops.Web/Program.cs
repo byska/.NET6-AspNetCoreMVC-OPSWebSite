@@ -13,8 +13,10 @@ using Ops.Service.Services;
 using Ops.Service.Validation;
 using Ops.Web.Modules;
 using System.Reflection;
-
-
+using FluentValidation;
+using Ops.Core.Entities;
+using System;
+using Ops.Core.VMs.Create;
 
 namespace Ops.Web
 {
@@ -22,12 +24,30 @@ namespace Ops.Web
     {
         public static void Main(string[] args)
         {
+          
+                // If you're using MVC or WebApi you'll probably have
+                // a call to AddMvc() or AddControllers() already.
+                
+
+                // ... other configuration ...
+
+         
+            
+
+
+
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews().AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductVMValidator>()); 
+            builder.Services.AddControllersWithViews()
+         .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductVMValidator>())
+         .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MessageVMValidator>());
+
 
             builder.Services.AddAutoMapper(typeof(MapProfile));
+
+            builder.Services.AddScoped<IValidator<MessageCreateVM>, MessageVMValidator>();
+            builder.Services.AddValidatorsFromAssemblyContaining<MessageVMValidator>();
 
             builder.Services.AddDbContext<AppDbContext>(x =>
             {
@@ -48,7 +68,7 @@ namespace Ops.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+        
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

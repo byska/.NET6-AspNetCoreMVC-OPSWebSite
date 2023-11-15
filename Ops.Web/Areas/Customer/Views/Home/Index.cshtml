@@ -2,9 +2,29 @@
     ViewData["Title"] = "Anasayfa";
     Layout = "~/Areas/Customer/Views/Shared/_LayoutIndex.cshtml";
 }
+@if (TempData["result"] !=null)
+{
+    <div id="custom-notification" style="">
+        <div>
+            <button type="button" onclick="closeNotification()">X</button>
+            <br/>
+            @Html.Raw(System.Net.WebUtility.HtmlEncode(TempData["result"].ToString()))
+           
+        </div>
+    </div>
+    <script>
 
+        function closeNotification() {
+            var notification = document.getElementById('custom-notification');
+            notification.style.opacity = '0';
+            setTimeout(function () {
+                notification.style.display = 'none';
+            }, 600);
+        }
+    </script>
+}
 
-    <section class="hero-area col-12">
+<section class="hero-area col-12">
     <div class="hero-slides owl-carousel">
         <!-- Single Hero Slide -->
         @foreach (var item in ViewBag.HomeSlider)
@@ -71,51 +91,51 @@
         </div>
 
 
-        <div id="fh5co-product">
-            <div class="container">
-                <div class="opsProduct">
-                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                        
-                        <h2>Çok Satanlar</h2>
-                    </div>
-                </div>
+<div id="fh5co-product">
+    <div class="container">
+        <div class="opsProduct">
+            <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
 
-
-                <div class="slides-3 swiper p-t-50">
-                    <div class="swiper-wrapper">
-                        @foreach (var item in ViewBag.BestsellerProducts as List<ProductVM>)
-                    {
-                    <div class="swiper-slide text-center animate-box">
-                            <div class="product">
-                                <div class="product-grid" style="background-image:url(/img/@item.Photo);">
-                                    <div class="inner">
-                                        <p>
-                                            <a href="single.html" class="icon"><i class="icon-shopping-cart"></i></a>
-                                            <a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" class="icon"><i class="icon-eye"></i></a>
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="desc">
-                                    <h3><a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id">@item.Name</a></h3>
-                                    <span class="price">@item.Price</span>
-                                </div>
-                            </div>
-                        </div>
-                    }
-                </div>
-                 <div class="swiper-pagination"></div>
-        </div>
-                </div>
-
-
-
+                <h2>Çok Satanlar</h2>
             </div>
         </div>
 
 
+        <div class="slides-3 swiper p-t-50">
+            <div class="swiper-wrapper">
+                @foreach (var item in ViewBag.BestsellerProducts as List<ProductVM>)
+                {
+                    <div class="swiper-slide text-center animate-box">
+                        <div class="product">
+                            <div class="product-grid" style="background-image:url(/img/@item.Photo);">
+                                <div class="inner">
+                                    <p>
+                                        <a href="single.html" class="icon"><i class="icon-shopping-cart"></i></a>
+                                        <a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" class="icon"><i class="icon-eye"></i></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="desc">
+                                <h3><a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id">@item.Name</a></h3>
+                                <span class="price">@item.Price</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
 
 
-       @*  <div class="row">
+
+</div>
+        </div>
+
+
+
+
+@*  <div class="row">
             <div class="col-12">
                 <div class="albums-slideshow owl-carousel">
 
@@ -126,7 +146,7 @@
                             <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
 
                                 <img src="~/img/@item.Photo" alt="">
-                            </a>                        
+                            </a>
                             <div class="album-info">
                                 <a asp-controller="Product" asp-action="Detail" asp-route-id="@item.Id">
                                     <h5>@item.Name</h5>
