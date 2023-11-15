@@ -11,7 +11,27 @@
 *
 * ======================================================= */
 
+/*Slider Home*/
 
+#fh5co-product .swiper-pagination {
+    margin-top: 20px;
+    position: relative;
+}
+#fh5co-product .swiper-pagination {
+    margin-top: 20px;
+    position: relative;
+}
+
+    #fh5co-product .swiper-pagination .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background-color: #d5d7da;
+        opacity: 1;
+    }
+
+    #fh5co-product .swiper-pagination .swiper-pagination-bullet-active {
+        background-color: var(--color-primary);
+    }
 
 .offcanvas #page {
   overflow: hidden;
