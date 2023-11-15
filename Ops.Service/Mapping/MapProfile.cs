@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Ops.Core.Entities;
 using Ops.Core.VMs;
+using Ops.Core.VMs.AdminList;
+using Ops.Core.VMs.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,8 @@ namespace Ops.Service.Mapping
             CreateMap<Size, SizeVM>();
             CreateMap<Color, ColorVM>();
             CreateMap<Category, CategoryVM>();
+            CreateMap<MessageCreateVM, Message>();
+            CreateMap<Message, MessageAdminVM>();
         }
     }
 }

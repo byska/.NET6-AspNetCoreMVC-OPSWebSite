@@ -37,17 +37,21 @@ namespace Ops.Web.Areas.Customer.Controllers
         [HttpPost]
         public async Task<IActionResult> Contact(MessageCreateVM message)
         {
-          var result= await _messageService.AddAsync(message);
-            if (result.Errors == null)
+            if (ModelState.IsValid)
             {
-                TempData["result"] = "Mesajınız başarıyla alınmıştır.";
-                return RedirectToAction(nameof(Index));
+                var result = await _messageService.AddAsync(message);
+                if (result.Errors == null)
+                {
+                    TempData["result"] = "Mesajınız başarıyla alınmıştır.";
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    TempData["result"] = "Mesajınız gönderilememiştir.";
+                    return View(message);
+                }
             }
-            else
-            {
-                TempData["result"] = "Mesajınız gönderilememiştir.";
-                return View(message);
-            }
+             return View(message);
 
         }
         public async Task<IActionResult> About()

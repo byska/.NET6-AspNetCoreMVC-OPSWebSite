@@ -4,6 +4,7 @@
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 @model MessageCreateVM
+
 @if(TempData["result"] !=null)
 {
     <script>
@@ -64,7 +65,8 @@
                <img src="~/img/ops2.png" />
             </div><!-- End Google Maps -->
             <div class="col-lg-6">
-                <form asp-action="Contact" method="post" class="php-email-form">
+                <form asp-action="Contact" asp-controller="Home" method="post" class="contactFormOps">
+                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="row gy-4">
                         <div class="col-6">
                             <div class="form-group">
@@ -86,7 +88,7 @@
 
                     <div class="form-group mb-5">
                         <label>Mesajınız</label>
-                        <textarea asp-for="Description" name="" class="form-control" id="message" cols="30" rows="5"></textarea>
+                        <textarea asp-for="Description" name="Description" class="form-control" id="message" cols="30" rows="5"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-warning-outline">Gönder</button>
