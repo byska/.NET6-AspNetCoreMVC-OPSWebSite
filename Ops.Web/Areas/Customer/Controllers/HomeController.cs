@@ -20,6 +20,7 @@ namespace Ops.Web.Areas.Customer.Controllers
             _commentService = commentService;
             _service = service;
         }
+
         public async Task<IActionResult> Index()
        {
             var homeSlider= await _service.GetAllActiveAsync();
@@ -37,7 +38,7 @@ namespace Ops.Web.Areas.Customer.Controllers
         [HttpPost]
         public async Task<IActionResult> Contact(MessageCreateVM message)
         {
-            ModelState.Clear();
+            
             if (!ModelState.IsValid)
             {
                 foreach (var error in ModelState.Values)

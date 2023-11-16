@@ -36,19 +36,46 @@ body {
     margin: auto; /* Yatay merkezleme */
 }
 
-
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Roboto", sans-serif;
-    color: #000000;
-    line-height: 1.3;
-    font-weight: 700;
+#centered-btn1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 40px;
+    margin: auto;
+    background-color: red;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 2px;
+    transition: 0.5s;
+    padding: 8px 20px;
+    min-width: 160px;
+    color: #ffffff;
+    border: none;
+    line-height: 56px;
+    background-color: #fbb710;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    -webkit-appearance: button;
+    white-space: nowrap;
 }
+
+
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: "Roboto", sans-serif;
+        color: #000000;
+        line-height: 1.3;
+        font-weight: 700;
+    }
 
 p {
     font-family: "Roboto", sans-serif;
