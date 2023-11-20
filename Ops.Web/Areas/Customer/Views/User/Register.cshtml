@@ -1,35 +1,56 @@
-﻿
+﻿@model UserCreateVM
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 
-<!-- ##### Login Area Start ##### -->
-<section class="login-area section-padding-100">
+<section class="login-area section-padding-100 row gy-4 mt-1">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <div class="login-content">
-                    <h3>Giriş Yap</h3>
+                    <h3>Kayıt Ol</h3>
                     <!-- Login Form -->
+                   
                     <div class="login-form">
-                        <form action="#" method="post">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Mail Adresiniz</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter E-mail">
-                                <small id="emailHelp" class="form-text text-muted"><i class="fa fa-lock mr-2"></i>Mail adresinizi kimse ile paylaşmayacağız.</small>
+                        <form asp-action="Register" asp-controller="User" method="post" class="contactFormOps">
+                            <div class="text-danger"></div>
+                            <div class="row gy-4">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="FirstName">İsim</label>
+                                        <input asp-for="FirstName" type="text" class="form-control" id="fname">
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Soyisim</label>
+                                        <input asp-for="LastName" type="text" class="form-control" id="lname">
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Şifre</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <label>E-mail</label>
+                                <input asp-for="Email" type="email" class="form-control" id="email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
-                            <button type="submit" class="btn oneMusic-btn mt-30">Giriş Yap</button>
+                            <div class="form-group">
+                                <label>Şifre</label>
+                                <input asp-for="Password" type="password" class="form-control" id="password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                           
+                            <button type="submit" class="btn btn-warning-outline ">Kayıt Ol</button>
+                            <p class="mt-4 text-sm text-center">
+                               Zaten hesabınız var mı?
+                                <a asp-controller="User" asp-action="Login" class="text-warning text-gradient text-password font-weight-bold">Giriş Yap</a>
+                            </p>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- ##### Login Area End ##### -->
