@@ -56,7 +56,9 @@ h6 {
     font-weight: 400;
 
 }
-
+.text-password {
+    font-size: 14px !important;
+}
 p {
     color: $text-color;
     font-size: 16px;
@@ -1521,7 +1523,7 @@ img {
                 font-weight: 400;
                 cursor: pointer;
                 &:hover {
-                    color: $bg-default;
+                    color: #feb900;
                 }
             }
             &:last-child {

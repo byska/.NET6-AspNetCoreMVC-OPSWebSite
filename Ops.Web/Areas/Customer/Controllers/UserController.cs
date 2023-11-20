@@ -3,8 +3,10 @@ using Ops.Core.VMs;
 
 namespace Ops.Web.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class UserController : Controller
     {
+        
         public IActionResult Index()
         {
             return View();

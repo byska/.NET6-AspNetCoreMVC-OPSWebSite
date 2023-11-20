@@ -12,7 +12,9 @@
 * ======================================================= */
 
 /*Slider Home*/
-
+.text-password {
+    font-size: 14px;
+}
 #fh5co-product .swiper-pagination {
     margin-top: 20px;
     position: relative;
@@ -1488,7 +1490,10 @@
     display: block;
   }
 }
+.btn-social-ops{
+    font-size:20px;
 
+}
 .btn {
     margin-right: 4px;
     margin-bottom: 4px;

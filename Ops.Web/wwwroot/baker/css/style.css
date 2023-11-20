@@ -6,7 +6,9 @@
     --light: #FDF5EB;
     --dark: #1E1916;
 }
-
+.text-password {
+    font-size: 14px !important;
+}
 h4,
 h5,
 h6,

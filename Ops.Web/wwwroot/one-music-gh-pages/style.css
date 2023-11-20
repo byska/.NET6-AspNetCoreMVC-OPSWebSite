@@ -36,8 +36,6 @@ body {
     margin: auto; /* Yatay merkezleme */
 }
 
-
-
 h1,
 h2,
 h3,
@@ -56,6 +54,9 @@ p {
     font-size: 15px;
     line-height: 2;
     font-weight: 400;
+}
+.text-ops{
+    color:#feb900 !important;
 }
 
 a,
