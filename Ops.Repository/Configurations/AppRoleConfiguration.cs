@@ -7,13 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ops.Repository.Seeds
+namespace Ops.Repository.Configurations
 {
-    public class AdminSeed : IEntityTypeConfiguration<AppRole>
+    public class AppRoleConfiguration : IEntityTypeConfiguration<AppRole>
     {
         public void Configure(EntityTypeBuilder<AppRole> builder)
         {
-            builder.HasData(new AppRole { Id = 1, Email = "orangepressstore@gmail.com", Password = "Beste1998.", FirstName = "Ayşe Nur", LastName = "Tabak", Status = Core.Enums.Status.Added });
+            builder.ToTable("Roles");
+
+            builder.Property(x => x.Status).IsRequired();
+            builder.Property(x => x.CreatedDate).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
         }
     }
 }

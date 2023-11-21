@@ -13,7 +13,7 @@ namespace Ops.Core.Entities
         public int CityId { get; set; }
         public County County { get; set; }
         public int CountyId { get; set; }
-        public Customer Customer { get; set; }
+        public AppUser Customer { get; set; }
         public int CustomerId { get; set; } 
     }
 }

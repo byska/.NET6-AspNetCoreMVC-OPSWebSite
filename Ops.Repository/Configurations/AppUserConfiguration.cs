@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 
 namespace Ops.Repository.Configurations
 {
-    public abstract class BaseUserConfiguration<T> : IEntityTypeConfiguration<T> where T : BaseUser
+    public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
     {
-        public virtual void Configure(EntityTypeBuilder<T> builder)
+        public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).UseIdentityColumn();
+            builder.ToTable("Users");
+
             builder.Property(x => x.Status).IsRequired();
             builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.Email).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.Password).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.CreatedDate).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
 
         }
     }

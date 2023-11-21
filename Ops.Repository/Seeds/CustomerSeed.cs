@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Ops.Repository.Seeds
 {
-    public class CustomerSeed : IEntityTypeConfiguration<Customer>
+    public class CustomerSeed : IEntityTypeConfiguration<AppUser>
     {
-        public void Configure(EntityTypeBuilder<Customer> builder)
+        public void Configure(EntityTypeBuilder<AppUser> builder)
         {
-            builder.HasData(new Customer { Id = 1, DateOfBirth = new DateTime(1998, 02, 16), Email = "besteyasak@gmail.com", FirstName = "Beste", LastName = "Yasak", Password = "Beste1998.", PhoneNumber = "05362459825", Status = Core.Enums.Status.Added },
-                            new Customer { Id = 2, DateOfBirth = new DateTime(1997, 06, 06), Email = "huseyingulerman.1997@gmail.com", FirstName = "Hüseyin", LastName = "Gülerman", Password = "Beste1998.", PhoneNumber = "05325841236", Status = Core.Enums.Status.Added });
+            builder.HasData(new AppUser { Id = 1, DateOfBirth = new DateTime(1998, 02, 16), Email = "besteyasak@gmail.com", FirstName = "Beste", LastName = "Yasak", PasswordHash = "Beste1998.", PhoneNumber = "05362459825", Status = Core.Enums.Status.Added },
+                            new AppUser { Id = 2, DateOfBirth = new DateTime(1997, 06, 06), Email = "huseyingulerman.1997@gmail.com", FirstName = "Hüseyin", LastName = "Gülerman", PasswordHash = "Beste1998.", PhoneNumber = "05325841236", Status = Core.Enums.Status.Added });
         }
     }
 }

@@ -17,6 +17,7 @@ using FluentValidation;
 using Ops.Core.Entities;
 using System;
 using Ops.Core.VMs.Create;
+using Microsoft.AspNetCore.Identity;
 
 namespace Ops.Web
 {
@@ -24,21 +25,17 @@ namespace Ops.Web
     {
         public static void Main(string[] args)
         {
-          
-                // If you're using MVC or WebApi you'll probably have
-                // a call to AddMvc() or AddControllers() already.
-                
 
-                // ... other configuration ...
-
-         
-            
+            // If you're using MVC or WebApi you'll probably have
+            // a call to AddMvc() or AddControllers() already.
 
 
-
+            // ... other configuration ...
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
             builder.Services.AddControllersWithViews()
          .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductVMValidator>())
          .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MessageVMValidator>());

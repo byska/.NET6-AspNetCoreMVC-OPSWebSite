@@ -3,9 +3,9 @@ using Ops.Core.VMs.Create;
 
 namespace Ops.Service.Validation
 {
-    public class CustomerVMValidator :AbstractValidator<CustomerCreateVM>
+    public class AppUserVMValidator :AbstractValidator<CustomerCreateVM>
     {
-        public CustomerVMValidator()
+        public AppUserVMValidator()
         {
             RuleFor(x => x.PhoneNumber)
             .NotEmpty().WithMessage("Telefon numarası boş olamaz.")
