@@ -15,7 +15,7 @@ namespace Ops.Core.VMs.Create
         [Required(ErrorMessage = "Lütfen soyadınızı giriniz.")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Lütfen kullanıcı adınızı giriniz.")]
+
         [DataType(DataType.Password, ErrorMessage = "Parolanız gereken değerleri taşımıyor.")]
         public string Password { get; set; }
 
@@ -24,5 +24,7 @@ namespace Ops.Core.VMs.Create
         public string Email { get; set; }
         public bool Status { get; set; } = true;
         public string? NewPassword { get; set; }
+        public bool PersonelDataProtection { get; set; }
+        public bool MembershipAgreement { get; set; }
     }
 }

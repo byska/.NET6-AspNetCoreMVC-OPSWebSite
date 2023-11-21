@@ -24,5 +24,23 @@ namespace Ops.Web.Areas.Customer.Controllers
         {
             return View();
         }
+        public IActionResult UpdatePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UpdatePassword(UpdatePasswordVM password)
+        {
+            return View();
+        }
+        public IActionResult Reset()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Reset(ResetPasswordModel password)
+        {
+            return View();
+        }
     }
 }

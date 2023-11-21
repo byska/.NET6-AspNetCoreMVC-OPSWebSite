@@ -4,7 +4,7 @@
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 
-<section class="login-area section-padding-100 row gy-4 mt-1">
+<section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
@@ -41,7 +41,14 @@
                                 <input asp-for="Password" type="password" class="form-control" id="password">
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
-                           
+                            <div class="form-check form-switch justify-content-start d-flex align-items-center mb-3">
+                                <input asp-for="PersonelDataProtection" class="ops-remember-input form-check-input" type="checkbox">
+                                <label class="form-check-label mb-0 ms-2" for="PersonelDataProtection">OPS tarafından iletişim bilgilerime tanıtım, reklam, kampanya vb. içerikli ticari e-ileti gönderilmesine, sağladığım kişisel verilerin <a asp-action="" asp-controller="">Kişisel Verilerin Korunmasına İlişkin Aydınlatma Metni</a> kapsamında bu amaçla işlenmesine ve hizmet sağlayıcılara aktarılmasına izin veriyorum.</label>
+                            </div>
+                            <div class="form-check form-switch justify-content-start d-flex align-items-center mb-3">
+                                <input asp-for="MembershipAgreement" class="ops-remember-input form-check-input" type="checkbox">
+                                <label class="form-check-label mb-0 ms-2" for="MembershipAgreement"><a asp-action="" asp-controller="">Üyelik Sözleşmesi</a>'ni okudum, onaylıyorum.</label>
+                            </div>
                             <button type="submit" class="btn btn-warning-outline ">Kayıt Ol</button>
                             <p class="mt-4 text-sm text-center">
                                Zaten hesabınız var mı?
