@@ -1,5 +1,6 @@
 ﻿using Autofac.Core;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ops.Core.Entities;
 using Ops.Core.Services;
@@ -10,6 +11,7 @@ using System.Drawing;
 namespace Ops.Web.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = "Customer")]
     public class ProductController : Controller
 	{
 		private readonly IProductService _productService;

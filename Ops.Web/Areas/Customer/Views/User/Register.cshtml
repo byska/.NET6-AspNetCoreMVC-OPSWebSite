@@ -3,7 +3,12 @@
     ViewData["Title"] = "Register";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
-
+@if (ViewData["Error"] != null)
+{
+    <script>
+        alert(@ViewData["Error"]);
+    </script>
+}
 <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps">
     <div class="container">
         <div class="row justify-content-center">

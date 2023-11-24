@@ -39,6 +39,7 @@ namespace Ops.Service.Mapping
             CreateMap<Category, CategoryVM>();
             CreateMap<MessageCreateVM, Message>();
             CreateMap<Message, MessageAdminVM>();
+            CreateMap<UserCreateVM, AppUser>();
         }
     }
 }

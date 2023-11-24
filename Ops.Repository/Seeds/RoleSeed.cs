@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace Ops.Repository.Seeds
 {
-    public class AdminSeed : IEntityTypeConfiguration<AppRole>
+    public class RoleSeed : IEntityTypeConfiguration<AppRole>
     {
         public void Configure(EntityTypeBuilder<AppRole> builder)
         {
-            builder.HasData(new AppRole { Id = 1, Email = "orangepressstore@gmail.com", Password = "Beste1998.", FirstName = "Ayşe Nur", LastName = "Tabak", Status = Core.Enums.Status.Added });
+            builder.HasData(new AppRole { Id = 1, Name="Admin",Status=Core.Enums.Status.Added}, 
+                new AppRole { Id=2, Name="Customer", Status = Core.Enums.Status.Added });
         }
     }
 }

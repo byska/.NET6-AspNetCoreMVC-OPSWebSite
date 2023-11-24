@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Ops.Core.Entities;
 using Ops.Core.Services;
 using Ops.Core.VMs;
@@ -7,6 +8,7 @@ using Ops.Core.VMs.Create;
 namespace Ops.Web.Areas.Customer.Controllers
 {
     [Area("Customer")]
+    [Authorize(Roles = "Customer")]
     public class HomeController : Controller
     {
         private readonly IProductService _productService;

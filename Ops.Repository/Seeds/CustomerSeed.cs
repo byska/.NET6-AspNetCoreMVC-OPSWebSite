@@ -14,7 +14,8 @@ namespace Ops.Repository.Seeds
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder.HasData(new AppUser { Id = 1, DateOfBirth = new DateTime(1998, 02, 16), Email = "besteyasak@gmail.com", FirstName = "Beste", LastName = "Yasak", PasswordHash = "Beste1998.", PhoneNumber = "05362459825", Status = Core.Enums.Status.Added },
-                            new AppUser { Id = 2, DateOfBirth = new DateTime(1997, 06, 06), Email = "huseyingulerman.1997@gmail.com", FirstName = "Hüseyin", LastName = "Gülerman", PasswordHash = "Beste1998.", PhoneNumber = "05325841236", Status = Core.Enums.Status.Added });
+                            new AppUser { Id = 2, DateOfBirth = new DateTime(1997, 06, 06), Email = "huseyingulerman.1997@gmail.com", FirstName = "Hüseyin", LastName = "Gülerman", PasswordHash = "Beste1998.", PhoneNumber = "05325841236", Status = Core.Enums.Status.Added },
+                            new AppUser { Id = 3, DateOfBirth = new DateTime(1997, 05, 17), Email = "orangepressstore@gmail.com", FirstName = "Ayşe", LastName = "Tabak", PasswordHash = "Beste1998.", PhoneNumber = "05325841236", Status = Core.Enums.Status.Added } );
         }
     }
 }
