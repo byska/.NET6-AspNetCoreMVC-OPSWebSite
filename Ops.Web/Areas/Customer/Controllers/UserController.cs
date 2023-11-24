@@ -71,15 +71,24 @@ namespace Ops.Web.Areas.Customer.Controllers
             }
             return View(loginVM);
         }
-        public IActionResult UpdatePassword()
+
+        /// <summary>
+        /// mailden yönlendirip gelinen şifre sıfırlama alanı.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ForgetPassword()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult UpdatePassword(UpdatePasswordVM password)
+        public IActionResult ForgetPassword(ForgetPasswordVM password)
         {
             return View();
         }
+        /// <summary>
+        /// şifremi unuttum.şifre sıfırlama için mail girme alanı.
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Reset()
         {
             return View(new ResetPasswordModel());

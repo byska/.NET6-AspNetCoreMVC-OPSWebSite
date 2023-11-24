@@ -1,0 +1,23 @@
+﻿@model List<CommentVM>
+@{
+    ViewData["Title"] = "Yorumlarım";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+
+<div class="menuUserProfile">
+    <h2>HESABIM</h2>
+    <ul>
+        <li><a asp-action="UserProfile" asp-controller="Profile">Kişisel Bilgileriniz</a></li>
+        <li><a asp-action="GetUserAddress" asp-controller="Profile">Adresler</a></li>
+        <li><a asp-action="GetUserOrder" asp-controller="Profile">Siparişler</a></li>
+        <li><a asp-action="UpdatePassword" asp-controller="Profile">Şifre Değiştir</a></li>
+        <li><a asp-action="GetUserComment" asp-controller="Profile">Yorumlarım</a></li>
+    </ul>
+</div>
+@if(Model != null)
+{
+    @foreach(var item in Model)
+    {
+        <button asp-action="DeleteUserComment" asp-controller="Profile" asp-route-id="@item.Id">Sil</button>
+    }
+}

@@ -12,6 +12,8 @@ namespace Ops.Repository.Configurations
     {
         public override void Configure(EntityTypeBuilder<Order> builder)
         {
+            builder.Property(x => x.TotalPrice).IsRequired();
+
             builder.HasOne(x => x.Customer).WithMany(x => x.Orders).HasForeignKey(x => x.CustomerId);
             builder.HasOne(x => x.Product).WithMany(x => x.Orders).HasForeignKey(x => x.ProductId);
 

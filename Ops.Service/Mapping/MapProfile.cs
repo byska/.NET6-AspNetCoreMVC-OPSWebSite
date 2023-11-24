@@ -40,6 +40,7 @@ namespace Ops.Service.Mapping
             CreateMap<MessageCreateVM, Message>();
             CreateMap<Message, MessageAdminVM>();
             CreateMap<UserCreateVM, AppUser>();
+            CreateMap<AppUser, UserVM>();
         }
     }
 }

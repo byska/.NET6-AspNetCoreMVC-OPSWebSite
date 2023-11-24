@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.VMs
 {
-    public class UpdatePasswordVM
+    public class ForgetPasswordVM
     {
         [DataType(DataType.Password, ErrorMessage = "Parolanız gereken değerleri taşımıyor.")]
         public string Password { get; set; }
-        public string PasswordRetry { get; set; }
-        public string OldPassword { get; set; }
+       
     }
 }

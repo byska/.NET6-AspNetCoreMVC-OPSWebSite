@@ -13,6 +13,18 @@ namespace Ops.Service.Validation
     {
         public AddressVMValidator()
         {
+            RuleFor(x => x.FirstName)
+          .NotEmpty().WithMessage("Ad alanı boş olamaz.")
+          .MaximumLength(50).WithMessage("Ad maksimum 50 karakter olmalıdır.");
+            RuleFor(x => x.ZIP)
+          .InclusiveBetween(1,5).WithMessage("Geçerli bir posta kodu giriniz.");
+
+            RuleFor(x => x.LastName)
+                .NotEmpty().WithMessage("Soyad alanı boş olamaz.")
+                .MaximumLength(50).WithMessage("Soyad maksimum 50 karakter olmalıdır.");
+            RuleFor(x => x.PhoneNumber)
+           .NotEmpty().WithMessage("Telefon numarası boş olamaz.")
+           .Matches(@"^\d{10}$").WithMessage("Geçerli bir telefon numarası girin.");
             RuleFor(x => x.Description).NotNull().WithMessage("Adres tanımı alanı boş geçilemez.").NotEmpty().WithMessage("Adres tanımı alanı boş geçilemez.");
             RuleFor(x => x.CityId).InclusiveBetween(1, int.MaxValue).WithMessage("Geçerli bir şehir seçiniz.");
             RuleFor(x => x.CountyId).InclusiveBetween(1, int.MaxValue).WithMessage("Geçerli bir ilçe seçiniz.");

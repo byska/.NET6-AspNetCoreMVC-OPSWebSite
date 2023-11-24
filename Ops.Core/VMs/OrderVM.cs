@@ -12,5 +12,8 @@ namespace Ops.Core.VMs
     {
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Taken;
         public int ProductId { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public decimal TotalPrice { get; set; }
+
     }
 }

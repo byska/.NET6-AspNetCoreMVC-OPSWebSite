@@ -13,7 +13,11 @@ namespace Ops.Repository.Configurations
     {
         public override void Configure(EntityTypeBuilder<Address> builder)
         {
+            builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Description).IsRequired().HasMaxLength(128);
+            builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(11);
+            builder.Property(x => x.ZIP).IsRequired().HasMaxLength(5);
 
             builder.HasOne(x => x.City).WithMany(x => x.Addresses).HasForeignKey(x => x.CityId);
             builder.HasOne(x => x.County).WithMany(x => x.Addresses).HasForeignKey(x => x.CountyId).OnDelete(DeleteBehavior.NoAction);

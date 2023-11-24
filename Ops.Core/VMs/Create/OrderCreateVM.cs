@@ -10,5 +10,6 @@ namespace Ops.Core.VMs.Create
     public class OrderCreateVM
     {
         public int ProductId { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }
