@@ -22,8 +22,6 @@ namespace Ops.Core.VMs.Create
         [EmailAddress(ErrorMessage = "Hatalı eposta.")]
         [Required(ErrorMessage = "Lütfen E-mailinizi giriniz.")]
         public string Email { get; set; }
-        public bool Status { get; set; } = true;
-        public string? NewPassword { get; set; }
         public bool PersonelDataProtection { get; set; }
         public bool MembershipAgreement { get; set; }
     }

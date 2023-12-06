@@ -15,6 +15,7 @@ namespace Ops.Core.Entities
             Comments = new HashSet<Comment>();
             Addresses = new HashSet<Address>();
             Orders = new HashSet<Order>();
+            UserName=Guid.NewGuid().ToString();
         }
         public Status Status { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
@@ -27,6 +28,8 @@ namespace Ops.Core.Entities
         public DateTime? DateOfBirth { get; set; }
         public ICollection<Comment>? Comments { get; set; }
         public ICollection<Order>? Orders { get; set; }
-     
+        public bool PersonelDataProtection { get; set; }
+        public bool MembershipAgreement { get; set; }
+
     }
 }

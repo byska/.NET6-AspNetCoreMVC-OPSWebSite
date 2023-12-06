@@ -8,7 +8,7 @@ using Ops.Core.VMs.Create;
 namespace Ops.Web.Areas.Customer.Controllers
 {
     [Area("Customer")]
-    [Authorize(Roles = "Customer")]
+
     public class HomeController : Controller
     {
         private readonly IProductService _productService;

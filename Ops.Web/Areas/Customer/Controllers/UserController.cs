@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Ops.Core.Entities;
 using Ops.Core.VMs;
 using Ops.Core.VMs.Create;
+using Ops.Repository;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Ops.Web.Areas.Customer.Controllers
@@ -32,8 +34,10 @@ namespace Ops.Web.Areas.Customer.Controllers
             {
                 AppUser appUser = _mapper.Map<AppUser>(userCreateVM);
                 IdentityResult result = await _userManager.CreateAsync(appUser, userCreateVM.Password);
+              
                 if (result.Succeeded)
                 {
+                   var resultRole = await _userManager.AddToRoleAsync(appUser,"Customer");
                     ViewData["CreateUser"] = "Kullanıcı başarıyla oluşturuldu.";
                     return RedirectToAction("Login");
                 }

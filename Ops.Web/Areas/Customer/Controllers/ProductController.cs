@@ -11,7 +11,6 @@ using System.Drawing;
 namespace Ops.Web.Areas.Customer.Controllers
 {
     [Area("Customer")]
-    [Authorize(Roles = "Customer")]
     public class ProductController : Controller
 	{
 		private readonly IProductService _productService;

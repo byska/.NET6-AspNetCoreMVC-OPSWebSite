@@ -18,17 +18,17 @@ using Ops.Core.Entities;
 using System;
 using Ops.Core.VMs.Create;
 using Microsoft.AspNetCore.Identity;
+using Ops.Repository.Providers;
 
 namespace Ops.Web
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async void Main(string[] args)
         {
 
             // If you're using MVC or WebApi you'll probably have
             // a call to AddMvc() or AddControllers() already.
-
 
             // ... other configuration ...
             var builder = WebApplication.CreateBuilder(args);
@@ -57,6 +57,22 @@ namespace Ops.Web
             builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 
             var app = builder.Build();
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                    var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
+                    await IdentityDataInitializer.SeedDataAsync(userManager, roleManager);
+
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "Seed data yüklenirken bir hata meydana geldi.");
+                }
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -65,7 +81,7 @@ namespace Ops.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-        
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

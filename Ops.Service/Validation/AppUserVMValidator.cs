@@ -3,15 +3,11 @@ using Ops.Core.VMs.Create;
 
 namespace Ops.Service.Validation
 {
-    public class AppUserVMValidator :AbstractValidator<CustomerCreateVM>
+    public class AppUserVMValidator :AbstractValidator<UserCreateVM>
     {
         public AppUserVMValidator()
         {
-            RuleFor(x => x.PhoneNumber)
-            .NotEmpty().WithMessage("Telefon numarası boş olamaz.")
-            .Matches(@"^\d{10}$").WithMessage("Geçerli bir telefon numarası girin.");
-            RuleFor(x => x.DateOfBirth)
-            .Must(BeAValidDate).WithMessage("Geçerli bir doğum tarihi girin.");
+         
             RuleFor(x => x.FirstName)
             .NotEmpty().WithMessage("Ad alanı boş olamaz.")
             .MaximumLength(50).WithMessage("Ad maksimum 50 karakter olmalıdır.");
@@ -26,6 +22,10 @@ namespace Ops.Service.Validation
             RuleFor(x => x.Password)
            .NotEmpty().WithMessage("Şifre alanı boş olamaz.")
            .MinimumLength(6).WithMessage("Şifre en az 6 karakter olmalıdır.").MaximumLength(25).WithMessage("Şifre en fazla 25 karakter olmalıdır.");
+            RuleFor(x => x.PersonelDataProtection)
+              .NotEmpty().WithMessage("Kullanıcı gizliliği sözleşmesini kabul etmelisiniz.").NotNull().WithMessage("Kullanıcı gizliliği sözleşmesini kabul etmelisiniz.");
+            RuleFor(x => x.MembershipAgreement)
+              .NotEmpty().WithMessage("Üyelik sözleşmesini kabul etmelisiniz.").NotNull().WithMessage("Üyelik sözleşmesini kabul etmelisiniz.");
 
         }
         private bool BeAValidDate(DateTime? date)
