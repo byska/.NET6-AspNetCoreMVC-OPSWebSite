@@ -8,9 +8,9 @@ namespace Ops.Service.Validation
         public AppUserVMValidator()
         {
          
-            RuleFor(x => x.FirstName)
-            .NotEmpty().WithMessage("Ad alanı boş olamaz.")
-            .MaximumLength(50).WithMessage("Ad maksimum 50 karakter olmalıdır.");
+            //RuleFor(x => x.FirstName)
+            //.NotEmpty().WithMessage("Ad alanı boş olamaz.")
+            //.MaximumLength(50).WithMessage("Ad maksimum 50 karakter olmalıdır.");
 
             RuleFor(x => x.LastName)
                 .NotEmpty().WithMessage("Soyad alanı boş olamaz.")

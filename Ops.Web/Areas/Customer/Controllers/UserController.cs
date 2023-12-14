@@ -37,7 +37,7 @@ namespace Ops.Web.Areas.Customer.Controllers
               
                 if (result.Succeeded)
                 {
-                   var resultRole = await _userManager.AddToRoleAsync(appUser,"Customer");
+                   var resultRole = await _userManager.AddToRoleAsync(appUser,"customer");
                     ViewData["CreateUser"] = "Kullanıcı başarıyla oluşturuldu.";
                     return RedirectToAction("Login");
                 }
