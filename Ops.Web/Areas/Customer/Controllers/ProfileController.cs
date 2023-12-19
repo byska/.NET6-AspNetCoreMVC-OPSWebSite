@@ -175,11 +175,11 @@ namespace Ops.Web.Areas.Customer.Controllers
             await _commentService.RemoveAsync(id);
             return RedirectToAction("GetUserComment");
         }
-        public async Task<IActionResult> GetUserOrder()
-        {
-            AppUser user = await _userManager.GetUserAsync(HttpContext.User);
-            List<OrderVM> orders = (await _orderService.GetAllByIncludeAsync(x => x.CustomerId == user.Id, x => x.Product)).Data.ToList();
-            return View(orders);
-        }
+        //public async Task<IActionResult> GetUserOrder()
+        //{
+        //    AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+        //    List<OrderVM> orders = (await _orderService.GetAllByIncludeAsync(x => x.CustomerId == user.Id, x => x.Product)).Data.ToList();
+        //    return View(orders);
+        //}
     }
 }

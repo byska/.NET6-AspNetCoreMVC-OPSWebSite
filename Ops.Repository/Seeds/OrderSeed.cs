@@ -13,10 +13,10 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
-            builder.HasData(new Order { Id=1, CustomerId=1, OrderStatus=Core.Enums.OrderStatus.Taken, ProductId=1, Status=Core.Enums.Status.Added },
-                new Order { Id = 2, CustomerId = 1, OrderStatus = Core.Enums.OrderStatus.Delivered, ProductId = 2, Status = Core.Enums.Status.Added },
-                new Order { Id = 3, CustomerId = 1, OrderStatus = Core.Enums.OrderStatus.Shipping, ProductId = 3, Status = Core.Enums.Status.Added },
-                new Order { Id = 4, CustomerId = 2, OrderStatus = Core.Enums.OrderStatus.Preparing, ProductId = 1, Status = Core.Enums.Status.Added });
+            builder.HasData(new Order { Id=1, CustomerId=1, OrderStatus=Core.Enums.OrderStatus.Taken, Status=Core.Enums.Status.Added },
+                new Order { Id = 2, CustomerId = 1, OrderStatus = Core.Enums.OrderStatus.Delivered, Status = Core.Enums.Status.Added },
+                new Order { Id = 3, CustomerId = 1, OrderStatus = Core.Enums.OrderStatus.Shipping, Status = Core.Enums.Status.Added },
+                new Order { Id = 4, CustomerId = 2, OrderStatus = Core.Enums.OrderStatus.Preparing, Status = Core.Enums.Status.Added });
         }
     }
 }

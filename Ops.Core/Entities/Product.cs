@@ -2,16 +2,16 @@
 
 namespace Ops.Core.Entities
 {
-    public class Product:BaseEntity
+    public class Product : BaseEntity
     {
         public Product()
         {
             Comments = new HashSet<Comment>();
-            Orders = new HashSet<Order>();
+            ProductOrders = new HashSet<ProductOrder>();
             //Stocks=new HashSet<Stock>();
-            SizeProducts=new HashSet<SizeProduct>();
+            SizeProducts = new HashSet<SizeProduct>();
             ColorProducts = new HashSet<ColorProduct>();
-            Photos=new HashSet<Photo>();
+            Photos = new HashSet<Photo>();
         }
         public string Name { get; set; }
         public decimal Price { get; set; }
@@ -21,7 +21,7 @@ namespace Ops.Core.Entities
 
 
         public ICollection<Comment>? Comments { get; set; }
-        public ICollection<Order>? Orders { get; set; }
+        public ICollection<ProductOrder>? ProductOrders { get; set; }
         public ProductFeature ProductFeature { get; set; }
         public Category Category { get; set; }
         public int CategoryId { get; set; }
