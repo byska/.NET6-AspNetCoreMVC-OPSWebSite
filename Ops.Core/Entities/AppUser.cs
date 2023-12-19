@@ -22,14 +22,14 @@ namespace Ops.Core.Entities
         public DateTime? ModifiedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
         public bool IsActive { get; set; } = true;
-        public string FirstName { get; set; } = null!;
-        public string LastName { get; set; } = null!;
+        public string? FirstName { get; set; } = null!;
+        public string? LastName { get; set; } = null!;
         public ICollection<Address> Addresses { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public ICollection<Comment>? Comments { get; set; }
         public ICollection<Order>? Orders { get; set; }
-        public bool PersonelDataProtection { get; set; }
-        public bool MembershipAgreement { get; set; }
+        public bool? PersonelDataProtection { get; set; }
+        public bool? MembershipAgreement { get; set; }
 
     }
 }

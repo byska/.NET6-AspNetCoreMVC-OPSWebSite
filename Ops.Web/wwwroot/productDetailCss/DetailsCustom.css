@@ -1,16 +1,59 @@
-﻿.star {
+﻿.userMenu ul {
+    padding: 0px;
+}
+
+.userMenu a {
+    color: var(--color-default);
+    text-decoration: none;
+}
+
+    .userMenu a:hover {
+        color: #ffc732;
+        text-decoration: none;
+        font-size:15px;
+    }
+    .userMenu a::selection {
+        color: #ffc732;
+        text-decoration: none;
+        font-size: 15px;
+    }
+
+
+
+
+.loginOps {
+    font-family: var(--font-primary);
+    background-color: var(--color-primary);
+    border-radius: 20px;
+    color: #222;
+    text-align: center;
+    padding: 14px 16px;
+    box-sizing: border-box;
+    margin-left: 80px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.loginRegisterOps {
+}
+
+
+.star {
     display: inline-block;
     font-size: 24px;
     color: #f0d850;
     margin-right: 5px;
 }
+
 .empty-star {
-    color: #ccc; 
+    color: #ccc;
 }
+
 .color-radio, .size-radio {
     display: none;
     background-color: black;
 }
+
 .color-radio, .size-radio {
     display: inline-block;
     width: 20px;
@@ -18,6 +61,7 @@
     cursor: pointer;
     background-color: black;
 }
+
 .size-radio {
     background-color: beige;
     border: 2px solid gray;
@@ -26,63 +70,76 @@
     margin-right: 10px;
     background-color: black;
 }
-.small{
-    content:'S';
-    font-weight:bold;
+
+.small {
+    content: 'S';
+    font-weight: bold;
 }
+
 .medium {
     content: 'M';
     font-weight: bold;
 }
+
 .large {
     content: 'L';
     font-weight: bold;
 }
+
 .xlarge {
     content: 'XL';
     font-weight: bold;
 }
+
 .white {
     color: azure;
     background-color: white;
 }
-.black{
-    color:black;
-    background-color:black;
+
+.black {
+    color: black;
+    background-color: black;
 }
+
 .gray {
     color: dimgray;
     background-color: gray;
 }
+
 .pink {
     color: lightpink;
     background-color: pink;
 }
+
 .purple {
     color: mediumpurple;
     background-color: purple;
 }
+
 .green {
     color: darkolivegreen;
     background-color: green;
 }
+
 .beige {
     color: beige;
     background-color: beige;
 }
+
 .brown {
     color: saddlebrown;
     background-color: brown;
 }
+
 .yellow {
     color: yellow;
     background-color: yellow;
 }
+
 input[type="radio"][name="color"][disabled] {
-    color: #999; 
+    color: #999;
 }
+
 input[type="radio"][name="color"]:checked {
     border: 2px solid gray;
 }
-
-

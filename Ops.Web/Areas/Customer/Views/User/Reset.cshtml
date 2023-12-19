@@ -11,24 +11,38 @@
             <div class="col-12 col-lg-8">
                 <div class="login-content">
                     <h3>Şifremi Unuttum</h3>
-                    <div class="login-form">
-                        <form asp-action="Login" asp-controller="User" method="post" class="contactFormOps ">
-                            <div class="text-danger"></div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input asp-for="Email" type="email" class="form-control" id="email">
-                                <span asp-validation-for="Email" class="text-danger"></span>
-                            </div>
-                          
+                    @if(ViewBag.State==null)
+                    {
+                        <div class="login-form">
+                            <form asp-action="Login" asp-controller="User" method="post" class="contactFormOps ">
+                                <div class="text-danger"></div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input asp-for="Email" type="email" class="form-control" id="email">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
 
-                            <button type="submit" class="btn btn-warning-outline">Şifremi Sıfırla</button>
 
-                            <p class="mt-4 text-sm text-center">
-                                Hesabınız yok mu?
-                                <a asp-controller="User" asp-action="Register" class="text-warning text-gradient text-password font-weight-bold">Kayıt Ol</a>
-                            </p>
-                        </form>
-                    </div>
+                                <button type="submit" class="btn btn-warning-outline">Şifremi Sıfırla</button>
+
+                                <p class="mt-4 text-sm text-center">
+                                    Hesabınız yok mu?
+                                    <a asp-controller="User" asp-action="Register" class="text-warning text-gradient text-password font-weight-bold">Kayıt Ol</a>
+                                </p>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        if(ViewBag.State)
+                        {
+                            @:<div class="alert-success">Şifre talebi için e-posta adresinize bilgilerindirici mail gönderilmiştir.</div>
+                        }
+                        else
+                        {
+                            @:<div class="alert-danger">Böyle bir e-posta bulunmamaktadır.</div>
+                        }
+                    }
                 </div>
             </div>
         </div>

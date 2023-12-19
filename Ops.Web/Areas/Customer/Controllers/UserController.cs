@@ -7,6 +7,9 @@ using Ops.Core.Entities;
 using Ops.Core.VMs;
 using Ops.Core.VMs.Create;
 using Ops.Repository;
+using System.Net;
+using System.Net.Mail;
+using System.Web;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace Ops.Web.Areas.Customer.Controllers
@@ -34,16 +37,22 @@ namespace Ops.Web.Areas.Customer.Controllers
             {
                 AppUser appUser = _mapper.Map<AppUser>(userCreateVM);
                 IdentityResult result = await _userManager.CreateAsync(appUser, userCreateVM.Password);
-              
+
                 if (result.Succeeded)
                 {
-                   var resultRole = await _userManager.AddToRoleAsync(appUser,"customer");
-                    ViewData["CreateUser"] = "Kullanıcı başarıyla oluşturuldu.";
+                    var resultRole = await _userManager.AddToRoleAsync(appUser, "customer");
+                    TempData["CreateUser"] = "Kullanıcı başarıyla oluşturuldu.";
                     return RedirectToAction("Login");
                 }
                 else
                 {
-                    Errors(result);
+                    TempData["NotCreateUser"] = "Kullanıcı oluşturulamadı.";
+                    foreach (var item in result.Errors)
+                    {
+                        ModelState.AddModelError("", item.Description);
+                    }
+
+                    return View();
                 }
             }
             return View(userCreateVM);
@@ -68,10 +77,16 @@ namespace Ops.Web.Areas.Customer.Controllers
                         {
                             return RedirectToAction("Index", "Home", new { area = "Admin" });
                         }
-                        return RedirectToAction("Cart", "Shopping");
+                        //return RedirectToAction("Cart", "Shopping");
+                        return RedirectToAction("UserProfile", "Profile");
                     }
-                    ModelState.AddModelError("login", "Hatalı kullanıcı adı veya şifre.");
                 }
+                else
+                {
+                    ModelState.AddModelError("login", "Hatalı kullanıcı adı veya şifre.");
+                    TempData["ErrorLogin"] = "Hatalı kullanıcı adı veya şifre.";
+                }
+
             }
             return View(loginVM);
         }
@@ -80,13 +95,23 @@ namespace Ops.Web.Areas.Customer.Controllers
         /// mailden yönlendirip gelinen şifre sıfırlama alanı.
         /// </summary>
         /// <returns></returns>
-        public IActionResult ForgetPassword()
+        [HttpGet("[action]/{userId}/{token}")]
+        public IActionResult ForgetPassword(string userId, string token)
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult ForgetPassword(ForgetPasswordVM password)
+        [HttpPost("[action]/{userId}/{token}")]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordVM password, string userId, string token)
         {
+            AppUser user = await _userManager.FindByIdAsync(userId);
+            IdentityResult result = await _userManager.ResetPasswordAsync(user, HttpUtility.UrlDecode(token), password.Password);
+            if (result.Succeeded)
+            {
+                ViewBag.State = true;
+                await _userManager.UpdateSecurityStampAsync(user);
+            }
+            else
+                ViewBag.State = false;
             return View();
         }
         /// <summary>
@@ -98,8 +123,31 @@ namespace Ops.Web.Areas.Customer.Controllers
             return View(new ResetPasswordModel());
         }
         [HttpPost]
-        public IActionResult Reset(ResetPasswordModel password)
+        public async Task<IActionResult> Reset(ResetPasswordModel password)
         {
+            AppUser user = await _userManager.FindByEmailAsync(password.Email);
+            if (user != null)
+            {
+                string resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+                MailMessage mail = new MailMessage();
+                mail.IsBodyHtml = true;
+                mail.To.Add(user.Email);
+                mail.From = new MailAddress("orangepressstore@gmail.com", "Şifre Güncelleme", System.Text.Encoding.UTF8);
+                mail.Subject = "Şifre Güncelleme Talebi";
+                mail.Body = $"<a target=\"_blank\" href=\"https://localhost:7245{Url.Action("ForgetPassword", "User", new { userId = user.Id, token = HttpUtility.UrlEncode(resetToken) })}\">Yeni şifre talebi için tıklayınız</a>";
+                mail.IsBodyHtml = true;
+                SmtpClient smp = new SmtpClient();
+                smp.Credentials = new NetworkCredential("orangepressstore@gmail.com", "Beste1998.");
+                smp.Port = 587;
+                smp.Host = "smtp.gmail.com";
+                smp.EnableSsl = true;
+                smp.Send(mail);
+
+                ViewBag.State = true;
+            }
+            else
+                ViewBag.State = false;
             return View();
         }
         public async Task<IActionResult> LogOut()
@@ -111,7 +159,7 @@ namespace Ops.Web.Areas.Customer.Controllers
         {
             foreach (var item in result.Errors)
             {
-                ViewData["Error"]= $"{item.Code}-{item.Description}";
+                ViewData["Error"] = $"{item.Code}-{item.Description}";
             }
         }
     }

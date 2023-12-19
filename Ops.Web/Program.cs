@@ -24,7 +24,7 @@ namespace Ops.Web
 {
     public class Program
     {
-        public static async void Main(string[] args)
+        public static async Task Main(string[] args)
         {
 
             // If you're using MVC or WebApi you'll probably have
@@ -34,11 +34,38 @@ namespace Ops.Web
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentity<AppUser, AppRole>(_ =>
+            {
+                _.Password.RequiredLength = 5;
+                _.Password.RequireNonAlphanumeric = true;
+                _.Password.RequireLowercase = true;
+                _.Password.RequireUppercase = true;
+                _.Password.RequireDigit = true;
+
+                _.User.RequireUniqueEmail = true;
+                _.User.AllowedUserNameCharacters = " abcçdefghiýjklmnoöpqrsþtuüvwxyzABCÇDEFGHIÝJKLMNOÖPQRSÞTUÜVWXYZ0123456789-._@+";
+            }).AddPasswordValidator<CustomPasswordValidation>()
+            .AddUserValidator<AppUserVMValidator>()
+            .AddErrorDescriber<CustomIdentityErrorDescriber>()
+            .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(_ =>
+            {
+                _.LoginPath = new PathString("/User/Login");
+                _.LogoutPath = new PathString("/User/LogOut");
+                _.Cookie = new CookieBuilder
+                {
+                    Name = "OpsCookie",
+                    HttpOnly = false,
+                    SameSite = SameSiteMode.Lax,
+                    SecurePolicy = CookieSecurePolicy.Always
+                };
+                _.SlidingExpiration = true;
+                _.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+            });
 
             builder.Services.AddControllersWithViews()
-         .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<ProductVMValidator>())
-         .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<MessageVMValidator>());
+         .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<AppUserVMValidator>());
 
 
             builder.Services.AddAutoMapper(typeof(MapProfile));
@@ -53,6 +80,12 @@ namespace Ops.Web
                     options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
                 });
             });
+
+            //builder.Services.AddAuthentication().AddFacebook(x =>
+            //{
+            //    x.AppId = Configuration["FacebookAppId"];
+            //    x.AppSecret = Configuration["FacebookAppSecret"];
+            //});
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
             builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 

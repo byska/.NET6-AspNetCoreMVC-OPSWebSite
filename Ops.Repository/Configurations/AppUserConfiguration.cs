@@ -16,10 +16,10 @@ namespace Ops.Repository.Configurations
             builder.ToTable("Users");
 
             builder.Property(x => x.Status).IsRequired();
-            builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
-            builder.Property(x => x.PersonelDataProtection).IsRequired();
-            builder.Property(x => x.MembershipAgreement).IsRequired();
+            builder.Property(x => x.FirstName).HasMaxLength(50);
+            builder.Property(x => x.LastName).HasMaxLength(50);
+            //builder.Property(x => x.PersonelDataProtection).IsRequired();
+            //builder.Property(x => x.MembershipAgreement).IsRequired();
             builder.Property(x => x.CreatedDate).HasConversion(typeof(DateTime)).HasDefaultValue(DateTime.Now);
 
         }

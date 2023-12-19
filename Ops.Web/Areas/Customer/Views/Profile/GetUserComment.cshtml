@@ -12,6 +12,7 @@
         <li><a asp-action="GetUserOrder" asp-controller="Profile">Siparişler</a></li>
         <li><a asp-action="UpdatePassword" asp-controller="Profile">Şifre Değiştir</a></li>
         <li><a asp-action="GetUserComment" asp-controller="Profile">Yorumlarım</a></li>
+        <li><a asp-action="LogOut" asp-controller="User" asp-route-returnUrl="/User/Login">Çıkış Yap</a></li>
     </ul>
 </div>
 @if(Model != null)

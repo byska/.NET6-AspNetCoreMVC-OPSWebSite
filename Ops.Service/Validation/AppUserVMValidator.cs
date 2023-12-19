@@ -1,36 +1,32 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Identity;
+using Ops.Core.Entities;
 using Ops.Core.VMs.Create;
 
 namespace Ops.Service.Validation
 {
-    public class AppUserVMValidator :AbstractValidator<UserCreateVM>
+    public class AppUserVMValidator :IUserValidator<AppUser>
     {
-        public AppUserVMValidator()
+        
+
+        public Task<IdentityResult> ValidateAsync(UserManager<AppUser> manager, AppUser user)
         {
-         
-            //RuleFor(x => x.FirstName)
-            //.NotEmpty().WithMessage("Ad alanı boş olamaz.")
-            //.MaximumLength(50).WithMessage("Ad maksimum 50 karakter olmalıdır.");
-
-            RuleFor(x => x.LastName)
-                .NotEmpty().WithMessage("Soyad alanı boş olamaz.")
-                .MaximumLength(50).WithMessage("Soyad maksimum 50 karakter olmalıdır.");
-
-            RuleFor(x => x.Email)
-                .NotEmpty().WithMessage("E-posta alanı boş olamaz.")
-                .EmailAddress().WithMessage("Geçerli bir e-posta adresi girin.");
-            RuleFor(x => x.Password)
-           .NotEmpty().WithMessage("Şifre alanı boş olamaz.")
-           .MinimumLength(6).WithMessage("Şifre en az 6 karakter olmalıdır.").MaximumLength(25).WithMessage("Şifre en fazla 25 karakter olmalıdır.");
-            RuleFor(x => x.PersonelDataProtection)
-              .NotEmpty().WithMessage("Kullanıcı gizliliği sözleşmesini kabul etmelisiniz.").NotNull().WithMessage("Kullanıcı gizliliği sözleşmesini kabul etmelisiniz.");
-            RuleFor(x => x.MembershipAgreement)
-              .NotEmpty().WithMessage("Üyelik sözleşmesini kabul etmelisiniz.").NotNull().WithMessage("Üyelik sözleşmesini kabul etmelisiniz.");
-
+            List<IdentityError> errors = new List<IdentityError>();
+            if (user.FirstName.Length < 3 && user.FirstName.Length > 25) //Kullanıcı adının 3 ile 25 karakter arasında olması
+                errors.Add(new IdentityError { Code = "FirstnameLength", Description = "İsim 3 - 15 karakter arasında olmalıdır." });
+            if (user.LastName.Length < 3 && user.LastName.Length > 25) //Kullanıcı adının 3 ile 25 karakter arasında olması
+                errors.Add(new IdentityError { Code = "LastnameLength", Description = "Soyisim 3 - 15 karakter arasında olmalıdır." });
+            if (user.Email.Length > 70) // Emailin 70 karakterden fazla olmaması kontrolü
+                errors.Add(new IdentityError { Code = "EmailLength", Description = "Email 70 karakterden fazla olamaz." });
+            if (user.MembershipAgreement == false || string.IsNullOrWhiteSpace(user.PersonelDataProtection.ToString()))
+                errors.Add(new IdentityError { Code = "MembershipAgreement", Description = "Üyelik sözleşmesini kabul etmelisiniz." });
+            if (user.PersonelDataProtection == false || string.IsNullOrWhiteSpace(user.PersonelDataProtection.ToString()))
+                errors.Add(new IdentityError { Code = "PersonelDataProtection", Description = "Kişisel verilerin korunması şartlarını kabul etmelisiniz." });
+            if (!errors.Any())
+                return Task.FromResult(IdentityResult.Success);
+            else
+                return Task.FromResult(IdentityResult.Failed(errors.ToArray()));
         }
-        private bool BeAValidDate(DateTime? date)
-        {
-            return date.HasValue && date.Value <= DateTime.Now;
-        }
+
     }
 }

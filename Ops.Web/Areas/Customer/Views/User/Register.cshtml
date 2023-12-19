@@ -3,12 +3,13 @@
     ViewData["Title"] = "Register";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
-@if (ViewData["Error"] != null)
+@if (TempData["NotCreateUser"] != null)
 {
-    <script>
-        alert(@ViewData["Error"]);
-    </script>
+    <div class="alert alert-danger">
+        <strong>Hata!</strong> @TempData["NotCreateUser"]
+    </div>
 }
+
 <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps">
     <div class="container">
         <div class="row justify-content-center">
@@ -48,12 +49,15 @@
                             </div>
                             <div class="form-check form-switch justify-content-start d-flex align-items-center mb-3">
                                 <input asp-for="PersonelDataProtection" class="ops-remember-input form-check-input" type="checkbox">
-                                <label class="form-check-label mb-0 ms-2" for="PersonelDataProtection">OPS tarafından iletişim bilgilerime tanıtım, reklam, kampanya vb. içerikli ticari e-ileti gönderilmesine, sağladığım kişisel verilerin <a asp-action="" asp-controller="">Kişisel Verilerin Korunmasına İlişkin Aydınlatma Metni</a> kapsamında bu amaçla işlenmesine ve hizmet sağlayıcılara aktarılmasına izin veriyorum.</label>
+                                <label class="form-check-label mb-0 ms-2" for="PersonelDataProtection">OPS tarafından iletişim bilgilerime tanıtım, reklam, kampanya vb. içerikli ticari e-ileti gönderilmesine, sağladığım kişisel verilerin <a asp-action="" asp-controller=""><u>Kişisel Verilerin Korunmasına İlişkin Aydınlatma Metni</u></a> kapsamında bu amaçla işlenmesine ve hizmet sağlayıcılara aktarılmasına izin veriyorum.</label>
+                                <span asp-validation-for="PersonelDataProtection" class="text-danger"></span>
                             </div>
                             <div class="form-check form-switch justify-content-start d-flex align-items-center mb-3">
                                 <input asp-for="MembershipAgreement" class="ops-remember-input form-check-input" type="checkbox">
-                                <label class="form-check-label mb-0 ms-2" for="MembershipAgreement"><a asp-action="" asp-controller="">Üyelik Sözleşmesi</a>'ni okudum, onaylıyorum.</label>
+                                <label class="form-check-label mb-0 ms-2" for="MembershipAgreement"><a asp-action="" asp-controller=""><u>Üyelik Sözleşmesi</u></a>'ni okudum, onaylıyorum.</label>
+                                <span asp-validation-for="MembershipAgreement" class="text-danger"></span>
                             </div>
+                            <div class="text-warning" asp-validation-summary="ModelOnly"></div>
                             <button type="submit" class="btn btn-warning-outline ">Kayıt Ol</button>
                             <p class="mt-4 text-sm text-center">
                                Zaten hesabınız var mı?

@@ -10,7 +10,7 @@ using Ops.Core.VMs.Create;
 namespace Ops.Web.Areas.Customer.Controllers
 {
     [Area("Customer")]
-    [Authorize(Roles = "Customer")]
+    [Authorize(Roles = "customer")]
     public class ProfileController : Controller
     {
         private readonly IAddressService _addressService;
@@ -18,13 +18,15 @@ namespace Ops.Web.Areas.Customer.Controllers
         private readonly IOrderService _orderService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
-        public ProfileController(UserManager<AppUser> userManager, IMapper mapper, IAddressService addressService, ICommentService commentService, IOrderService orderService)
+        private readonly SignInManager<AppUser> _signInManager;
+        public ProfileController(UserManager<AppUser> userManager, IMapper mapper, IAddressService addressService, ICommentService commentService, IOrderService orderService, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _addressService = addressService;
             _mapper = mapper;
             _commentService = commentService;
             _orderService = orderService;
+            _signInManager = signInManager;
         }
 
         public async Task<IActionResult> UserProfile()
@@ -32,31 +34,39 @@ namespace Ops.Web.Areas.Customer.Controllers
             AppUser user = await _userManager.GetUserAsync(HttpContext.User);
             return View(_mapper.Map<UserVM>(user));
         }
-
+        /// <summary>
+        /// user detail update
+        /// </summary>
+        /// <param name="userVM"></param>
+        /// <returns></returns>
         [HttpPut]
         public async Task<IActionResult> UserProfile(UserVM userVM)
         {
             if (ModelState.IsValid)
             {
-                AppUser user = _mapper.Map<AppUser>(userVM);
+                AppUser user = await _userManager.FindByEmailAsync(userVM.Email);
+                user.PhoneNumber = userVM.PhoneNumber;
+                user.FirstName=userVM.FirstName;
+                user.LastName=userVM.LastName;
+                user.Email = userVM.Email;
+                user.DateOfBirth = userVM.DateOfBirth;
                 IdentityResult result = await _userManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-
+                    await _userManager.UpdateSecurityStampAsync(user);
+                    await _signInManager.SignOutAsync();
+                    await _signInManager.SignInAsync(user, true);
                     ViewData["userUpdateResult"] = "Güncelleme işleminiz başarıyla gerçekleştirildi.";
                     return View(userVM);
                 }
                 else
                 {
+                    result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
                     ViewData["userUpdateError"] = "Güncelleme işleminiz gerçekleştirilemedi.";
-                    return View();
+                    return View(userVM);
                 }
             }
-            else
-            {
-                ViewData["userUpdateError"] = "Güncelleme işleminiz gerçekleştirilemedi.";
-                return View();
-            }
+            return View(userVM);
         }
 
         /// <summary>

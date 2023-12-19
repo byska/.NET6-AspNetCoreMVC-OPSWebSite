@@ -15,65 +15,72 @@
         alert(@ViewData["userUpdateError"]);
     </script>
 }
-<div>
-    <div class="menuUserProfile">
-        <h2>HESABIM</h2>
-        <ul>
-            <li><a asp-action="GetUserProfile" asp-controller="Profile" >Kişisel Bilgileriniz</a></li>
-            <li><a asp-action="UserAddress" asp-controller="Profile">Adresler</a></li>
-            <li><a asp-action="UserOrder" asp-controller="Profile">Siparişler</a></li>
-            <li><a asp-action="UpdatePassword" asp-controller="Profile">Şifre Değiştir</a></li>
-            <li><a asp-action="GetUserComment" asp-controller="Profile">Yorumlarım</a></li>
-        </ul>
-    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps userMenu">
 
-    <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8">
-                    <div class="login-content">
-                        <h3>Kişisel Bilgileriniz</h3>
-                        <!-- Login Form -->
-                        <div class="login-form">
-                            <form asp-action="UserProfile" asp-controller="Profile" method="post" class="contactFormOps">
-                                <div class="text-danger"></div>
-                                <div class="row gy-4">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label asp-for="FirstName">İsim</label>
-                                            <input asp-for="FirstName" type="text" class="form-control" id="fname">
-                                            <span asp-validation-for="FirstName" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label>Soyisim</label>
-                                            <input asp-for="LastName" type="text" class="form-control" id="lname">
-                                            <span asp-validation-for="LastName" class="text-danger"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>E-mail</label>
-                                    <input asp-for="Email" type="email" class="form-control" id="email">
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label>Telefon Numarası</label>
-                                    <input asp-for="PhoneNumber" type="tel" class="form-control" id="phoneNumber">
-                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                                </div>
-                                <div class="form-group">
-                                    <label>Doğum Tarihi</label>
-                                    <input asp-for="DateOfBirth" type="date" class="form-control" id="date">
-                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-                                </div>
-                                <button type="submit" class="btn btn-warning-outline ">Güncelle</button>
-                            </form>
-                        </div>
-                    </div>
+                <div class="login-content">
+                    <h2>HESABIM</h2>
+                    <ul>
+                        <li><a asp-action="GetUserProfile" asp-controller="Profile">Kişisel Bilgileriniz</a></li>
+                        <li><a asp-action="UserAddress" asp-controller="Profile">Adresler</a></li>
+                        <li><a asp-action="UserOrder" asp-controller="Profile">Siparişler</a></li>
+                        <li><a asp-action="UpdatePassword" asp-controller="Profile">Şifre Değiştir</a></li>
+                        <li><a asp-action="GetUserComment" asp-controller="Profile">Yorumlarım</a></li>
+                        <li><a asp-action="LogOut" asp-controller="User" asp-route-returnUrl="/User/Login">Çıkış Yap</a></li>
+                    </ul>
                 </div>
-            </div>
+
+            </section>
         </div>
-    </section>
+
+        <div class="col-lg-8">
+            <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps ">
+
+                <div class="login-content">
+                    <h3>Kişisel Bilgileriniz</h3>
+                    <!-- Login Form -->
+                    <div class="login-form">
+                        <form asp-action="UserProfile" asp-controller="Profile" method="post" class="contactFormOps">
+                            <div class="text-danger"></div>
+                            <div class="row gy-4">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label asp-for="FirstName">İsim</label>
+                                        <input asp-for="FirstName" type="text" class="form-control" id="fname">
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Soyisim</label>
+                                        <input asp-for="LastName" type="text" class="form-control" id="lname">
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>E-mail</label>
+                                <input asp-for="Email" type="email" class="form-control" id="email">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Telefon Numarası</label>
+                                <input asp-for="PhoneNumber" type="tel" class="form-control" id="phoneNumber">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Doğum Tarihi</label>
+                                <input asp-for="DateOfBirth" type="date" class="form-control" id="date">
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                            </div>
+                            <button type="submit" class="btn btn-warning-outline ">Güncelle</button>
+                        </form>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
 </div>
