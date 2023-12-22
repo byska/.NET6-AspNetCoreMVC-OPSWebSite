@@ -18,6 +18,8 @@ using Ops.Core.Entities;
 using System;
 using Ops.Core.VMs.Create;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
 
 
 namespace Ops.Web
@@ -81,11 +83,20 @@ namespace Ops.Web
                 });
             });
 
-            //builder.Services.AddAuthentication().AddFacebook(x =>
-            //{
-            //    x.AppId = Configuration["FacebookAppId"];
-            //    x.AppSecret = Configuration["FacebookAppSecret"];
-            //});
+            builder.Services.AddAuthentication(opt =>
+            {
+                opt.DefaultScheme=CookieAuthenticationDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+            }).AddCookie().AddFacebook(x =>
+            {
+                x.AppId = builder.Configuration["FacebookAppId"];
+                x.AppSecret = builder.Configuration["FacebookAppSecret"];
+                x.CallbackPath = new PathString("/User/Hata");
+            }).AddGoogle(x=>
+            {
+                x.ClientId = builder.Configuration["GoogleClientId"];
+                x.ClientSecret = builder.Configuration["GoogleClientSecret"];
+            });
             builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
             builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterModule(new RepoServiceModule()));
 
@@ -119,6 +130,7 @@ namespace Ops.Web
 
             app.UseRouting();
             app.UseAuthentication();
+
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {

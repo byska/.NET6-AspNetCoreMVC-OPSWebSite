@@ -78,7 +78,7 @@ namespace Ops.Web.Areas.Customer.Controllers
             return View();
         }
 
-        [HttpPut]
+        [HttpPost]
         public async Task<IActionResult> UpdatePassword(UpdatePasswordVM updatePassword)
         {
             AppUser user = await _userManager.GetUserAsync(HttpContext.User);
@@ -91,25 +91,28 @@ namespace Ops.Web.Areas.Customer.Controllers
                     IdentityResult result = await _userManager.ChangePasswordAsync(user, updatePassword.OldPassword, updatePassword.Password);
                     if (result.Succeeded)
                     {
-                        ViewData["userPasswordUpdateResult"] = "Şifreniz başarıyla gerçekleştirildi.";
-                        return RedirectToAction("LogOut");
+                        TempData["userPasswordUpdateResult"] = "Şifreniz başarıyla değiştirildi.";
+                        await _userManager.UpdateSecurityStampAsync(user);
+                        await _signInManager.SignOutAsync();
+                        return RedirectToAction("Login","User");
                     }
                     else
                     {
-                        ViewData["userPasswordUpdateError"] = "İşlem Gerçekleştirilemedi.";
+                        TempData["userPasswordUpdateError"] = "İşlem Gerçekleştirilemedi.";
+                        result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
                         return View();
                     }
 
                 }
                 else
                 {
-                    ViewData["userPasswordUpdateError"] = "Girilen şifreler birbiriyle aynı değil.";
+                    TempData["userPasswordUpdateError"] = "Girilen şifreler birbiriyle aynı değil.";
                     return View();
                 }
             }
             else
             {
-                ViewData["userPasswordUpdateError"] = "Güncel şifreniz doğru değil.";
+                TempData["userPasswordUpdateError"] = "Güncel şifreniz doğru değil.";
                 return View();
             }
 

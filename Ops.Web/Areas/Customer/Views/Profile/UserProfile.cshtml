@@ -15,6 +15,12 @@
         alert(@ViewData["userUpdateError"]);
     </script>
 }
+@if (TempData["userPasswordUpdateError"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Şifre Değiştirilemedi!</strong> @TempData["userPasswordUpdateError"]
+    </div>
+}
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
@@ -23,9 +29,9 @@
                 <div class="login-content">
                     <h2>HESABIM</h2>
                     <ul>
-                        <li><a asp-action="GetUserProfile" asp-controller="Profile">Kişisel Bilgileriniz</a></li>
-                        <li><a asp-action="UserAddress" asp-controller="Profile">Adresler</a></li>
-                        <li><a asp-action="UserOrder" asp-controller="Profile">Siparişler</a></li>
+                        <li><a asp-action="UserProfile" asp-controller="Profile">Kişisel Bilgileriniz</a></li>
+                        <li><a asp-action="GetUserAddress" asp-controller="Profile">Adresler</a></li>
+                        <li><a asp-action="GetUserOrder" asp-controller="Profile">Siparişler</a></li>
                         <li><a asp-action="UpdatePassword" asp-controller="Profile">Şifre Değiştir</a></li>
                         <li><a asp-action="GetUserComment" asp-controller="Profile">Yorumlarım</a></li>
                         <li><a asp-action="LogOut" asp-controller="User" asp-route-returnUrl="/User/Login">Çıkış Yap</a></li>

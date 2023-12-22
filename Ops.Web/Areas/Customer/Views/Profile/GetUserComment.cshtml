@@ -4,21 +4,31 @@
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 
-<div class="menuUserProfile">
-    <h2>HESABIM</h2>
-    <ul>
-        <li><a asp-action="UserProfile" asp-controller="Profile">Kişisel Bilgileriniz</a></li>
-        <li><a asp-action="GetUserAddress" asp-controller="Profile">Adresler</a></li>
-        <li><a asp-action="GetUserOrder" asp-controller="Profile">Siparişler</a></li>
-        <li><a asp-action="UpdatePassword" asp-controller="Profile">Şifre Değiştir</a></li>
-        <li><a asp-action="GetUserComment" asp-controller="Profile">Yorumlarım</a></li>
-        <li><a asp-action="LogOut" asp-controller="User" asp-route-returnUrl="/User/Login">Çıkış Yap</a></li>
-    </ul>
-</div>
-@if(Model != null)
-{
-    @foreach(var item in Model)
-    {
-        <button asp-action="DeleteUserComment" asp-controller="Profile" asp-route-id="@item.Id">Sil</button>
-    }
-}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps userMenu">
+
+                <div class="login-content">
+                    <h2>HESABIM</h2>
+                    <ul>
+                        <li><a asp-action="UserProfile" asp-controller="Profile">Kişisel Bilgileriniz</a></li>
+                        <li><a asp-action="GetUserAddress" asp-controller="Profile">Adresler</a></li>
+                        <li><a asp-action="GetUserOrder" asp-controller="Profile">Siparişler</a></li>
+                        <li><a asp-action="UpdatePassword" asp-controller="Profile">Şifre Değiştir</a></li>
+                        <li><a asp-action="GetUserComment" asp-controller="Profile">Yorumlarım</a></li>
+                        <li><a asp-action="LogOut" asp-controller="User" asp-route-returnUrl="/User/Login">Çıkış Yap</a></li>
+                    </ul>
+                </div>
+
+            </section>
+        </div>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <button asp-action="DeleteUserComment" asp-controller="Profile" asp-route-id="@item.Id">Sil</button>
+            }
+        }
+
+

@@ -15,6 +15,12 @@
         <strong>Giriş yapılamadı!</strong> @TempData["ErrorLogin"]
     </div>
 }
+@if (TempData["userPasswordUpdateResult"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Başarılı!</strong> @TempData["userPasswordUpdateResult"]
+    </div>
+}
 
 <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps">
     <div class="container">
@@ -25,12 +31,12 @@
                     <!-- Login Form -->
                     <div class="row mt-3">
                         <div class="col-2 text-center ms-auto">
-                            <a class="btn-social-ops  btn-link px-3" href="javascript:;">
+                            <a class="btn-social-ops  btn-link px-3" asp-controller="User" asp-action="FacebookLogin">
                                 <i class="fa fa-facebook text-warning text-lg"></i>
                             </a>
                         </div>
                         <div class="col-2 text-center me-auto">
-                            <a class="btn-social-ops  btn-link px-3" href="javascript:;">
+                            <a class="btn-social-ops  btn-link px-3" asp-controller="User" asp-action="GoogleLogin" >
                                 <i class="fa fa-google text-warning text-lg"></i>
                             </a>
                         </div>

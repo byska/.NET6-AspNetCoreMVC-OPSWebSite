@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Facebook;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -9,6 +11,7 @@ using Ops.Core.VMs.Create;
 using Ops.Repository;
 using System.Net;
 using System.Net.Mail;
+using System.Security.Claims;
 using System.Web;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
@@ -26,6 +29,81 @@ namespace Ops.Web.Areas.Customer.Controllers
             _signInManager = signInManager;
             _mapper = mapper;
         }
+        public IActionResult GoogleLogin(string ReturnUrl)
+        {
+            string redirectUrl = Url.Action("ExternalResponse", "User", new { ReturnUrl = ReturnUrl });
+            AuthenticationProperties properties = _signInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+            return new ChallengeResult("Google", properties);
+        }
+        public async Task<IActionResult> ExternalResponse(string ReturnUrl="/")
+        {
+            ExternalLoginInfo loginInfo = await _signInManager.GetExternalLoginInfoAsync();
+            if (loginInfo == null)
+                return RedirectToAction("Login");
+
+            else
+            {
+                SignInResult loginResult = await _signInManager.ExternalLoginSignInAsync(loginInfo.LoginProvider, loginInfo.ProviderKey, true);
+                if (loginResult.Succeeded)
+                    return Redirect(ReturnUrl);
+                else
+                {
+                    AppUser user = new AppUser
+                    {
+                        Email = loginInfo.Principal.FindFirst(ClaimTypes.Email).Value,
+                        UserName = loginInfo.Principal.FindFirst(ClaimTypes.Email).Value
+                    };
+                    IdentityResult createResult= await _userManager.CreateAsync(user);
+                    if(createResult.Succeeded)
+                    {
+                        IdentityResult addLoginResult = await _userManager.AddLoginAsync(user, loginInfo);
+                        if(addLoginResult.Succeeded)
+                        {
+                            await _signInManager.SignInAsync(user, true);
+                            return Redirect(ReturnUrl);
+                        }
+                    } 
+                }
+            }
+           return Redirect(ReturnUrl);
+        }
+
+        public IActionResult FacebookLogin(string ReturnUrl)
+        {
+            string redirectUrl = Url.Action("FacebookResponse", "User", new { ReturnUrl = ReturnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties("Facebook", redirectUrl);
+
+            return new ChallengeResult("Facebook", properties);
+        }
+
+        public async Task<IActionResult> FacebookResponse(string ReturnUrl = "/")
+        {
+            ExternalLoginInfo loginInfo = await _signInManager.GetExternalLoginInfoAsync();
+            if (loginInfo == null)
+                return RedirectToAction("Login");
+            else
+            {
+                AppUser user = new AppUser
+                {
+                    Email = loginInfo.Principal.FindFirst(ClaimTypes.Email).Value,
+                    UserName = loginInfo.Principal.FindFirst(ClaimTypes.Email).Value
+
+                };
+                IdentityResult createResult = await _userManager.CreateAsync(user);
+
+                if (createResult.Succeeded)
+                {
+                    IdentityResult addLoginResult = await _userManager.AddLoginAsync(user, loginInfo);
+                    if (addLoginResult.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, true);
+                        return Redirect(ReturnUrl);
+                    }
+                }
+            }
+            return Redirect(ReturnUrl);
+        }
+
         public IActionResult Register()
         {
             return View();
@@ -60,6 +138,7 @@ namespace Ops.Web.Areas.Customer.Controllers
         public IActionResult Login()
         {
             return View();
+
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
