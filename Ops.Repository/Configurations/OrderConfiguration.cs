@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Ops.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace Ops.Repository.Configurations
 {
-    public class OrderConfiguration : BaseEntityConfiguration<Order>
+    public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
-        public override void Configure(EntityTypeBuilder<Order> builder)
+        public void Configure(EntityTypeBuilder<Order> builder)
         {
             builder.Property(x => x.TotalPrice).IsRequired();
-
-            builder.HasOne(x => x.Customer).WithMany(x => x.Orders).HasForeignKey(x => x.CustomerId);
-
-            base.Configure(builder);
+            builder.HasOne(x => x.Customer).WithMany(x => x.Orders).HasForeignKey(x => x.CustomerId).OnDelete(DeleteBehavior.ClientSetNull);
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
+            builder.Property(x => x.Status).IsRequired();
         }
     }
 }

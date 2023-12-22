@@ -9,7 +9,9 @@ namespace Ops.Core.VMs.Create
 {
     public class OrderCreateVM
     {
-        public int ProductId { get; set; }
+        public List<int> ProductId { get; set; }
         public decimal TotalPrice { get; set; }
+        public int CustomerId { get; set; }
+        public int AddressId { get; set; }
     }
 }

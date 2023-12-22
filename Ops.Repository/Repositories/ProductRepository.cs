@@ -19,7 +19,7 @@ namespace Ops.Repository.Repositories
 
         public async Task<List<Product>> GetBestsellerProductsAsync()
         {
-           return await _context.Products.OrderByDescending(x=>x.Amount).Include(x=>x.ProductFeature).Take(10).ToListAsync();
+           return await _context.Products.OrderByDescending(x=>x.TotalAmount).Include(x=>x.ProductFeature).Take(10).ToListAsync();
         }
 
         public async Task<List<Product>> GetNewProductsAsync()

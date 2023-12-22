@@ -13,10 +13,12 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<ProductOrder> builder)
         {
-            builder.HasData(new ProductOrder { Id = 1, OrderId = 1, ProductId = 1 },
-                new ProductOrder { Id = 2, OrderId = 1, ProductId = 2 },
-                new ProductOrder { Id = 3, OrderId = 2, ProductId = 3 },
-                new ProductOrder { Id = 4, OrderId = 2, ProductId = 2 });
+            builder.HasData(new ProductOrder { Id = 1, OrderId = 1, ProductId = 1,Amount=1 },
+                new ProductOrder { Id = 2, OrderId = 1, ProductId = 2,Amount=2 },
+                new ProductOrder { Id = 3, OrderId = 2, ProductId = 3,Amount=1 },
+                new ProductOrder { Id = 4, OrderId = 2, ProductId = 2,Amount=2 },
+                new ProductOrder { Id = 5, OrderId = 3, ProductId = 4,Amount=2 },
+                new ProductOrder { Id = 6, OrderId = 4, ProductId = 5,Amount=2 });
         }
     }
 }

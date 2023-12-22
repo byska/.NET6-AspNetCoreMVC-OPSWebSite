@@ -9,7 +9,7 @@ namespace Ops.Service.Validation
         {
             RuleFor(x => x.ProductId)
             .NotEmpty().WithMessage("Sepetinize ürün ekleyiniz.")
-            .InclusiveBetween(0,int.MaxValue).WithMessage("Sepetinize ürün ekleyiniz.");
+            .WithMessage("Sepetinize ürün ekleyiniz.");
 
         }
     }

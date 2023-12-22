@@ -10,10 +10,11 @@ namespace Ops.Core.VMs
 {
     public class OrderVM
     {
-        public OrderStatus OrderStatus { get; set; } = OrderStatus.Taken;
-        public int ProductId { get; set; }
+        public OrderStatus OrderStatus { get; set; }
+        public List<int> ProductId { get; set; }
         public DateTime CreatedDate { get; set; }
         public decimal TotalPrice { get; set; }
+        public string RecipientName { get; set; }
 
     }
 }

@@ -49,7 +49,29 @@ namespace Ops.Repository.Providers
                     FirstName = "Beste",
                     LastName = "Yasak",
                     PhoneNumber = "05360249093",
-                    Status = Core.Enums.Status.Added
+                    Status = Core.Enums.Status.Added,
+                   
+                };
+                var task = await _userManager.CreateAsync(user, "Beste1998.");
+
+                if (task.Succeeded)
+                {
+                    var response = await _userManager.AddToRoleAsync(user, "customer");
+                }
+            }
+            var valueCustomerData2 = await _userManager.FindByEmailAsync("huseyingulerman.1997@gmail.com");
+            if (valueCustomerData == null)
+            {
+                AppUser user = new AppUser
+                {
+                    UserName = "customer",
+                    DateOfBirth = new DateTime(1998, 02, 16),
+                    Email = "huseyingulerman.1997@gmail.com",
+                    FirstName = "Hüseyin",
+                    LastName = "Gülerman",
+                    PhoneNumber = "05325841236",
+                    Status = Core.Enums.Status.Added,
+
                 };
                 var task = await _userManager.CreateAsync(user, "Beste1998.");
 

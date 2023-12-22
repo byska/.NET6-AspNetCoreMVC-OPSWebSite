@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Ops.Core.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,15 @@ using System.Threading.Tasks;
 
 namespace Ops.Repository.Configurations
 {
-    public class ProductOrderConfiguration:BaseEntityConfiguration<ProductOrder>
+    public class ProductOrderConfiguration: IEntityTypeConfiguration<ProductOrder>
     {
-        public override void Configure(EntityTypeBuilder<ProductOrder> builder)
+        public void Configure(EntityTypeBuilder<ProductOrder> builder)
         {
             builder.HasOne(x=>x.product).WithMany(x=>x.ProductOrders).HasForeignKey(x=>x.ProductId);
             builder.HasOne(x=>x.order).WithMany(x=>x.OrderProducts).HasForeignKey(x=>x.OrderId);
-            base.Configure(builder);
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
+            builder.Property(x => x.Status).IsRequired();
         }
     }
 }

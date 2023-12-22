@@ -8,6 +8,10 @@ namespace Ops.Core.Entities
 {
     public class Address :BaseEntity
     {
+        public Address()
+        {
+            Orders= new HashSet<Order>();
+        }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Description { get; set; }
@@ -19,6 +23,7 @@ namespace Ops.Core.Entities
         public int CountyId { get; set; }
         public AppUser Customer { get; set; }
         public int CustomerId { get; set; } 
+        public ICollection<Order> Orders { get; set; }
         
     }
 }

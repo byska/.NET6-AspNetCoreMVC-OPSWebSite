@@ -9,9 +9,10 @@ namespace Ops.Core.Entities
             OrderProducts = new HashSet<ProductOrder>();
         }
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Taken;
-        public int CustomerId { get; set; }
+        public int? CustomerId { get; set; }
         public AppUser Customer { get; set; }
         public ICollection<ProductOrder>? OrderProducts { get; set; }
         public decimal TotalPrice { get; set; }
+        public string? ShipCode { get; set; }
     }
 }

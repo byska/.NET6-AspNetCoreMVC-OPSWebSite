@@ -17,7 +17,7 @@
 }
 
 <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps">
-    <div class="container" style="max-width: 60%">
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8">
                 <div class="login-content">
@@ -75,6 +75,25 @@
     </div>
 </section>
 
+<script>
+    function adjustContainerMaxWidth() {
+        var container = document.querySelector('loginRegisterOps .container');
+        var screenWidth = window.innerWidth;
 
+        // Belirli bir ekran genişliği eşiğini belirleyin (örneğin, 800 piksel).
+        var thresholdWidth = 1366;
+
+        // Ekran genişliği eşiğinin üzerindeyse max-width'i güncelle.
+        if (screenWidth > thresholdWidth) {
+            container.style.maxWidth = '60%'; // İstediğiniz max-width değerini buraya yazın.
+        } else {
+            container.style.maxWidth = '70%'; // Ekran genişliği eşiği altındaysa varsayılan max-width değeri.
+        }
+    }
+
+    // Sayfa yüklendiğinde ve pencere boyutu değiştikçe fonksiyonu çağırın.
+    window.onload = adjustContainerMaxWidth;
+    window.onresize = adjustContainerMaxWidth;
+</script>
 
 

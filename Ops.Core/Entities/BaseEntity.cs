@@ -1,10 +1,12 @@
 ﻿using Ops.Core.Enums;
 using Ops.Core.Intefaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace Ops.Core.Entities
 {
     public abstract class BaseEntity:IEntity
     {
+        [Key]
         public int Id { get; set; }
         public Status Status { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;

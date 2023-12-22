@@ -13,8 +13,8 @@ namespace Ops.Repository.Seeds
     {
         public void Configure(EntityTypeBuilder<AppRole> builder)
         {
-            builder.HasData(new AppRole { Id = 1, Name="Admin",Status=Core.Enums.Status.Added}, 
-                new AppRole { Id=2, Name="Customer", Status = Core.Enums.Status.Added });
+            builder.HasData(new AppRole { Id = 1, Name="admin",Status=Core.Enums.Status.Added,DisplayName="Yönetici",NormalizedName="ADMIN"}, 
+                new AppRole { Id=2, Name="customer", Status = Core.Enums.Status.Added,DisplayName="Müşteri",NormalizedName = "CUSTOMER" });
         }
     }
 }
