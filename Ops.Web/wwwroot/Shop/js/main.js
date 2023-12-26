@@ -66,6 +66,7 @@
 	};
 
 
+	
 	var burgerMenu = function() {
 
 		$('body').on('click', '.js-fh5co-nav-toggle', function(event){

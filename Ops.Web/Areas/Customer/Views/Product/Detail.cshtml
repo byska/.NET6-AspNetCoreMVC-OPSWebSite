@@ -58,7 +58,7 @@
             </div>
             <div class="col-12 col-lg-5">
                 <div class="single_product_desc">
-                    <form class="cart clearfix" method="post" asp-area="Customer" asp-controller="Product" asp-action="Order">
+                    <form class="cart clearfix" method="post" asp-area="Customer" asp-controller="Shopping" asp-action="AddItemCart">
                         <!-- Product Meta Data -->
                         <div class="product-meta-data">
                             <div class="line"></div>
@@ -106,7 +106,7 @@
                             </div>
                             <input type="hidden" id="size" name="size" value="">
                         </div>
-                        <button type="submit" name="addtocart" value="5" class="btn amado-btn" id="centered-btn">Sepete Ekle</button>
+                        <button asp-controller="Shopping" asp-action="AddItemCart" asp-route-id="@Model.Id" type="submit" name="addtocart" value="5" class="btn amado-btn" id="centered-btn">Sepete Ekle</button>
                     </form>
                 </div>
             </div>

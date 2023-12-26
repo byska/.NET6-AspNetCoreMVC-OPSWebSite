@@ -1055,6 +1055,23 @@ img {
     }
 }
 
+.opsCart .cart-summary button[type=submit] {
+    background: var(--color-primary);
+    border: 1px solid #fff;
+    padding: 10px 35px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+    .opsCart .art-summary button[type=submit]:hover {
+        background: #fff;
+        color: #feb900;
+        border: 1px solid #feb900;
+    }
+   
+
 .main-content-wrapper .cart-table-area .cart-title h2 {
     font-size: 30px;
     margin-bottom: 30px;

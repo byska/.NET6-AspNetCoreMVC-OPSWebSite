@@ -1,0 +1,193 @@
+﻿ @{
+    ViewData["Title"] = "Sepetim";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+@*
+<div class="container opsCart">
+    <div class="main-content-wrapper d-flex clearfix ">
+        <div class="cart-table-area section-padding-100">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 col-lg-8">
+                        <div class="cart-title mt-50">
+                            <h2>Sepetim</h2>
+                        </div>
+
+                        <div class="cart-table clearfix">
+                            <table class="table table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Ürün</th>
+
+                                        <th>Adet</th>
+                                        <th <a asp-controller="Shopping" asp-action="RemoveItemCart" asp-route-id=""></a>x</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   
+                                    <tr>
+                                        <td class="cart_product_img">
+                                            <a href="#"><img src="\img\tshirt-1.jpeg" alt="Product"></a>
+                                        </td>
+                                        <td class="cart_product_desc">
+                                            <h5>Minimal Plant Pot</h5>
+                                        </td>
+
+                                        <td class="qty">
+                                            <div class="qty-btn d-flex">
+                                                <p>Qty</p>
+                                                <div class="quantity">
+                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                    <input type="number" class="qty-text" id="qty3" step="1" min="1" max="300" name="quantity" value="1">
+                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td class="price">
+                                            <span>$10</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="cart-summary">
+                            <h5>Sipariş Özeti</h5>
+                            <ul class="summary-table">
+                                <li><span>Ürün Toplamı:</span> <span>$140.00</span></li>
+                                <li><span>Kargo:</span> <span>Free</span></li>
+                                <li><span>Toplam:</span> <span>$140.00</span></li>
+                            </ul>
+                            <div class="cart-btn mt-100">
+                                <button type="submit" class="btn btn-warning-outline ">Güncelle</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ##### Main Content Wrapper End ##### -->
+
+ *@
+
+
+
+
+
+<div class="untree_co-section section-padding-100 before-footer-section loginRegisterOps">
+    <div class="container ">
+        <div class="row mb-5">
+            <form class="col-md-12" method="post">
+                <div class="site-blocks-table">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="product-thumbnail"></th>
+                                <th class="product-name">Ürün</th>
+                                <th class="product-price">Fiyat</th>
+                                <th class="product-quantity">Adet</th>
+                                <th class="product-total">Toplam Fiyat</th>
+                                <th class="product-remove">Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+
+                            <tr>
+                                <td class="product-thumbnail">
+                                    <img src="\img\tshirt-1.jpeg" alt="Image" class="img-fluid">
+                                </td>
+                                <td class="product-name">
+                                    <h2 class="h5 text-black">Product 2</h2>
+                                </td>
+                                <td>$49.00</td>
+                                <td class="text-center">
+                                    <div class="input-group mb-3 d-flex align-items-center quantity-container justify-content-center" style="max-width: 100px;">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-black decrease" type="button">&minus;</button>
+                                        </div>
+                                        <input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-black increase" type="button">&plus;</button>
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td>$49.00</td>
+                                <td><a href="#"><i class="fa-solid fa-x"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 ">
+                <div class="mb-5 contactFormOps">
+                    <button type="submit" class="btn btn-warning-outline">Güncelle</button>
+                    <button type="submit" class="btn btn-warning-outline">Alışverişe Devam Et</button>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="text-black h4" for="coupon">Kupon</label>
+                        <p>Kuponunuzu kullanabilirsiniz.</p>
+                    </div>
+                    <div class="col-md-8 mb-3 mb-md-0">
+                        <input type="text" class="form-control py-3" id="coupon" placeholder="Kupon Kodu">
+                    </div>
+                    <div class="col-md-4 contactFormOps">
+                        <button type="submit" class="btn btn-warning-outline">Kupon Ekle</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pl-5">
+                <div class="row justify-content-end">
+                    <div class="col-md-7">
+                        <div class="row">
+                            <div class="col-md-12 text-right border-bottom mb-5">
+                                <h3 class="text-black h4 text-uppercase">Sipariş Özeti</h3>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <span class="text-black">Ürün Toplamı</span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <strong class="text-black">$230.00</strong>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <span class="text-black">Kargo</span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <strong class="text-black">$230.00</strong>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-md-6">
+                                <span class="text-black">Toplam</span>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <strong class="text-black">$230.00</strong>
+                            </div>
+                        </div>
+
+                        <div class="row contactFormOps">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-warning-outline">Siparişi Onayla</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
