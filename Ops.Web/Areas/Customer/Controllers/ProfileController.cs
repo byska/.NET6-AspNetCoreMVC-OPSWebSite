@@ -102,7 +102,6 @@ namespace Ops.Web.Areas.Customer.Controllers
                         result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
                         return View();
                     }
-
                 }
                 else
                 {

@@ -31,7 +31,9 @@
 .btn{
     border-radius:30px;
 }
-
+#toggle-password{
+    cursor:pointer;
+}
 
 
 .site-blocks-table {

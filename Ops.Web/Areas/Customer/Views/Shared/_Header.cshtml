@@ -1,8 +1,6 @@
-﻿
-
-<!-- ======= Header ======= -->
+﻿<!-- ======= Header ======= -->
 <header id="header" class="opsHeader header d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between" >
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
         <a asp-action="Index" asp-controller="Home" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -21,7 +19,7 @@
                 <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="3">Hoodie</a></li>
                 <li><a asp-action="GetAllProduct" asp-controller="Product" asp-route-id="4">Sweatshirt</a></li>
                 <li class="dropdown">
-                    <a a asp-action="GetAllAccessory" asp-controller="Product" asp-route-id="567">
+                    <a asp-action="GetAllAccessory" asp-controller="Product" asp-route-id="567">
                         <span>Aksesuar</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
                     </a>
                     <ul>
@@ -33,8 +31,51 @@
 
                 <li><a asp-action="Contact" asp-controller="Home">İletişim</a></li>
                 <li><a asp-action="GetCart" asp-controller="Shopping"> <span class="icon-ops"><i class="fas fa-shopping-cart"></i></span></a></li>
-                <li><a asp-action="Login" asp-controller="User"> <span class="icon-ops"><i class="fa-solid fa-user"></i></span></a></li>
-                
+                @if (User?.Identity?.IsAuthenticated ?? false)
+                {
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li class="dropdown">
+
+                            <span class="icon-ops">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <ul>
+                                <li><a asp-action="" asp-controller="">Kullanıcı Bilgilerim</a></li>
+                                <li><a asp-action="" asp-controller="">Admin Sayfası</a></li>
+                                <li><a asp-action="" asp-controller="">Çıkış Yap</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <span class="icon-ops">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <ul>
+                                <li><a asp-action="UserProfile" asp-controller="Profile">Kişisel Bilgileriniz</a></li>
+                                <li><a asp-action="GetUserAddress" asp-controller="Profile">Adresler</a></li>
+                                <li><a asp-action="GetUserOrder" asp-controller="Profile">Siparişler</a></li>
+                                <li><a asp-action="UpdatePassword" asp-controller="Profile">Şifre Değiştir</a></li>
+                                <li><a asp-action="GetUserComment" asp-controller="Profile">Yorumlarım</a></li>
+                                <li><a asp-action="LogOut" asp-controller="User" asp-route-returnUrl="/User/Login">Çıkış Yap</a></li>
+                            </ul>
+                        </li>
+                    }
+                }
+                else
+                {
+                    <li class="dropdown">
+                        <span class="icon-ops">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <ul>
+                            <li><a asp-action="Login" asp-controller="User">Giriş Yap</a></li>
+                            <li><a asp-action="Register" asp-controller="User">Üye Ol</a></li>
+                        </ul>
+                    </li>
+                }
             </ul>
         </nav><!-- .navbar -->
 

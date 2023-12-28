@@ -34,7 +34,14 @@ namespace Ops.Web
 
             // ... other configuration ...
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(
+                options=>
+                {
+                    options.IdleTimeout = TimeSpan.FromMinutes(30);
+                    options.Cookie.IsEssential = true;
+                });
+            builder.Services.AddHttpContextAccessor();
             // Add services to the container.
             builder.Services.AddIdentity<AppUser, AppRole>(_ =>
             {
@@ -65,6 +72,12 @@ namespace Ops.Web
                 _.SlidingExpiration = true;
                 _.ExpireTimeSpan = TimeSpan.FromMinutes(15);
             });
+
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(
+                _ =>
+                {
+                    _.TokenLifespan = TimeSpan.FromHours(3);
+                });
 
             builder.Services.AddControllersWithViews()
          .AddFluentValidation(x => x.RegisterValidatorsFromAssemblyContaining<AppUserVMValidator>());
@@ -117,6 +130,7 @@ namespace Ops.Web
             //    }
             //}
 
+            app.UseSession();
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {

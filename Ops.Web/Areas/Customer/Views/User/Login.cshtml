@@ -29,7 +29,7 @@
                 <div class="login-content">
                     <h3>Giriş Yap</h3>
                     <!-- Login Form -->
-                    <div class="row mt-3">
+                    <div class="row mt-3 login-form">
                         <div class="col-2 text-center ms-auto">
                             <a class="btn-social-ops  btn-link px-3" asp-controller="User" asp-action="FacebookLogin">
                                 <i class="fa fa-facebook text-warning text-lg"></i>
@@ -51,8 +51,16 @@
                             </div>
                             <div class="form-group">
                                 <label>Şifre</label>
-                                <input asp-for="Password" type="password" class="form-control" id="password">
-                                <span asp-validation-for="Password" class="text-danger"></span>
+                                <div class="input-group">
+                                    <input asp-for="Password" type="password" class="form-control" id="password" name="Password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="toggle-password">
+                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+
                             </div>
                             <div class="justify-content-between align-items-center d-flex mb-3">
                                 <div>

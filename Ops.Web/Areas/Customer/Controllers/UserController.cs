@@ -157,7 +157,7 @@ namespace Ops.Web.Areas.Customer.Controllers
                             return RedirectToAction("Index", "Home", new { area = "Admin" });
                         }
                         //return RedirectToAction("Cart", "Shopping");
-                        return RedirectToAction("GetCart", "Shopping");
+                        return RedirectToAction("UserProfile", "Profile");
                     }
                 }
                 else
