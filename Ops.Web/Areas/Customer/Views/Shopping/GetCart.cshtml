@@ -1,4 +1,4 @@
-﻿ @{
+﻿@{
     ViewData["Title"] = "Sepetim";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
@@ -26,7 +26,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   
+
                                     <tr>
                                         <td class="cart_product_img">
                                             <a href="#"><img src="\img\tshirt-1.jpeg" alt="Product"></a>
@@ -78,7 +78,7 @@
  *@
 
 
- @if(Model.CartItems.Count>0)
+@if (Model.CartItems.Count > 0)
 {
     <div class="untree_co-section section-padding-100 before-footer-section loginRegisterOps">
         <div class="container ">
@@ -97,7 +97,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach(var item in Model.CartItems)
+                                @foreach (var item in Model.CartItems)
                                 {
                                     <tr>
                                         <td class="product-thumbnail">
@@ -123,73 +123,73 @@
                                         <td><a asp-controller="Shopping" asp-action="RemoveItemCart" asp-route-id="@item.ProductId"><i class="fa-solid fa-x"></i></a></td>
                                     </tr>
                                 }
-                               
+
                             </tbody>
                         </table>
                     </div>
-         
 
-            <div class="row">
-                <div class="col-md-6 ">
-                    <div class="mb-5 contactFormOps">
-                        <button asp-controller="Shopping" asp-action="RemoveCart" type="submit" class="btn btn-warning-outline">Sepeti Temizle</button>
-                        <button asp-controller="Home" asp-action="Index" type="submit" class="btn btn-warning-outline">Alışverişe Devam Et</button>
-                    </div>
+
                     <div class="row">
-                        <div class="col-md-12">
-                            <label class="text-black h4" for="coupon">Kupon</label>
-                            <p>Kuponunuzu kullanabilirsiniz.</p>
-                        </div>
-                        <div class="col-md-8 mb-3 mb-md-0">
-                            <input type="text" class="form-control py-3" id="coupon" placeholder="Kupon Kodu">
-                        </div>
-                        <div class="col-md-4 contactFormOps">
-                            <button type="submit" class="btn btn-warning-outline">Kupon Ekle</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 pl-5">
-                    <div class="row justify-content-end">
-                        <div class="col-md-7">
+                        <div class="col-md-6 ">
+                            <div class="mb-5 contactFormOps">
+                                <button asp-controller="Shopping" asp-action="RemoveCart" type="submit" class="btn btn-warning-outline">Sepeti Temizle</button>
+                                <button asp-controller="Home" asp-action="Index" type="submit" class="btn btn-warning-outline">Alışverişe Devam Et</button>
+                            </div>
                             <div class="row">
-                                <div class="col-md-12 text-right border-bottom mb-5">
-                                    <h3 class="text-black h4 text-uppercase">Sipariş Özeti</h3>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <span class="text-black">Ürün Toplamı</span>
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <strong class="text-black">@Model.GrandTotal.ToString("C2")</strong>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <span class="text-black">Kargo</span>
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <strong class="text-black">35.00</strong>
-                                </div>
-                            </div>
-                            <div class="row mb-5">
-                                <div class="col-md-6">
-                                    <span class="text-black">Toplam</span>
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <strong class="text-black">@((Model.GrandTotal + 35).ToString("C2"))</strong>
-                                </div>
-                            </div>
-
-                            <div class="row contactFormOps">
                                 <div class="col-md-12">
-                                    <button type="submit" class="btn btn-warning-outline">Siparişi Onayla</button>
+                                    <label class="text-black h4" for="coupon">Kupon</label>
+                                    <p>Kuponunuzu kullanabilirsiniz.</p>
+                                </div>
+                                <div class="col-md-8 mb-3 mb-md-0">
+                                    <input type="text" class="form-control py-3" id="coupon" placeholder="Kupon Kodu">
+                                </div>
+                                <div class="col-md-4 contactFormOps">
+                                    <button type="submit" class="btn btn-warning-outline">Kupon Ekle</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 pl-5">
+                            <div class="row justify-content-end">
+                                <div class="col-md-7">
+                                    <div class="row">
+                                        <div class="col-md-12 text-right border-bottom mb-5">
+                                            <h3 class="text-black h4 text-uppercase">Sipariş Özeti</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <span class="text-black">Ürün Toplamı</span>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <strong class="text-black">@Model.GrandTotal.ToString("C2")</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <span class="text-black">Kargo</span>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <strong class="text-black">35.00</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-md-6">
+                                            <span class="text-black">Toplam</span>
+                                        </div>
+                                        <div class="col-md-6 text-right">
+                                            <strong class="text-black">@((Model.GrandTotal + 35).ToString("C2"))</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="row contactFormOps">
+                                        <div class="col-md-12">
+                                            <button type="submit" class="btn btn-warning-outline">Siparişi Onayla</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
                 </form>
             </div>
         </div>
@@ -197,7 +197,16 @@
 }
 else
 {
-    <h3 class="display-4 text-center section-padding-100">Sepetiniz Boş.</h3>
+    <section id="projects" class="projects section-padding-100">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h3>Sepetiniz Boş.</h3> 
+            </div>
+        </div>
+    </section>
+
+   
 }
 
 

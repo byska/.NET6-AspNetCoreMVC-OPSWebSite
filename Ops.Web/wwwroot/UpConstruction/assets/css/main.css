@@ -28,11 +28,43 @@
 :root {
     scroll-behavior: smooth;
 }
-.btn{
-    border-radius:30px;
+
+.projects .section-header {
+    text-align: center;
+    padding-bottom: 70px;
 }
-#toggle-password{
-    cursor:pointer;
+
+    .projects .section-header h3 {
+        font-size: 32px;
+        font-weight: 700;
+        position: relative;
+        color: #2e3135;
+    }
+
+        .projects .section-header h3:before,
+        .projects .section-header h3:after {
+            content: "";
+            width: 50px;
+            height: 2px;
+            background: #feb900;
+            display: inline-block;
+        }
+
+        .projects .section-header h3:before {
+            margin: 0 15px 10px 0;
+        }
+
+        .projects .section-header h3:after {
+            margin: 0 0 10px 15px;
+        }
+
+
+.btn {
+    border-radius: 30px;
+}
+
+#toggle-password {
+    cursor: pointer;
 }
 
 
@@ -74,6 +106,7 @@
         border: none;
         height: auto !important;
     }
+
 .before-footer-section {
     padding: 7rem 0 12rem 0 !important;
 }
@@ -85,9 +118,11 @@ body .opsHeader {
     color: var(--color-default);
     /*overflow-x: hidden;*/
 }
+
 .ops-remember-input:checked {
     background-color: #feb900;
 }
+
 .ops-remember-input:focus {
     box-shadow: 0 0 1px #feb900;
 }
@@ -786,7 +821,7 @@ h6 {
             color: #feb900;
             border: 1px solid #feb900;
         }
-        
+
 
 @keyframes animate-loading {
     0% {
@@ -819,58 +854,57 @@ h6 {
         font-weight: 600;
     }
 
-.loginRegisterOps .contactFormOps .error-message br + br {
-    margin-top: 25px;
-}
+        .loginRegisterOps .contactFormOps .error-message br + br {
+            margin-top: 25px;
+        }
 
 
 
-.loginRegisterOps .contactFormOps .loading {
-    display: none;
-    background: #fff;
-    text-align: center;
-    padding: 15px;
-}
+    .loginRegisterOps .contactFormOps .loading {
+        display: none;
+        background: #fff;
+        text-align: center;
+        padding: 15px;
+    }
 
-.loginRegisterOps .contactFormOps .loading:before {
-    content: "";
-    display: inline-block;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    margin: 0 10px -6px 0;
-    border: 3px solid #059652;
-    border-top-color: #fff;
-    -webkit-animation: animate-loading 1s linear infinite;
-    animation: animate-loading 1s linear infinite;
-}
+        .loginRegisterOps .contactFormOps .loading:before {
+            content: "";
+            display: inline-block;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            margin: 0 10px -6px 0;
+            border: 3px solid #059652;
+            border-top-color: #fff;
+            -webkit-animation: animate-loading 1s linear infinite;
+            animation: animate-loading 1s linear infinite;
+        }
 
-/*.loginRegisterOps .contactFormOps input,
+    /*.loginRegisterOps .contactFormOps input,
 .loginRegisterOps .contactFormOps textarea {
     border-radius: 0;
     box-shadow: none;
     font-size: 14px;
 }*/
 
-.loginRegisterOps .contactFormOps input:focus,
-.loginRegisterOps .contactFormOps textarea:focus {
-    border-color: var(--color-primary);
-}
-    .loginRegisterOps .contactFormOps ops-remember-input:checked
-    {
-       background-color:#feb900;
+    .loginRegisterOps .contactFormOps input:focus,
+    .loginRegisterOps .contactFormOps textarea:focus {
+        border-color: var(--color-primary);
     }
 
-/*.loginRegisterOps .contactFormOps input {
+    .loginRegisterOps .contactFormOps ops-remember-input:checked {
+        background-color: #feb900;
+    }
+
+    /*.loginRegisterOps .contactFormOps input {
     height: 44px;
 }*/
 
-.loginRegisterOps .contactFormOps textarea {
-    padding: 10px 12px;
-}
+    .loginRegisterOps .contactFormOps textarea {
+        padding: 10px 12px;
+    }
 
     .loginRegisterOps .contactFormOps button[type=submit] {
-       
         background: var(--color-primary);
         border: 1px solid #fff;
         padding: 10px 35px;
@@ -880,11 +914,11 @@ h6 {
         cursor: pointer;
     }
 
-.loginRegisterOps .contactFormOps button[type=submit]:hover {
-    background: #fff;
-    color: #feb900;
-    border: 1px solid #feb900;
-}
+        .loginRegisterOps .contactFormOps button[type=submit]:hover {
+            background: #fff;
+            color: #feb900;
+            border: 1px solid #feb900;
+        }
 
 .contactFormOps label {
     font-family: var(--font-primary);
