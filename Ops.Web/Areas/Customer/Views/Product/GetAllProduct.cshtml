@@ -26,7 +26,7 @@
                         <div  class="product-grid" style="background-image:url(/img/@item.Photo);">
                             <div class="inner">
 							<p>
-                                    <a asp-controller="Shopping" asp-action="AddItemCart" asp-route-id="@item.Id" class="icon"><i class="icon-shopping-cart"></i></a>
+                                    @* <a id="addToCartButton" asp-controller="Shopping" asp-action="AddItemCart" asp-route-id="@item.Id" class="icon"><i class="icon-shopping-cart"></i></a> *@
                                     <a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" class="icon"><i class="icon-eye"></i></a>
 							</p>
 						    </div>
@@ -35,15 +35,13 @@
 						<h3><a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id">@item.Name</a></h3>
 						<span class="price">@item.Price</span>
 					</div>
+					</div>
 			    </div>
-		    </div>
             }
     	</div>
-       
-		
-       
 	</div>
 </div>
+
 @* 
 <div class="single-product-area section-padding-100 clearfix">
     <div class="container-fluid">

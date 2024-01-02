@@ -9,7 +9,7 @@ namespace Ops.Core.VMs
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string Photo { get; set; }
-        public List<string> Colors { get; set; }
+        public List<string> Size { get; set; }
         public List<string> Comments { get; set; }
         public List<string> CommentCustumerNames { get; set; }
         public int Stock { get; set; }

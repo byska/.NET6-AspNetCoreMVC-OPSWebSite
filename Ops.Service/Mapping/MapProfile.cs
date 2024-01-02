@@ -17,7 +17,8 @@ namespace Ops.Service.Mapping
         {
             CreateMap<Product, ProductVM>()
                 .ForMember(dest=>dest.Photo,opt=>opt.MapFrom(src=>src.Photos.FirstOrDefault().PhotoUrl))
-            .ForMember(dest => dest.Colors, opt => opt.MapFrom(src => src.ColorProducts.Select(x=>x.Color.Name.ToString()).ToList()));
+            .ForMember(dest => dest.Size, opt => opt.MapFrom(src => src.SizeProducts.Select(x=>x.Size.Name.ToString()).ToList()))
+            .ForMember(dest=>dest.Stock,opt=>opt.MapFrom(src=>src.Stock.Stocks));
 
             CreateMap<Product, ProductsWithFeaturesVM>()
                 .ForMember(dest => dest.Photos, opt => opt.MapFrom(src => src.Photos.Select(x=>x.PhotoUrl).ToList()))
@@ -41,6 +42,13 @@ namespace Ops.Service.Mapping
             CreateMap<Message, MessageAdminVM>();
             CreateMap<UserCreateVM, AppUser>();
             CreateMap<AppUser, UserVM>();
+            CreateMap<Order, OrderCreateVM>().ReverseMap();
+            CreateMap<Order, OrderVM>();
+            CreateMap<OrderCreateVM, OrderVM>();
+            CreateMap<ProductVM, ProductCommentSelectListVM>()
+                .ForMember(dest => dest.ProductName, opt => opt.MapFrom(src => src.Name))
+                 .ForMember(dest => dest.ProductId, opt => opt.MapFrom(src => src.Id));
+           
         }
     }
 }

@@ -1,0 +1,58 @@
+﻿@model CommentCreateVM
+@{
+    ViewData["Title"] = "Yorum Ekle";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+@if (TempData["NotCreateUser"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Hata!</strong> @TempData["NotCreateComment"]
+    </div>
+}
+
+<section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="login-content">
+                    <h3>Kayıt Ol</h3>
+                    <!-- Login Form -->
+
+                    <div class="login-form">
+                        <form asp-action="AddUserComment" asp-controller="Profile" method="post" class="contactFormOps">
+                            <div class="text-danger"></div>
+                            <div class="row gy-4">
+
+                                <div class="form-group">
+                                    <label>Yorum</label>
+                                    <input asp-for="Description" type="text" class="form-control" id="text">
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Puan</label>
+                                    <input asp-for="Mark" type="range" class="form-control" id="mark">
+                                    <span asp-validation-for="Mark" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Ürün</label>
+                                   <select>
+                                       <option value="">Yorum Ekleyeceğiniz Siparişi Seçiniz</option>
+                                        @foreach (var order in ViewBag.SelectList as List<ProductCommentSelectListVM>)
+                                        {
+                                            <option value="@order.ProductId">@order.ProductName</option>
+                                        }
+                                    </select>
+                                </div>
+
+                            </div>
+                           
+                            <div class="text-warning" asp-validation-summary="ModelOnly"></div>
+                            <button type="submit" class="btn btn-warning-outline ">Ekle</button>
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Ops.Core.Entities;
 using Ops.Core.Services;
 using Ops.Core.VMs;
@@ -14,12 +15,13 @@ namespace Ops.Web.Areas.Customer.Controllers
     public class ProfileController : Controller
     {
         private readonly IAddressService _addressService;
+        private readonly IProductService _productService;
         private readonly ICommentService _commentService;
         private readonly IOrderService _orderService;
         private readonly UserManager<AppUser> _userManager;
         private readonly IMapper _mapper;
         private readonly SignInManager<AppUser> _signInManager;
-        public ProfileController(UserManager<AppUser> userManager, IMapper mapper, IAddressService addressService, ICommentService commentService, IOrderService orderService, SignInManager<AppUser> signInManager)
+        public ProfileController(UserManager<AppUser> userManager, IProductService productService, IMapper mapper, IAddressService addressService, ICommentService commentService, IOrderService orderService, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
             _addressService = addressService;
@@ -27,6 +29,7 @@ namespace Ops.Web.Areas.Customer.Controllers
             _commentService = commentService;
             _orderService = orderService;
             _signInManager = signInManager;
+            _productService = productService;
         }
 
         public async Task<IActionResult> UserProfile()
@@ -46,8 +49,8 @@ namespace Ops.Web.Areas.Customer.Controllers
             {
                 AppUser user = await _userManager.FindByEmailAsync(userVM.Email);
                 user.PhoneNumber = userVM.PhoneNumber;
-                user.FirstName=userVM.FirstName;
-                user.LastName=userVM.LastName;
+                user.FirstName = userVM.FirstName;
+                user.LastName = userVM.LastName;
                 user.Email = userVM.Email;
                 user.DateOfBirth = userVM.DateOfBirth;
                 IdentityResult result = await _userManager.UpdateAsync(user);
@@ -94,7 +97,7 @@ namespace Ops.Web.Areas.Customer.Controllers
                         TempData["userPasswordUpdateResult"] = "Şifreniz başarıyla değiştirildi.";
                         await _userManager.UpdateSecurityStampAsync(user);
                         await _signInManager.SignOutAsync();
-                        return RedirectToAction("Login","User");
+                        return RedirectToAction("Login", "User");
                     }
                     else
                     {
@@ -171,6 +174,58 @@ namespace Ops.Web.Areas.Customer.Controllers
             AppUser user = await _userManager.GetUserAsync(HttpContext.User);
             var comments = (await _commentService.GetAllByIncludeAsync(x => x.CustomerId == user.Id)).Data.ToList();
             return View(comments);
+        }
+        public async Task<IActionResult> AddUserComment()
+        {
+            IEnumerable<OrderVM> ordersVM = (await _orderService.GetAllActiveAsync()).Data;
+            if(ordersVM.Count()>0)
+            {
+                List<ProductCommentSelectListVM> selectList = new List<ProductCommentSelectListVM>();
+                foreach (var orders in ordersVM)
+                {
+                    foreach (var product in orders.ProductId)
+                    {
+                        var productVM = (await _productService.GetByIdAsync(product)).Data;
+                        ProductCommentSelectListVM productSelectList = _mapper.Map<ProductCommentSelectListVM>(productVM);
+                        selectList.Add(productSelectList);
+                    }
+
+                }
+                ViewBag.SelectList = selectList;
+                return View();
+            }
+            TempData["NotOrder"] = "Yorum yapabileceğiniz bir siparişiniz yok.";
+            return RedirectToAction("GetUserComment");
+
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddUserComment(CommentCreateVM comment)
+        {
+            if (ModelState.IsValid)
+            {
+                AppUser user = await _userManager.GetUserAsync(HttpContext.User);
+                comment.CustomerId = user.Id;
+                List<string> errors = (await _commentService.AddAsync(comment)).Errors;
+                if (errors.Count > 0)
+                {
+                    TempData["NotCreateComment"] = "Yorum eklenemedi.";
+                    foreach (var item in errors)
+                    {
+                        ModelState.AddModelError("", item);
+                    }
+
+                    return View();
+                }
+                else
+                {
+                    TempData["CreateComment"] = "Yorum başarıyla eklendi.";
+                    return RedirectToAction("GetUserComment");
+                }
+
+            }
+            return View(comment);
+
         }
         public async Task<IActionResult> DeleteUserComment(int id)
         {

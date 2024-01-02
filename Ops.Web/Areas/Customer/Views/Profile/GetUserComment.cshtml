@@ -3,7 +3,18 @@
     ViewData["Title"] = "Yorumlarım";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
-
+@if (TempData["CreateComment"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Başarılı!</strong> @TempData["CreateComment"]
+    </div>
+}
+@if (TempData["NotOrder"] != null)
+{
+    <div class="alert alert-danger">
+        <strong>Başarısız!</strong> @TempData["NotOrder"]
+    </div>
+}
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
@@ -23,12 +34,73 @@
 
             </section>
         </div>
-        @if (Model != null)
+        @if (Model.Count>0)
         {
+             <section id="testimonials" class="testimonials section-bg">
+                    <div class="container" data-aos="fade-up">
+
+                        <div class="section-header">
+                            <h2>Yorumlarım</h2>
+                            <p>
+                                Quam sed id excepturi ccusantium dolorem ut quis dolores nisi llum nostrum enim velit qui ut et autem uia
+                                reprehenderit sunt deleniti
+                            </p>
+                        </div>
             @foreach (var item in Model)
             {
+              
+                        <div class="slides-2 swiper">
+                            <div class="swiper-wrapper">
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-wrap product">
+                                        <div class="testimonial-item product-grid">
+                                          <div class="inner">
+                                                <p>
+                                                    <a href="single.html" class="icon"><i class="icon-shopping-cart"></i></a>
+                                                    <a asp-action="Detail" asp-controller="Product" asp-route-id="@item.Id" class="icon"><i class="icon-eye"></i></a>
+                                                </p>
+                                          </div>
+                                            <h3>@item.Name</h3>
+                                            <h4>@item.ProductName</h4>
+                                            <div class="stars">
+                                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                            </div>
+                                            <p>
+                                                <i class="bi bi-quote quote-icon-left"></i>
+                                               @item.Description
+                                                <i class="bi bi-quote quote-icon-right"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div><!-- End testimonial item -->
+
+
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+
+                 
+
+                <!-- End Testimonials Section -->
                 <button asp-action="DeleteUserComment" asp-controller="Profile" asp-route-id="@item.Id">Sil</button>
             }
+                </div>
+            </section>
+        }
+        else
+        {
+            <section id="projects" class="projects section-padding-100 mt-100 col-lg-8 loginRegisterOps">
+                <div class="container" data-aos="fade-up">
+
+                    <div class="section-header">
+                        <h3>Hiç Yorumunuz Yok.</h3>
+                    </div>
+                </div>
+                <div class="mb-5 contactFormOps d-flex justify-content-center">
+                    <button href="" onclick="location.href='@Url.Action("AddUserComment", "Profile")'" type="button" class="btn btn-warning-outline">Yorum Ekle</button>
+                </div>
+            </section>
         }
 
 

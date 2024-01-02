@@ -91,6 +91,7 @@
                                     <th class="product-thumbnail"></th>
                                     <th class="product-name">Ürün</th>
                                     <th class="product-price">Fiyat</th>
+                                    <th class="product-quantity">Beden</th>
                                     <th class="product-quantity">Adet</th>
                                     <th class="product-total">Toplam Fiyat</th>
                                     <th class="product-remove">Sil</th>
@@ -106,7 +107,11 @@
                                         <td class="product-name">
                                             <h2 class="h5 text-black">@item.ProductName</h2>
                                         </td>
+                                       
                                         <td>@item.Price</td>
+                                        <td class="product-name">
+                                            <h2 class="h5 text-black">@item.Size</h2>
+                                        </td>
                                         <td class="text-center">
                                             <div class="input-group mb-3 d-flex align-items-center quantity-container justify-content-center" style="max-width: 100px;">
                                                 <div class="input-group-prepend">
@@ -114,7 +119,7 @@
                                                 </div>
                                                 <input type="text" class="form-control text-center quantity-amount" value="@item.Quantity" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                                                 <div class="input-group-append">
-                                                    <button asp-controller="Shopping" asp-action="AddItemCart" asp-route-id="@item.ProductId" type="submit" class="btn btn-outline-black increase" type="button">&plus;</button>
+                                                    <button asp-controller="Shopping" asp-action="IncreaseItemCart" asp-route-id="@item.ProductId" type="submit" class="btn btn-outline-black increase" type="button">&plus;</button>
                                                 </div>
                                             </div>
 
@@ -183,7 +188,7 @@
 
                                     <div class="row contactFormOps">
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-warning-outline">Siparişi Onayla</button>
+                                            <button asp-controller="Shopping" asp-action="ConfirmCart" type="submit" class="btn btn-warning-outline">Siparişi Onayla</button>
                                         </div>
                                     </div>
                                 </div>

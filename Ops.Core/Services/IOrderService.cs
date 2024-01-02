@@ -1,4 +1,5 @@
 ﻿using Ops.Core.Entities;
+using Ops.Core.Result.Abstract;
 using Ops.Core.VMs;
 using Ops.Core.VMs.Create;
 using System;
@@ -11,5 +12,6 @@ namespace Ops.Core.Services
 {
     public interface IOrderService:IService<Order,OrderCreateVM,OrderVM>
     {
+        Task<IAppResult<OrderVM>> CreateOrder(IEnumerable<CartItemVM> cart,int userId);
     }
 }

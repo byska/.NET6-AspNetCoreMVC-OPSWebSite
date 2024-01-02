@@ -10,6 +10,7 @@ namespace Ops.Core.VMs
 {
     public class OrderVM
     {
+        public int OrderId { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public List<int> ProductId { get; set; }
         public DateTime CreatedDate { get; set; }

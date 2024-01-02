@@ -36,10 +36,11 @@
                     @if (User.IsInRole("admin"))
                     {
                         <li class="dropdown">
-
-                            <span class="icon-ops">
-                                <i class="fa-solid fa-user"></i>
-                            </span>
+                            <a asp-action ="UserProfile" asp-controller="Profile">
+                                <span class="icon-ops"> 
+                                    <i class="fa-solid fa-user"></i>
+                                </span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                            </a>
                             <ul>
                                 <li><a asp-action="" asp-controller="">Kullanıcı Bilgilerim</a></li>
                                 <li><a asp-action="" asp-controller="">Admin Sayfası</a></li>
@@ -50,9 +51,11 @@
                     else
                     {
                         <li class="dropdown">
+                            <a asp-action="UserProfile" asp-controller="Profile">
                             <span class="icon-ops">
-                                <i class="fa-solid fa-user"></i>
-                            </span>
+                            <i class="fa-solid fa-user"></i>
+                                </span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                            </a>
                             <ul>
                                 <li><a asp-action="UserProfile" asp-controller="Profile">Kişisel Bilgileriniz</a></li>
                                 <li><a asp-action="GetUserAddress" asp-controller="Profile">Adresler</a></li>
@@ -67,9 +70,12 @@
                 else
                 {
                     <li class="dropdown">
-                        <span class="icon-ops">
+                        <a asp-action="Login" asp-controller="User">
+                            <span class="icon-ops"> 
                             <i class="fa-solid fa-user"></i>
-                        </span>
+                            </span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                       
+                        </a>
                         <ul>
                             <li><a asp-action="Login" asp-controller="User">Giriş Yap</a></li>
                             <li><a asp-action="Register" asp-controller="User">Üye Ol</a></li>

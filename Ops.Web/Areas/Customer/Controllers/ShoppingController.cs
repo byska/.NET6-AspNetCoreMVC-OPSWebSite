@@ -7,6 +7,7 @@ using Microsoft.CodeAnalysis;
 using Ops.Web.Extensions;
 using Ops.Core.Entities;
 using Ops.Core.Services;
+using System.Drawing;
 
 namespace Ops.Web.Areas.Customer.Controllers
 {
@@ -14,11 +15,14 @@ namespace Ops.Web.Areas.Customer.Controllers
     public class ShoppingController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IOrderService _orderService;
+        private readonly UserManager<AppUser> _userManager;
 
-        public ShoppingController(IProductService productService)
+        public ShoppingController(IProductService productService, UserManager<AppUser> userManager, IOrderService orderService)
         {
             _productService = productService;
-
+            _userManager = userManager;
+            _orderService = orderService;
         }
         public IActionResult Index()
         {
@@ -34,24 +38,62 @@ namespace Ops.Web.Areas.Customer.Controllers
             };
             return View(cart);
         }
-        public async Task<IActionResult> AddItemCart(int id)
+        public async Task<IActionResult> AddItemCart(int id, string size)
         {
-            var product = (await _productService.GetByIdAsync(id)).Data;
+            if (string.IsNullOrEmpty(size))
+            {
+                TempData["Error"] = "Lütfen bir beden seçiniz.";
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+            var product = (await _productService.GetAllByIncludeAsync(x => x.Id == id, x => x.Photos, x => x.Stock)).Data.FirstOrDefault();
+          
             List<CartItemVM> cart = HttpContext.Session.GetJson<List<CartItemVM>>("Cart") ?? new List<CartItemVM>();
             CartItemVM cartItem = cart.Where(c => c.ProductId == id).FirstOrDefault();
 
             if (cartItem == null)
             {
-                cart.Add(new CartItemVM(product));
+                cartItem = new CartItemVM(product, size);
+                cart.Add(cartItem);
             }
             else
             {
-
                 cartItem.Quantity += 1;
             }
-            HttpContext.Session.SetJson("Cart", cart);
-            TempData["Success"] = "Ürün sepetinize başarıyla eklenmiştir.";
-            return Redirect(Request.Headers["Referer"].ToString());
+            if(product.Stock>=cartItem.Quantity)
+            {
+                HttpContext.Session.SetJson("Cart", cart);
+                TempData["Success"] = "Ürün sepetinize başarıyla eklenmiştir.";
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+            else
+            {
+                TempData["Fail"] = "Stok yetersiz.";
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
+        }
+        public async Task<IActionResult> IncreaseItemCart(int id)
+        {
+
+            List<CartItemVM> cart = HttpContext.Session.GetJson<List<CartItemVM>>("Cart");
+            var product = (await _productService.GetAllByIncludeAsync(x => x.Id == id, x => x.Photos, x => x.Stock)).Data.FirstOrDefault();
+            CartItemVM cartItem = cart.Where(c => c.ProductId == id).FirstOrDefault();
+
+            if (cartItem != null)
+            {
+                cartItem.Quantity += 1;
+            }
+            if (product.Stock > cartItem.Quantity)
+            {
+                HttpContext.Session.SetJson("Cart", cart);
+
+                TempData["Success"] = "Ürün sayısı başarıyla azaltılmıştır.";
+                return RedirectToAction("GetCart");
+            }
+            else
+            {
+                TempData["Fail"] = "Stok yetersiz.";
+                return Redirect(Request.Headers["Referer"].ToString());
+            }
         }
         public async Task<IActionResult> DecreaseItemCart(int id)
         {
@@ -105,6 +147,41 @@ namespace Ops.Web.Areas.Customer.Controllers
             TempData["Success"] = "Sepetiniz başarıyla temizlenmiştir.";
             return RedirectToAction("GetCart");
         }
+        public async Task<IActionResult> ConfirmCart()
+        {
+            List<CartItemVM> cart = HttpContext.Session.GetJson<List<CartItemVM>>("Cart");
+            AppUser user = await _userManager.GetUserAsync(HttpContext.User);
 
+            if (user == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                if (cart.Count() != 0)
+                {
+
+
+                    var result = await _orderService.CreateOrder(cart, user.Id);
+                    if (result.StatusCode == 200)
+                    {
+                        TempData["result"] = "Siparişiniz onaylandı!";
+                        return RedirectToAction("GetUserOrder", "Profile");
+                    }
+                    else
+                    {
+                        TempData["result"] = "Sipariş Onaylanamadı!";
+                        return RedirectToAction("GetCart");
+                    }
+
+                }
+                else
+                {
+                    TempData["result"] = "Sepetiniz Boş!";
+                    return RedirectToAction("GetCart");
+                }
+            }
+
+        }
     }
 }
