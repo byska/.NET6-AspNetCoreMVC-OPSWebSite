@@ -34,14 +34,58 @@
 
             </section>
         </div>
-@if(Model.Count != 0 && Model != null)
-{
-    @foreach(var item in Model)
-    {
-        <button asp-action="UpdateUserAddress" asp-controller="Profile" asp-route-id="@item.Id">Güncelle</button>
-        <button asp-action="DeleteUserAddress" asp-controller="Profile" asp-route-id="@item.Id">Sil</button>
+        <div class="col-lg-8">
+            <section class="login-area section-padding-100 row gy-4 mt-1 loginRegisterOps ">
 
-    }
-}
-<button asp-action="AddUserAddress" asp-controller="Profile">Yeni Adres Ekle</button>
+                <div class="login-content">
+                    <h3>Adreslerim</h3>
+                    @if (Model.Count > 0 && Model != null)
+                    {
+                        <div class="col-lg-8">
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-lg-6 mb-4">
+                                    <div class="card border-warning mb-3 animate-box">
+                                        <div class="card-header"><strong style="color:black;">Alıcı Adı Soyadı: </strong>@item.FirstName @item.LastName</div>
+                                        <div class="card-body ">
+                                            <div class="product-grid">
+                                            <h5 class="card-title">@item.CityName/@item.CountyName</h5>
+                                            <p class="card-text">@item.Description</p>
+                                            <div class="inner">
+                                                <p>
+                                                        <a asp-action="DetailAddress" asp-controller="Profile" asp-route-id="@item.Id" class="icon"><i class="icon-eye"></i></a>
+                                                        <a asp-action="DeleteAddress" asp-controller="Profile" asp-route-id="@item.Id" class="icon"><i class="icon-trash"></i></a>
+                                                </p>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                }
+                              
+                            </div>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <section id="projects" class="projects section-padding-100 mt-100 col-lg-8 loginRegisterOps">
+                            <div class="container" data-aos="fade-up">
+
+                                <div class="section-header">
+                                    <h3>Hiç Adresiniz Yok.</h3>
+                                </div>
+                            </div>
+                          
+                        </section>
+                    }
+                    <div class="mb-5 contactFormOps d-flex justify-content-center">
+                        <button href="" onclick="location.href='@Url.Action("AddUserAddress", "Profile")'" type="button" class="btn btn-warning-outline">Adres Ekle</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
 

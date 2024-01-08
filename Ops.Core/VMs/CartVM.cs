@@ -10,5 +10,6 @@ namespace Ops.Core.VMs
     {
         public List<CartItemVM> CartItems { get; set; }
         public decimal GrandTotal { get; set; }
+        public int AddressId { get; set; }
     }
 }

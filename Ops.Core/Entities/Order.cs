@@ -14,5 +14,7 @@ namespace Ops.Core.Entities
         public ICollection<ProductOrder>? OrderProducts { get; set; }
         public decimal TotalPrice { get; set; }
         public string? ShipCode { get; set; }
+        public int AddressId { get; set; }
+        public Address Address { get; set; }
     }
 }

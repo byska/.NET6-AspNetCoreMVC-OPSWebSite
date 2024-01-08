@@ -129,25 +129,38 @@ namespace Ops.Web.Areas.Customer.Controllers
 
         public async Task<IActionResult> AddUserAddress()
         {
+            List<string> cities = await _addressService.GetCities();
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> AddUserAddress(AddressCreateVM addressCreateVM)
         {
+            
             AppUser user = await _userManager.GetUserAsync(HttpContext.User);
             addressCreateVM.CustomerId = user.Id;
-            var address = await _addressService.AddAsync(addressCreateVM);
-            if (address.Data != null && address.Errors == null)
+            if (ModelState.IsValid)
             {
-                ViewData["userAddressResult"] = "Adres bilginiz başarıyla eklenmiştir.";
-                return RedirectToAction("GetUserAddress");
+                var address = await _addressService.AddAsync(addressCreateVM);
+                if (address.Data != null && address.Errors == null)
+                {
+                    ViewData["userAddressResult"] = "Adres bilginiz başarıyla eklenmiştir.";
+                    return RedirectToAction("GetUserAddress");
+                }
+                else
+                {
+                    foreach (var error in address.Errors)
+                    {
+                        ModelState.AddModelError("addAddress", error);
+
+                    }
+
+                    ViewData["userAddressError"] = "Adres bilginiz eklenemedi.";
+                    return View(addressCreateVM);
+                }
+
             }
-            else
-            {
-                ViewData["userAddressError"] = "Adres bilginiz eklenemedi.";
-                return View(addressCreateVM);
-            }
+            return View(addressCreateVM);
 
         }
         public async Task<IActionResult> UpdateUserAddress(int id)
@@ -178,7 +191,7 @@ namespace Ops.Web.Areas.Customer.Controllers
         public async Task<IActionResult> AddUserComment()
         {
             IEnumerable<OrderVM> ordersVM = (await _orderService.GetAllActiveAsync()).Data;
-            if(ordersVM.Count()>0)
+            if (ordersVM.Count() > 0)
             {
                 List<ProductCommentSelectListVM> selectList = new List<ProductCommentSelectListVM>();
                 foreach (var orders in ordersVM)

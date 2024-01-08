@@ -14,8 +14,8 @@ namespace Ops.Core.VMs
         public string LastName { get; set; }
         public string Description { get; set; }
         public string PhoneNumber { get; set; }
-        public int ZIP { get; set; }
-        public int CityId { get; set; }
-        public int CountyId { get; set; }
+        public string ZIP { get; set; }
+        public string CityName { get; set; }
+        public string CountyName { get; set; }
     }
 }

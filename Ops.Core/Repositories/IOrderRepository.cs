@@ -1,17 +1,16 @@
 ﻿using Ops.Core.Entities;
 using Ops.Core.Result.Abstract;
 using Ops.Core.VMs;
-using Ops.Core.VMs.Create;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ops.Core.Services
+namespace Ops.Core.Repositories
 {
-    public interface IOrderService : IService<Order,OrderCreateVM,OrderVM>
+    public interface IOrderRepository : IGenericRepository<Order>
     {
-        Task<IAppResult<OrderVM>> CreateOrder(CartVM cart,int userId);
+        Order UpdateOrder(Order order);
     }
 }

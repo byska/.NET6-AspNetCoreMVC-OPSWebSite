@@ -18,7 +18,7 @@ namespace Ops.Core.Entities
         public string PhoneNumber { get; set; }
         public City City { get; set; }
         public int CityId { get; set; }
-        public int ZIP { get; set; }
+        public string ZIP { get; set; }
         public County County { get; set; }
         public int CountyId { get; set; }
         public AppUser Customer { get; set; }

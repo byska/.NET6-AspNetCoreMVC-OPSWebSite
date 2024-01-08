@@ -147,9 +147,9 @@ namespace Ops.Web.Areas.Customer.Controllers
             TempData["Success"] = "Sepetiniz başarıyla temizlenmiştir.";
             return RedirectToAction("GetCart");
         }
-        public async Task<IActionResult> ConfirmCart()
+        public async Task<IActionResult> ConfirmCart(CartVM cart)
         {
-            List<CartItemVM> cart = HttpContext.Session.GetJson<List<CartItemVM>>("Cart");
+            
             AppUser user = await _userManager.GetUserAsync(HttpContext.User);
 
             if (user == null)
@@ -158,7 +158,7 @@ namespace Ops.Web.Areas.Customer.Controllers
             }
             else
             {
-                if (cart.Count() != 0)
+                if (cart.CartItems.Count() != 0)
                 {
 
 

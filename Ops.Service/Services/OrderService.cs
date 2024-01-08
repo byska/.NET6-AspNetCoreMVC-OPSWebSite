@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Ops.Core.Entities;
+using Ops.Core.Repositories;
 using Ops.Core.Result.Abstract;
 using Ops.Core.Result.Concrete;
 using Ops.Core.Services;
@@ -17,34 +18,35 @@ namespace Ops.Service.Services
 {
     public class OrderService : Service<Order, OrderCreateVM, OrderVM>, IOrderService
     {
-        public OrderService(IUnitOfWork uow, IMapper mapper) : base(uow, mapper)
+        private readonly IOrderRepository _orderRepository;
+        public OrderService(IUnitOfWork uow, IMapper mapper, IOrderRepository orderRepository) : base(uow, mapper)
         {
-
+            _orderRepository = orderRepository;
         }
-        public async Task<IAppResult<OrderVM>> CreateOrder(IEnumerable<CartItemVM> cart, int userId)
+        public async Task<IAppResult<OrderVM>> CreateOrder(CartVM cart, int userId)
         {
-            Order order = new Order()
-            {
-                CustomerId = userId,
-                TotalPrice = cart.Sum(x => x.TotalPrice+35)
-            };
-            var orderCreate = _mapper.Map<OrderCreateVM>(order);
-            OrderVM orderVM = (await AddAsync(orderCreate)).Data;
 
-            foreach (CartItemVM cartItemVM in cart)
+            OrderCreateVM vm = new OrderCreateVM()
             {
+                AddressId = cart.AddressId,
+                CustomerId = userId,
+                TotalPrice = cart.GrandTotal
+            };
+            OrderVM orderVM = (await AddAsync(vm)).Data;
+            Order order = _mapper.Map<Order>(orderVM);
+            foreach (CartItemVM cartItemVM in cart.CartItems)
+            {
+
                 ProductOrder productOrder = new ProductOrder()
                 {
                     Amount = cartItemVM.Quantity,
                     ProductId = cartItemVM.ProductId,
-                    OrderId = orderVM.OrderId
-
+                    OrderId = order.Id
                 };
                 order.OrderProducts.Add(productOrder);
             }
-            var orderUpdate = _mapper.Map<OrderCreateVM>(order);
-            await UpdateAsync(orderUpdate);
-            var orderReturnVM = _mapper.Map<OrderVM>(order);
+            Order data = _orderRepository.UpdateOrder(order);
+            var orderReturnVM = _mapper.Map<OrderVM>(data);
             return AppResult<OrderVM>.Success(StatusCodes.Status200OK, orderReturnVM);
         }
     }

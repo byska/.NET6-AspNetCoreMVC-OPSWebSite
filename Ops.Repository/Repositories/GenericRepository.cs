@@ -49,6 +49,7 @@ namespace Ops.Repository.Repositories
 
         public IQueryable<T> GetAllActive()
         {
+           
            return _dbSet.Where(x => x.IsActive).AsNoTracking();
         }
 

@@ -17,7 +17,9 @@ namespace Ops.Service.Validation
           .NotEmpty().WithMessage("Ad alanı boş olamaz.")
           .MaximumLength(50).WithMessage("Ad maksimum 50 karakter olmalıdır.");
             RuleFor(x => x.ZIP)
-          .InclusiveBetween(1,5).WithMessage("Geçerli bir posta kodu giriniz.");
+    .Cascade(CascadeMode.StopOnFirstFailure)
+    .Must(z => z.Length == 5 && z.All(char.IsDigit))
+    .WithMessage("ZIP kodu 5 basamaklı olmalı ve sadece sayı içermelidir.");
 
             RuleFor(x => x.LastName)
                 .NotEmpty().WithMessage("Soyad alanı boş olamaz.")

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ops.Repository.Migrations
 {
-    public partial class _211223Deneme1 : Migration
+    public partial class _040124Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace Ops.Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 12, 21, 14, 14, 20, 526, DateTimeKind.Local).AddTicks(5182)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 1, 4, 10, 48, 7, 29, DateTimeKind.Local).AddTicks(9925)),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -37,7 +37,7 @@ namespace Ops.Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2023, 12, 21, 14, 14, 20, 526, DateTimeKind.Local).AddTicks(5481)),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(228)),
                     ModifiedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -546,7 +546,7 @@ namespace Ops.Repository.Migrations
                     Description = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
-                    ZIP = table.Column<int>(type: "int", maxLength: 5, nullable: false),
+                    ZIP = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false),
                     CountyId = table.Column<int>(type: "int", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -644,8 +644,8 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedDate", "DeletedDate", "DisplayName", "IsActive", "ModifiedDate", "Name", "NormalizedName", "Status" },
                 values: new object[,]
                 {
-                    { 1, "f094288e-85d7-4d63-8337-e1b271da097f", new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4705), null, "Yönetici", true, null, "admin", null, 1 },
-                    { 2, "18103883-9c75-4695-86e2-b103da5d02f5", new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4709), null, "Müşteri", true, null, "customer", null, 1 }
+                    { 1, "6afc1cf7-9784-4d8d-a802-fe3c4bdaaaea", new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9677), null, "Yönetici", true, null, "admin", "ADMIN", 1 },
+                    { 2, "5659ce78-5542-40f0-8e83-9b7f179579e2", new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9686), null, "Müşteri", true, null, "customer", "CUSTOMER", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -653,9 +653,9 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedDate", "DateOfBirth", "DeletedDate", "Email", "EmailConfirmed", "FirstName", "IsActive", "LastName", "LockoutEnabled", "LockoutEnd", "MembershipAgreement", "ModifiedDate", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PersonelDataProtection", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Status", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "181a2f4f-3a7e-4526-9c9f-ff8d4e8144cf", new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4088), new DateTime(1998, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "besteyasak@gmail.com", false, "Beste", true, "Yasak", false, null, null, null, null, null, "Beste1998.", null, "05362459825", false, null, 1, false, "400a7db6-e2c4-4b86-b952-804abcf1ff85" },
-                    { 2, 0, "b38cd6b3-1896-4477-8e3d-2193d3a41217", new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4151), new DateTime(1997, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "huseyingulerman.1997@gmail.com", false, "Hüseyin", true, "Gülerman", false, null, null, null, null, null, "Beste1998.", null, "05325841236", false, null, 1, false, "6515a5d8-733a-4614-b7e5-fe7ec0649e76" },
-                    { 3, 0, "9d72be25-2797-423b-a21f-7d260f3e8635", new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4156), new DateTime(1997, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "orangepressstore@gmail.com", false, "Ayşe", true, "Tabak", false, null, null, null, null, null, "Beste1998.", null, "05325841236", false, null, 1, false, "477a1875-43c2-482f-b391-f2bc890dcfba" }
+                    { 1, 0, "d305f95d-53f1-4b47-a402-5a88fddefee1", new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8716), new DateTime(1998, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "besteyasak@gmail.com", false, "Beste", true, "Yasak", false, null, null, null, null, null, "Beste1998.", null, "05362459825", false, null, 1, false, "aa2b8f93-d38f-4596-9f25-6c6676396e38" },
+                    { 2, 0, "f1388cce-9def-409d-a071-4af74e7d29b0", new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8750), new DateTime(1997, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "huseyingulerman.1997@gmail.com", false, "Hüseyin", true, "Gülerman", false, null, null, null, null, null, "Beste1998.", null, "05325841236", false, null, 1, false, "e7b77c05-0c91-475b-9216-081247e632a3" },
+                    { 3, 0, "468c2af3-9dc6-47eb-833f-16fce9c498d5", new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8754), new DateTime(1997, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "orangepressstore@gmail.com", false, "Ayşe", true, "Tabak", false, null, null, null, null, null, "Beste1998.", null, "05325841236", false, null, 1, false, "c8f9a9f7-1e59-4d28-b67a-8d414db532f9" }
                 });
 
             migrationBuilder.InsertData(
@@ -663,13 +663,13 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "Name", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3639), null, true, null, "Tişört Regular", 1 },
-                    { 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3641), null, true, null, "Tişört Oversize", 1 },
-                    { 3, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3671), null, true, null, "Hoodie", 1 },
-                    { 4, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3673), null, true, null, "Sweatshirt", 1 },
-                    { 5, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3673), null, true, null, "Kol Çantası", 1 },
-                    { 6, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3674), null, true, null, "Cüzdan", 1 },
-                    { 7, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3675), null, true, null, "Baf", 1 }
+                    { 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8174), null, true, null, "Tişört Regular", 1 },
+                    { 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8177), null, true, null, "Tişört Oversize", 1 },
+                    { 3, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8178), null, true, null, "Hoodie", 1 },
+                    { 4, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8179), null, true, null, "Sweatshirt", 1 },
+                    { 5, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8179), null, true, null, "Kol Çantası", 1 },
+                    { 6, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8180), null, true, null, "Cüzdan", 1 },
+                    { 7, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8181), null, true, null, "Baf", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -677,8 +677,8 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "Name", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3738), null, true, null, "Istanbul", 1 },
-                    { 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3740), null, true, null, "Ankara", 1 }
+                    { 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8236), null, true, null, "Istanbul", 1 },
+                    { 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8239), null, true, null, "Ankara", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -686,24 +686,24 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "Name", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3871), null, true, null, "Black", 0 },
-                    { 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3873), null, true, null, "Blue", 0 },
-                    { 3, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3875), null, true, null, "Yellow", 0 }
+                    { 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8511), null, true, null, "Black", 0 },
+                    { 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8514), null, true, null, "Blue", 0 },
+                    { 3, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8516), null, true, null, "Yellow", 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Messages",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "Email", "IsActive", "ModifiedDate", "Name", "Status", "Subject" },
-                values: new object[] { 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4275), null, "Fiziksel bir mağazanız bulunuyor mu acaba?", "beyasak@hotmail.com", true, null, "Beste", 0, "Bilgi Alma" });
+                values: new object[] { 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8860), null, "Fiziksel bir mağazanız bulunuyor mu acaba?", "beyasak@hotmail.com", true, null, "Beste", 0, "Bilgi Alma" });
 
             migrationBuilder.InsertData(
                 table: "Sizes",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "Name", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4851), null, true, null, "Small", 0 },
-                    { 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4854), null, true, null, "Medium", 0 },
-                    { 3, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4855), null, true, null, "Large", 0 }
+                    { 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9812), null, true, null, "Small", 0 },
+                    { 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9815), null, true, null, "Medium", 0 },
+                    { 3, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9817), null, true, null, "Large", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -711,10 +711,10 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CityId", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "Name", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4019), null, true, null, "Fatih", 1 },
-                    { 2, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4021), null, true, null, "Üsküdar", 1 },
-                    { 3, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4022), null, true, null, "Kızılay", 1 },
-                    { 4, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4022), null, true, null, "Çankaya", 1 }
+                    { 1, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8638), null, true, null, "Fatih", 1 },
+                    { 2, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8640), null, true, null, "Üsküdar", 1 },
+                    { 3, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8640), null, true, null, "Kızılay", 1 },
+                    { 4, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8641), null, true, null, "Çankaya", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -722,8 +722,8 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "PhotoUrl", "Status", "Subtitle", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4216), null, true, null, "img/bg-img/bg-1.jpg", 1, "Eşsiz Bahar Koleksiyonumuza Bir Göz Gezdirin.", "Bahar Koleksiyonu" },
-                    { 2, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4217), null, true, null, "img/bg-img/bg-2.jpg", 1, "29 Ekime Özel Kargo Bedava.", "Kargo Bedava" }
+                    { 1, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8806), null, true, null, "img/bg-img/bg-1.jpg", 1, "Eşsiz Bahar Koleksiyonumuza Bir Göz Gezdirin.", "Bahar Koleksiyonu" },
+                    { 2, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8807), null, true, null, "img/bg-img/bg-2.jpg", 1, "29 Ekime Özel Kargo Bedava.", "Kargo Bedava" }
                 });
 
             migrationBuilder.InsertData(
@@ -731,10 +731,10 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "AddressId", "CreatedDate", "CustomerId", "DeletedDate", "IsActive", "ModifiedDate", "OrderStatus", "ShipCode", "Status", "TotalPrice" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4333), 1, null, true, null, 1, null, 1, 0m },
-                    { 2, null, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4352), 1, null, true, null, 4, null, 1, 0m },
-                    { 3, null, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4353), 1, null, true, null, 3, null, 1, 0m },
-                    { 4, null, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4354), 2, null, true, null, 2, null, 1, 0m }
+                    { 1, null, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9111), 1, null, true, null, 1, null, 1, 0m },
+                    { 2, null, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9116), 1, null, true, null, 4, null, 1, 0m },
+                    { 3, null, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9117), 1, null, true, null, 3, null, 1, 0m },
+                    { 4, null, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9118), 2, null, true, null, 2, null, 1, 0m }
                 });
 
             migrationBuilder.InsertData(
@@ -742,18 +742,18 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "Name", "Price", "Status", "TotalAmount" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4592), null, true, null, "Tişört", 200m, 1, null },
-                    { 2, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4596), null, true, null, "Kısa Kollu Tişört", 150m, 1, null },
-                    { 3, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4615), null, true, null, " Uzun Kollu Tişört", 300m, 1, null },
-                    { 4, 5, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4616), null, true, null, "Çanta", 400m, 1, null },
-                    { 5, 6, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4618), null, true, null, "Cüzdan", 400m, 1, null },
-                    { 6, 3, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4619), null, true, null, "Hoodie", 400m, 1, null },
-                    { 7, 7, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4620), null, true, null, "Baf", 400m, 1, null },
-                    { 8, 4, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4621), null, true, null, "Sweat", 500m, 1, null },
-                    { 9, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4622), null, true, null, "Kısa Kollu Tişört", 250m, 1, null },
-                    { 10, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4623), null, true, null, "Kısa Kollu Tişört", 350m, 1, null },
-                    { 11, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4624), null, true, null, "Kısa Kollu Tişört", 450m, 1, null },
-                    { 12, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4625), null, true, null, "Kısa Kollu Tişört", 1050m, 1, null }
+                    { 1, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9575), null, true, null, "Tişört", 200m, 1, null },
+                    { 2, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9579), null, true, null, "Kısa Kollu Tişört", 150m, 1, null },
+                    { 3, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9580), null, true, null, " Uzun Kollu Tişört", 300m, 1, null },
+                    { 4, 5, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9581), null, true, null, "Çanta", 400m, 1, null },
+                    { 5, 6, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9583), null, true, null, "Cüzdan", 400m, 1, null },
+                    { 6, 3, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9584), null, true, null, "Hoodie", 400m, 1, null },
+                    { 7, 7, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9585), null, true, null, "Baf", 400m, 1, null },
+                    { 8, 4, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9614), null, true, null, "Sweat", 500m, 1, null },
+                    { 9, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9616), null, true, null, "Kısa Kollu Tişört", 250m, 1, null },
+                    { 10, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9617), null, true, null, "Kısa Kollu Tişört", 350m, 1, null },
+                    { 11, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9618), null, true, null, "Kısa Kollu Tişört", 450m, 1, null },
+                    { 12, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9619), null, true, null, "Kısa Kollu Tişört", 1050m, 1, null }
                 });
 
             migrationBuilder.InsertData(
@@ -761,8 +761,8 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CityId", "CountyId", "CreatedDate", "CustomerId", "DeletedDate", "Description", "FirstName", "IsActive", "LastName", "ModifiedDate", "PhoneNumber", "Status", "ZIP" },
                 values: new object[,]
                 {
-                    { 1, 1, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3493), 1, null, "Üsküdar metrobüse yakın", "Beste", true, "Yasak", null, "05360249093", 1, 34700 },
-                    { 2, 1, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3501), 2, null, "Acıbadem metroya yakın", "Hüseyin", true, "Gülerman", null, "05360249093", 1, 34700 }
+                    { 1, 2, 3, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8058), 1, null, "Üsküdar metrobüse yakın", "Beste", true, "Yasak", null, "05360249093", 1, "34700" },
+                    { 2, 1, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8064), 2, null, "Acıbadem metroya yakın", "Hüseyin", true, "Gülerman", null, "05360249093", 1, "34700" }
                 });
 
             migrationBuilder.InsertData(
@@ -770,10 +770,10 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "ColorId", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "ProductId", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3803), null, true, null, 1, 0 },
-                    { 2, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3806), null, true, null, 1, 0 },
-                    { 3, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3808), null, true, null, 2, 0 },
-                    { 4, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3809), null, true, null, 3, 0 }
+                    { 1, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8451), null, true, null, 1, 0 },
+                    { 2, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8454), null, true, null, 1, 0 },
+                    { 3, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8456), null, true, null, 2, 0 },
+                    { 4, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8457), null, true, null, 3, 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -781,19 +781,19 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "CustomerId", "DeletedDate", "Description", "IsActive", "Mark", "ModifiedDate", "ProductId", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3935), 1, null, "Çok güzel ürünler", true, 5, null, 1, 1 },
-                    { 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3936), 1, null, "Çok güzel ürünler", true, 4, null, 2, 1 },
-                    { 3, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3937), 2, null, "Çok güzel ürünler", true, 5, null, 1, 1 },
-                    { 4, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3938), 2, null, "Çok güzel ürünler", true, 5, null, 2, 1 },
-                    { 5, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3938), 1, null, "Çok demode", true, 1, null, 1, 1 },
-                    { 6, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3939), 2, null, "Kibar duruyor ama pahalı", true, 2, null, 1, 1 },
-                    { 7, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3940), 1, null, "Ehhhhh fena sayılmaz. Birdaha almam ama. :)", true, 3, null, 1, 1 },
-                    { 8, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3940), 2, null, "Çok güzel ürünler. Baya beğendim. Alınır", true, 4, null, 1, 1 },
-                    { 9, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3941), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 5, null, 1, 1 },
-                    { 10, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3957), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 2, null, 1, 1 },
-                    { 11, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3960), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 5, null, 1, 1 },
-                    { 12, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3960), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 1, null, 1, 1 },
-                    { 13, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(3961), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 2, null, 1, 1 }
+                    { 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8575), 1, null, "Çok güzel ürünler", true, 5, null, 1, 1 },
+                    { 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8576), 1, null, "Çok güzel ürünler", true, 4, null, 2, 1 },
+                    { 3, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8577), 2, null, "Çok güzel ürünler", true, 5, null, 1, 1 },
+                    { 4, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8578), 2, null, "Çok güzel ürünler", true, 5, null, 2, 1 },
+                    { 5, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8578), 1, null, "Çok demode", true, 1, null, 1, 1 },
+                    { 6, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8579), 2, null, "Kibar duruyor ama pahalı", true, 2, null, 1, 1 },
+                    { 7, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8580), 1, null, "Ehhhhh fena sayılmaz. Birdaha almam ama. :)", true, 3, null, 1, 1 },
+                    { 8, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8580), 2, null, "Çok güzel ürünler. Baya beğendim. Alınır", true, 4, null, 1, 1 },
+                    { 9, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8581), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 5, null, 1, 1 },
+                    { 10, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8581), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 2, null, 1, 1 },
+                    { 11, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8582), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 5, null, 1, 1 },
+                    { 12, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8583), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 1, null, 1, 1 },
+                    { 13, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(8583), 1, null, "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.", true, 2, null, 1, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -801,12 +801,12 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "ColorId", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "PhotoUrl", "ProductId", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4407), null, true, null, "tshirt-1.jpeg", 1, 0 },
-                    { 2, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4411), null, true, null, "tshirt-2.jpeg", 1, 0 },
-                    { 3, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4412), null, true, null, "tshirt-1.jpeg", 1, 0 },
-                    { 4, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4414), null, true, null, "tshirt-2.jpeg", 2, 0 },
-                    { 5, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4415), null, true, null, "tshirt-1.jpeg", 3, 0 },
-                    { 6, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4417), null, true, null, "tshirt-2.jpeg", 4, 0 }
+                    { 1, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9344), null, true, null, "tshirt-1.jpeg", 1, 0 },
+                    { 2, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9349), null, true, null, "tshirt-2.jpeg", 1, 0 },
+                    { 3, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9351), null, true, null, "tshirt-1.jpeg", 1, 0 },
+                    { 4, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9352), null, true, null, "tshirt-2.jpeg", 2, 0 },
+                    { 5, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9354), null, true, null, "tshirt-1.jpeg", 3, 0 },
+                    { 6, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9376), null, true, null, "tshirt-2.jpeg", 4, 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -814,11 +814,11 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "Description", "IsActive", "ModifiedDate", "ProductId", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4470), null, "30 derecede yıkayınız", true, null, 1, 1 },
-                    { 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4471), null, "30 derecede yıkayınız", true, null, 2, 1 },
-                    { 3, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4472), null, "30 derecede yıkayınız", true, null, 3, 1 },
-                    { 4, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4473), null, "30 derecede yıkayınız", true, null, 4, 1 },
-                    { 5, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4473), null, "30 derecede yıkayınız", true, null, 5, 1 }
+                    { 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9433), null, "30 derecede yıkayınız", true, null, 1, 1 },
+                    { 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9434), null, "30 derecede yıkayınız", true, null, 2, 1 },
+                    { 3, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9435), null, "30 derecede yıkayınız", true, null, 3, 1 },
+                    { 4, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9435), null, "30 derecede yıkayınız", true, null, 4, 1 },
+                    { 5, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9436), null, "30 derecede yıkayınız", true, null, 5, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -826,12 +826,12 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "Amount", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "OrderId", "ProductId", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4532), null, true, null, 1, 1, 0 },
-                    { 2, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4533), null, true, null, 1, 2, 0 },
-                    { 3, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4534), null, true, null, 2, 3, 0 },
-                    { 4, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4534), null, true, null, 2, 2, 0 },
-                    { 5, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4535), null, true, null, 3, 4, 0 },
-                    { 6, 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4535), null, true, null, 4, 5, 0 }
+                    { 1, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9497), null, true, null, 1, 1, 0 },
+                    { 2, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9498), null, true, null, 1, 2, 0 },
+                    { 3, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9499), null, true, null, 2, 3, 0 },
+                    { 4, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9500), null, true, null, 2, 2, 0 },
+                    { 5, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9501), null, true, null, 3, 4, 0 },
+                    { 6, 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9501), null, true, null, 4, 5, 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -839,15 +839,15 @@ namespace Ops.Repository.Migrations
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "ProductId", "SizeId", "Status" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4761), null, true, null, 1, 1, 0 },
-                    { 2, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4765), null, true, null, 2, 2, 0 },
-                    { 3, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4783), null, true, null, 3, 3, 0 }
+                    { 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9751), null, true, null, 1, 1, 0 },
+                    { 2, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9758), null, true, null, 2, 2, 0 },
+                    { 3, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9759), null, true, null, 3, 3, 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Stocks",
                 columns: new[] { "Id", "ColorId", "CreatedDate", "DeletedDate", "IsActive", "ModifiedDate", "ProductId", "SizeId", "Status", "Stocks" },
-                values: new object[] { 2, 1, new DateTime(2023, 12, 21, 14, 14, 20, 527, DateTimeKind.Local).AddTicks(4913), null, true, null, 2, 1, 0, 20 });
+                values: new object[] { 2, 1, new DateTime(2024, 1, 4, 10, 48, 7, 30, DateTimeKind.Local).AddTicks(9892), null, true, null, 2, 1, 0, 20 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",

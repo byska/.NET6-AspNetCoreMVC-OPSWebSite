@@ -36,6 +36,9 @@ namespace Ops.Service.Mapping
                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category.Id));
             CreateMap<HomeSlider,HomeSliderVM>();
             CreateMap<Size, SizeVM>();
+            CreateMap<Address, AddressVM>()
+                .ForMember(dest => dest.CityName, opt => opt.MapFrom(src => src.City.Name))
+                .ForMember(dest => dest.CountyName, opt => opt.MapFrom(src => src.County.Name));
             CreateMap<Color, ColorVM>();
             CreateMap<Category, CategoryVM>();
             CreateMap<MessageCreateVM, Message>();
