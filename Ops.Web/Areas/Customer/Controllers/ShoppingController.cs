@@ -45,22 +45,21 @@ namespace Ops.Web.Areas.Customer.Controllers
                 TempData["Error"] = "Lütfen bir beden seçiniz.";
                 return Redirect(Request.Headers["Referer"].ToString());
             }
-            var product = (await _productService.GetAllByIncludeAsync(x => x.Id == id, x => x.Photos, x => x.Stock)).Data.FirstOrDefault();
+            var product = (await _productService.GetAllByIncludeAsync(x => x.Id == id, x => x.Photos, x => x.Stock,x=>x.SizeProducts)).Data.FirstOrDefault();
           
             List<CartItemVM> cart = HttpContext.Session.GetJson<List<CartItemVM>>("Cart") ?? new List<CartItemVM>();
             CartItemVM cartItem = cart.Where(c => c.ProductId == id).FirstOrDefault();
-
-            if (cartItem == null)
+            if (product.Stock >= cartItem.Quantity)
             {
-                cartItem = new CartItemVM(product, size);
-                cart.Add(cartItem);
-            }
-            else
-            {
-                cartItem.Quantity += 1;
-            }
-            if(product.Stock>=cartItem.Quantity)
-            {
+                if (cartItem == null)
+                {
+                    cartItem = new CartItemVM(product, size);
+                    cart.Add(cartItem);
+                }
+                else
+                {
+                    cartItem.Quantity += 1;
+                }
                 HttpContext.Session.SetJson("Cart", cart);
                 TempData["Success"] = "Ürün sepetinize başarıyla eklenmiştir.";
                 return Redirect(Request.Headers["Referer"].ToString());
@@ -70,6 +69,9 @@ namespace Ops.Web.Areas.Customer.Controllers
                 TempData["Fail"] = "Stok yetersiz.";
                 return Redirect(Request.Headers["Referer"].ToString());
             }
+
+           
+           
         }
         public async Task<IActionResult> IncreaseItemCart(int id)
         {
