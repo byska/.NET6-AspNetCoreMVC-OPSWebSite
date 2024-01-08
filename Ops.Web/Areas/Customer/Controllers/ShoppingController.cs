@@ -149,7 +149,6 @@ namespace Ops.Web.Areas.Customer.Controllers
         }
         public async Task<IActionResult> ConfirmCart(CartVM cart)
         {
-            
             AppUser user = await _userManager.GetUserAsync(HttpContext.User);
 
             if (user == null)
