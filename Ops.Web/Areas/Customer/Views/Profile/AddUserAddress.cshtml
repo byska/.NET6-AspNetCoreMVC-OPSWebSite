@@ -33,13 +33,21 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Şehir</label>
-                                <input asp-for="CityId" type="text" class="form-control" id="city">
+                                <label for="cities">Şehir</label>
+                                <select id="cities" onchange="populateDistricts()">
+                                    @foreach (var city in ViewBag.Cities as List<City>)
+                                    {
+                                        <option value="@city.Id">@city.Name</option>
+                                    }
+                                </select>                         
                                 <span asp-validation-for="CityId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <label>İlçe</label>
-                                <input asp-for="CountyId" type="text" class="form-control" id="county">
+                                <label for="districts">İlçe</label>
+                                <select id="districts">
+
+                                </select>
+                               
                                 <span asp-validation-for="CountyId" class="text-danger"></span>
                             </div>
 
@@ -67,3 +75,7 @@
         </div>
     </div>
 </section>
+<script>
+    var citiesData = @Html.Raw(Json.Serialize(ViewBag.Cities));
+
+</script>

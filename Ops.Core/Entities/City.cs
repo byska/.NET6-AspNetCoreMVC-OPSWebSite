@@ -5,12 +5,13 @@
         public City()
         {
             Addresses = new HashSet<Address>();
-            Counties = new HashSet<County>();
+            Districts = new List<District>();
 
         }
         public string Name { get; set; }
         public ICollection<Address>? Addresses { get; set; }
-        public ICollection<County>? Counties { get; set; }
+        public List<District>? Districts { get; set; }
+
 
     }
 }

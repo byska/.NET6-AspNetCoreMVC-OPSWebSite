@@ -11,7 +11,7 @@ namespace Ops.Core.Services
 {
     public interface IAddressService : IService<Address, AddressCreateVM, AddressVM>
     {
-         Task<List<string>> GetCities();
+         Task<List<City>> GetCities();
          Task<List<string>> GetCountries(int id);
     }
 }

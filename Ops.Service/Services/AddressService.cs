@@ -20,16 +20,27 @@ namespace Ops.Service.Services
         {
         }
 
-        public async Task<List<string>> GetCities()
+        public async Task<List<City>> GetCities()
         {
             var url = "https://turkiyeapi.dev";
             var client = new RestClient(url);
             var request =new RestRequest("/api/v1/provinces", Method.Get);
             RestResponse response = await client.ExecuteAsync(request);
+           
             if(response.IsSuccessful)
             {
-                List<string> dataList = JsonConvert.DeserializeObject<List<string>>(response.Content);
-                return dataList;
+                var jsonData = JsonConvert.DeserializeObject<RootObject>(response.Content);
+                if(jsonData != null && jsonData.Status=="OK")
+                {
+                    return jsonData.Data;
+                  
+                }
+                else
+                {
+                    Console.WriteLine("API'den geçerli veri alınamadı.");
+                    return null;
+                }
+               
             }
             else
             {

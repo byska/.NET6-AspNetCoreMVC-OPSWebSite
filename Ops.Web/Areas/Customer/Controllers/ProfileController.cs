@@ -129,7 +129,8 @@ namespace Ops.Web.Areas.Customer.Controllers
 
         public async Task<IActionResult> AddUserAddress()
         {
-            List<string> cities = await _addressService.GetCities();
+            List<City> cities = await _addressService.GetCities();
+            ViewBag.Cities= cities;
             return View();
         }
 

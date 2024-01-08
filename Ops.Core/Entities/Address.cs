@@ -19,7 +19,7 @@ namespace Ops.Core.Entities
         public City City { get; set; }
         public int CityId { get; set; }
         public string ZIP { get; set; }
-        public County County { get; set; }
+        public District County { get; set; }
         public int CountyId { get; set; }
         public AppUser Customer { get; set; }
         public int CustomerId { get; set; } 

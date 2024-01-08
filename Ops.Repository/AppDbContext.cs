@@ -20,7 +20,7 @@ namespace Ops.Repository
         public DbSet<Address> Addresses { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<County> Counties { get; set; }
+        public DbSet<District> Counties { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }

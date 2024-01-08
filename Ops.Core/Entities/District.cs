@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ops.Core.Entities
 {
-    public class County : BaseEntity
+    public class District : BaseEntity
     {
-        public County()
+        public District()
         {
             Addresses = new HashSet<Address>();
         }

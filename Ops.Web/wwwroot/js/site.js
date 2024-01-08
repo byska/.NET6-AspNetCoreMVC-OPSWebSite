@@ -61,3 +61,37 @@ $(document).ready(function () {
 		}
 	});
 });
+document.addEventListener('DOMContentLoaded', function () {
+	populateCities();
+});
+
+function populateCities() {
+	const citiesDropdown = document.getElementById('cities');
+
+	citiesData.forEach(city => {
+		const option = document.createElement('option');
+		option.value = city.id;
+		option.textContent = city.name;
+		citiesDropdown.appendChild(option);
+	});
+
+	// Populate districts for the initially selected city
+	populateDistricts();
+}
+
+function populateDistricts() {
+	const citiesDropdown = document.getElementById('cities');
+	const selectedCityId = citiesDropdown.value;
+
+	const selectedCity = citiesData.find(city => city.id === parseInt(selectedCityId));
+
+	const districtsDropdown = document.getElementById('districts');
+	districtsDropdown.innerHTML = ''; // Clear existing options
+
+	selectedCity.districts.forEach(district => {
+		const option = document.createElement('option');
+		option.value = district.id;
+		option.textContent = district.name;
+		districtsDropdown.appendChild(option);
+	});
+}
