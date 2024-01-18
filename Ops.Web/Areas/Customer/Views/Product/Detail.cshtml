@@ -1,4 +1,26 @@
-﻿<div class="row">
+﻿@using System.Text.Json;
+@model ProductsWithFeaturesVM
+
+@{
+    if (Model != null)
+    {
+        ViewData["Title"] = Model.Name;
+    }
+    else
+    {
+        ViewData["Title"] = "Ürün Adı Belirtilmemiş";
+    }
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+@{
+
+    var inStockSize = JsonSerializer.Serialize(Model.Size);
+    ProductWithCategoryVM category = ViewBag.ProductCategory as ProductWithCategoryVM;
+    List<ColorVM> colors = ViewBag.Colors as List<ColorVM>;
+    List<SizeVM> sizes = ViewBag.Sizes as List<SizeVM>;
+    List<CommentVM> comments = ViewBag.Comments as List<CommentVM>;
+}
+<div class="row">
     <div class="col-12 col-lg-3">
         <div id="carousel-@Model.Id" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
