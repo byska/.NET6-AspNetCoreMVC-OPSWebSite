@@ -95,6 +95,14 @@ namespace Ops.Web
                     options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
                 });
             });
+            //builder.Services.AddDbContext<AppDbContext>(x =>
+            //{
+            //    x.UseNpgsql(builder.Configuration.GetConnectionString("Postgresql"), options =>
+            //    {
+            //        options.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
+            //    });
+            //});
+
 
             builder.Services.AddAuthentication(opt =>
             {

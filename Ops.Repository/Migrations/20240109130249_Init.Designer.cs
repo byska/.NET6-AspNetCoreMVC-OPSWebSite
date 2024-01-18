@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Ops.Repository;
 
 #nullable disable
@@ -12,8 +13,8 @@ using Ops.Repository;
 namespace Ops.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231220131908_201223Init21")]
-    partial class _201223Init21
+    [Migration("20240109130249_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,7 +132,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -179,9 +181,10 @@ namespace Ops.Repository.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("ZIP")
+                    b.Property<string>("ZIP")
+                        .IsRequired()
                         .HasMaxLength(5)
-                        .HasColumnType("int");
+                        .HasColumnType("nvarchar(5)");
 
                     b.HasKey("Id");
 
@@ -197,9 +200,9 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CityId = 1,
-                            CountyId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2559),
+                            CityId = 2,
+                            CountyId = 3,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7305),
                             CustomerId = 1,
                             Description = "Üsküdar metrobüse yakın",
                             FirstName = "Beste",
@@ -207,14 +210,14 @@ namespace Ops.Repository.Migrations
                             LastName = "Yasak",
                             PhoneNumber = "05360249093",
                             Status = 1,
-                            ZIP = 34700
+                            ZIP = "34700"
                         },
                         new
                         {
                             Id = 2,
                             CityId = 1,
                             CountyId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2565),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7313),
                             CustomerId = 2,
                             Description = "Acıbadem metroya yakın",
                             FirstName = "Hüseyin",
@@ -222,7 +225,7 @@ namespace Ops.Repository.Migrations
                             LastName = "Gülerman",
                             PhoneNumber = "05360249093",
                             Status = 1,
-                            ZIP = 34700
+                            ZIP = "34700"
                         });
                 });
 
@@ -241,7 +244,7 @@ namespace Ops.Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 20, 16, 19, 7, 823, DateTimeKind.Local).AddTicks(1613));
+                        .HasDefaultValue(new DateTime(2024, 1, 9, 16, 2, 48, 277, DateTimeKind.Local).AddTicks(8266));
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
@@ -275,6 +278,30 @@ namespace Ops.Repository.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "b5e652f0-f52a-4730-8769-3d4f78e5322f",
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2699),
+                            DisplayName = "Yönetici",
+                            IsActive = true,
+                            Name = "admin",
+                            NormalizedName = "ADMIN",
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "62b8b256-795d-43f4-8337-62708852a30b",
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2743),
+                            DisplayName = "Müşteri",
+                            IsActive = true,
+                            Name = "customer",
+                            NormalizedName = "CUSTOMER",
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("Ops.Core.Entities.AppUser", b =>
@@ -295,7 +322,7 @@ namespace Ops.Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 12, 20, 16, 19, 7, 823, DateTimeKind.Local).AddTicks(1978));
+                        .HasDefaultValue(new DateTime(2024, 1, 9, 16, 2, 48, 277, DateTimeKind.Local).AddTicks(9282));
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -377,13 +404,76 @@ namespace Ops.Repository.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "43786130-507a-426e-8574-b2b2e6f2389c",
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8649),
+                            DateOfBirth = new DateTime(1998, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "besteyasak@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Beste",
+                            IsActive = true,
+                            LastName = "Yasak",
+                            LockoutEnabled = false,
+                            PasswordHash = "Beste1998.",
+                            PhoneNumber = "05362459825",
+                            PhoneNumberConfirmed = false,
+                            Status = 1,
+                            TwoFactorEnabled = false,
+                            UserName = "2ef9d900-8418-450d-a90a-ecb678b700d3"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ec41e1c8-d45e-4f68-9730-cf554f260958",
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8701),
+                            DateOfBirth = new DateTime(1997, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "huseyingulerman.1997@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Hüseyin",
+                            IsActive = true,
+                            LastName = "Gülerman",
+                            LockoutEnabled = false,
+                            PasswordHash = "Beste1998.",
+                            PhoneNumber = "05325841236",
+                            PhoneNumberConfirmed = false,
+                            Status = 1,
+                            TwoFactorEnabled = false,
+                            UserName = "da02d3e8-7ef4-430d-9a9e-74ed95f6dbb0"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b46a75bb-7194-4e25-9962-913659fb44e6",
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8727),
+                            DateOfBirth = new DateTime(1997, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "orangepressstore@gmail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Ayşe",
+                            IsActive = true,
+                            LastName = "Tabak",
+                            LockoutEnabled = false,
+                            PasswordHash = "Beste1998.",
+                            PhoneNumber = "05325841236",
+                            PhoneNumberConfirmed = false,
+                            Status = 1,
+                            TwoFactorEnabled = false,
+                            UserName = "5e02ecbb-efef-4a25-ac1b-4054da9fddfc"
+                        });
                 });
 
             modelBuilder.Entity("Ops.Core.Entities.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -415,7 +505,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2739),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7562),
                             IsActive = true,
                             Name = "Tişört Regular",
                             Status = 1
@@ -423,7 +513,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2743),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7566),
                             IsActive = true,
                             Name = "Tişört Oversize",
                             Status = 1
@@ -431,7 +521,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2744),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7568),
                             IsActive = true,
                             Name = "Hoodie",
                             Status = 1
@@ -439,7 +529,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2745),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7570),
                             IsActive = true,
                             Name = "Sweatshirt",
                             Status = 1
@@ -447,7 +537,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2746),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7571),
                             IsActive = true,
                             Name = "Kol Çantası",
                             Status = 1
@@ -455,7 +545,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2746),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7572),
                             IsActive = true,
                             Name = "Cüzdan",
                             Status = 1
@@ -463,7 +553,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2747),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7574),
                             IsActive = true,
                             Name = "Baf",
                             Status = 1
@@ -474,7 +564,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -506,7 +597,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2825),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7801),
                             IsActive = true,
                             Name = "Istanbul",
                             Status = 1
@@ -514,7 +605,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2827),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7805),
                             IsActive = true,
                             Name = "Ankara",
                             Status = 1
@@ -525,7 +616,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -557,7 +649,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2981),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8110),
                             IsActive = true,
                             Name = "Black",
                             Status = 0
@@ -565,7 +657,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2986),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8120),
                             IsActive = true,
                             Name = "Blue",
                             Status = 0
@@ -573,7 +665,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2988),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8124),
                             IsActive = true,
                             Name = "Yellow",
                             Status = 0
@@ -584,7 +676,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -622,7 +715,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2904),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7950),
                             IsActive = true,
                             ProductId = 1,
                             Status = 0
@@ -631,7 +724,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             ColorId = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2909),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7960),
                             IsActive = true,
                             ProductId = 1,
                             Status = 0
@@ -640,7 +733,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 3,
                             ColorId = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2912),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7963),
                             IsActive = true,
                             ProductId = 2,
                             Status = 0
@@ -649,7 +742,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 4,
                             ColorId = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(2913),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(7966),
                             IsActive = true,
                             ProductId = 3,
                             Status = 0
@@ -660,7 +753,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -706,7 +800,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3059),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8264),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler",
                             IsActive = true,
@@ -717,7 +811,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3060),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8267),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler",
                             IsActive = true,
@@ -728,7 +822,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3062),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8269),
                             CustomerId = 2,
                             Description = "Çok güzel ürünler",
                             IsActive = true,
@@ -739,7 +833,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3086),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8270),
                             CustomerId = 2,
                             Description = "Çok güzel ürünler",
                             IsActive = true,
@@ -750,7 +844,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3090),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8271),
                             CustomerId = 1,
                             Description = "Çok demode",
                             IsActive = true,
@@ -761,7 +855,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 6,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3091),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8273),
                             CustomerId = 2,
                             Description = "Kibar duruyor ama pahalı",
                             IsActive = true,
@@ -772,7 +866,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 7,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3092),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8274),
                             CustomerId = 1,
                             Description = "Ehhhhh fena sayılmaz. Birdaha almam ama. :)",
                             IsActive = true,
@@ -783,7 +877,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 8,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3092),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8275),
                             CustomerId = 2,
                             Description = "Çok güzel ürünler. Baya beğendim. Alınır",
                             IsActive = true,
@@ -794,7 +888,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 9,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3093),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8276),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
                             IsActive = true,
@@ -805,7 +899,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3094),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8278),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
                             IsActive = true,
@@ -816,7 +910,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 11,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3095),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8279),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
                             IsActive = true,
@@ -827,7 +921,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 12,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3096),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8280),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
                             IsActive = true,
@@ -838,7 +932,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 13,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3097),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8281),
                             CustomerId = 1,
                             Description = "Çok güzel ürünler.Bayıldım. Herkese tavsiye ederim.",
                             IsActive = true,
@@ -852,7 +946,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -890,7 +985,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3189),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8495),
                             IsActive = true,
                             Name = "Fatih",
                             Status = 1
@@ -899,7 +994,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             CityId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3191),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8500),
                             IsActive = true,
                             Name = "Üsküdar",
                             Status = 1
@@ -908,7 +1003,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 3,
                             CityId = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3192),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8502),
                             IsActive = true,
                             Name = "Kızılay",
                             Status = 1
@@ -917,7 +1012,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 4,
                             CityId = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3193),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(8503),
                             IsActive = true,
                             Name = "Çankaya",
                             Status = 1
@@ -928,7 +1023,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -974,7 +1070,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3266),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(9026),
                             IsActive = true,
                             PhotoUrl = "img/bg-img/bg-1.jpg",
                             Status = 1,
@@ -985,7 +1081,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3268),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(9060),
                             IsActive = true,
                             PhotoUrl = "img/bg-img/bg-2.jpg",
                             Status = 1,
@@ -998,7 +1094,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -1045,7 +1142,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3342),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(9210),
                             Description = "Fiziksel bir mağazanız bulunuyor mu acaba?",
                             Email = "beyasak@hotmail.com",
                             IsActive = true,
@@ -1059,7 +1156,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -1100,14 +1198,61 @@ namespace Ops.Repository.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("OrderProducts");
+                    b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(9497),
+                            CustomerId = 1,
+                            IsActive = true,
+                            OrderStatus = 1,
+                            Status = 1,
+                            TotalPrice = 0m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(9504),
+                            CustomerId = 1,
+                            IsActive = true,
+                            OrderStatus = 4,
+                            Status = 1,
+                            TotalPrice = 0m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(9506),
+                            CustomerId = 1,
+                            IsActive = true,
+                            OrderStatus = 3,
+                            Status = 1,
+                            TotalPrice = 0m
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AddressId = 0,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 280, DateTimeKind.Local).AddTicks(9507),
+                            CustomerId = 2,
+                            IsActive = true,
+                            OrderStatus = 2,
+                            Status = 1,
+                            TotalPrice = 0m
+                        });
                 });
 
             modelBuilder.Entity("Ops.Core.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -1149,7 +1294,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3415),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(721),
                             IsActive = true,
                             PhotoUrl = "tshirt-1.jpeg",
                             ProductId = 1,
@@ -1159,7 +1304,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3419),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(757),
                             IsActive = true,
                             PhotoUrl = "tshirt-2.jpeg",
                             ProductId = 1,
@@ -1169,7 +1314,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 3,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3422),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(761),
                             IsActive = true,
                             PhotoUrl = "tshirt-1.jpeg",
                             ProductId = 1,
@@ -1179,7 +1324,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 4,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3423),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(764),
                             IsActive = true,
                             PhotoUrl = "tshirt-2.jpeg",
                             ProductId = 2,
@@ -1189,7 +1334,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 5,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3425),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(767),
                             IsActive = true,
                             PhotoUrl = "tshirt-1.jpeg",
                             ProductId = 3,
@@ -1199,7 +1344,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 6,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3428),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(776),
                             IsActive = true,
                             PhotoUrl = "tshirt-2.jpeg",
                             ProductId = 4,
@@ -1211,7 +1356,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -1248,14 +1394,137 @@ namespace Ops.Repository.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductOrders");
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2300),
+                            IsActive = true,
+                            Name = "Tişört",
+                            Price = 200m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2314),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 150m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2317),
+                            IsActive = true,
+                            Name = " Uzun Kollu Tişört",
+                            Price = 300m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 5,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2319),
+                            IsActive = true,
+                            Name = "Çanta",
+                            Price = 400m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 6,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2475),
+                            IsActive = true,
+                            Name = "Cüzdan",
+                            Price = 400m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 3,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2480),
+                            IsActive = true,
+                            Name = "Hoodie",
+                            Price = 400m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 7,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2482),
+                            IsActive = true,
+                            Name = "Baf",
+                            Price = 400m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 4,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2484),
+                            IsActive = true,
+                            Name = "Sweat",
+                            Price = 500m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2486),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 250m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2488),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 350m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 11,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2491),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 450m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 1,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2493),
+                            IsActive = true,
+                            Name = "Kısa Kollu Tişört",
+                            Price = 1050m,
+                            Status = 1
+                        });
                 });
 
             modelBuilder.Entity("Ops.Core.Entities.ProductFeature", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -1293,7 +1562,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3520),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1070),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 1,
@@ -1302,7 +1571,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3521),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1073),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 2,
@@ -1311,7 +1580,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3522),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1074),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 3,
@@ -1320,7 +1589,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 4,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3523),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1076),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 4,
@@ -1329,7 +1598,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 5,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3524),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1077),
                             Description = "30 derecede yıkayınız",
                             IsActive = true,
                             ProductId = 5,
@@ -1341,7 +1610,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -1376,13 +1646,76 @@ namespace Ops.Repository.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductOrder");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 1,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1894),
+                            IsActive = true,
+                            OrderId = 1,
+                            ProductId = 1,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 2,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1901),
+                            IsActive = true,
+                            OrderId = 1,
+                            ProductId = 2,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Amount = 1,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1902),
+                            IsActive = true,
+                            OrderId = 2,
+                            ProductId = 3,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Amount = 2,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1904),
+                            IsActive = true,
+                            OrderId = 2,
+                            ProductId = 2,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Amount = 2,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1905),
+                            IsActive = true,
+                            OrderId = 3,
+                            ProductId = 4,
+                            Status = 0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Amount = 2,
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(1906),
+                            IsActive = true,
+                            OrderId = 4,
+                            ProductId = 5,
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("Ops.Core.Entities.Size", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -1414,7 +1747,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3682),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(3111),
                             IsActive = true,
                             Name = "Small",
                             Status = 0
@@ -1422,7 +1755,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3687),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(3235),
                             IsActive = true,
                             Name = "Medium",
                             Status = 0
@@ -1430,7 +1763,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3688),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(3241),
                             IsActive = true,
                             Name = "Large",
                             Status = 0
@@ -1441,7 +1774,8 @@ namespace Ops.Repository.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -1478,7 +1812,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3594),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2930),
                             IsActive = true,
                             ProductId = 1,
                             SizeId = 1,
@@ -1487,7 +1821,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3597),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2941),
                             IsActive = true,
                             ProductId = 2,
                             SizeId = 2,
@@ -1496,7 +1830,7 @@ namespace Ops.Repository.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3599),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(2944),
                             IsActive = true,
                             ProductId = 3,
                             SizeId = 3,
@@ -1557,7 +1891,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 1,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3754),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(3432),
                             IsActive = true,
                             ProductId = 1,
                             SizeId = 1,
@@ -1568,7 +1902,7 @@ namespace Ops.Repository.Migrations
                         {
                             Id = 2,
                             ColorId = 1,
-                            CreatedDate = new DateTime(2023, 12, 20, 16, 19, 7, 824, DateTimeKind.Local).AddTicks(3759),
+                            CreatedDate = new DateTime(2024, 1, 9, 16, 2, 48, 281, DateTimeKind.Local).AddTicks(3445),
                             IsActive = true,
                             ProductId = 2,
                             SizeId = 1,
@@ -1717,7 +2051,7 @@ namespace Ops.Repository.Migrations
 
             modelBuilder.Entity("Ops.Core.Entities.Order", b =>
                 {
-                    b.HasOne("Ops.Core.Entities.Address", "address")
+                    b.HasOne("Ops.Core.Entities.Address", "Address")
                         .WithMany("Orders")
                         .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1726,12 +2060,11 @@ namespace Ops.Repository.Migrations
                     b.HasOne("Ops.Core.Entities.AppUser", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Customer");
+                    b.Navigation("Address");
 
-                    b.Navigation("address");
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("Ops.Core.Entities.Photo", b =>
