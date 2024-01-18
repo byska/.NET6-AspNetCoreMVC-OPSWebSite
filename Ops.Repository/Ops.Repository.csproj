@@ -117,6 +117,8 @@
     <Compile Remove="Migrations\20231221105532_211223Deneme9.Designer.cs" />
     <Compile Remove="Migrations\20231221110619_211223Deneme14.cs" />
     <Compile Remove="Migrations\20231221110619_211223Deneme14.Designer.cs" />
+    <Compile Remove="Migrations\20240104074807_040124Init.cs" />
+    <Compile Remove="Migrations\20240104074807_040124Init.Designer.cs" />
     <Compile Remove="Migrations\AppDbContextModelSnapshot.cs" />
   </ItemGroup>
 

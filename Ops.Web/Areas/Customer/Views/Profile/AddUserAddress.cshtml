@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="cities">Şehir</label>
-                                <select id="cities" onchange="populateDistricts()">
+                                <select id="citySelect" onchange="populateDistricts()">
                                     @foreach (var city in ViewBag.Cities as List<City>)
                                     {
                                         <option value="@city.Id">@city.Name</option>
@@ -78,4 +78,26 @@
 <script>
     var citiesData = @Html.Raw(Json.Serialize(ViewBag.Cities));
 
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        $(function () {
+            $('#citySelect').change(function () {
+                var id = $('#citySelect').val();
+                $.ajax({
+                    url: '/home/CountiesList',
+                    data: { cityId: id },
+                    type: "POST",
+                    dataType: "Json",
+                    success: function (data) {
+
+                        $('#countySelect').empty();
+                        for (var i = 0; i < data.length; i++) {
+                            $('#countySelect').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                        }
+                    }
+                });
+            });
+        });
+    })
 </script>

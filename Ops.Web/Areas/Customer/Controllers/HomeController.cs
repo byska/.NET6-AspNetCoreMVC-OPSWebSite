@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Ops.Core.Entities;
 using Ops.Core.Services;
 using Ops.Core.VMs;
 using Ops.Core.VMs.Create;
+using System.Diagnostics.Metrics;
 
 namespace Ops.Web.Areas.Customer.Controllers
 {
@@ -70,6 +72,14 @@ namespace Ops.Web.Areas.Customer.Controllers
         {
             var comments = await _commentService.GetAllByIncludeAsync(x => x.IsActive == true,x=>x.Product,x=>x.Customer) ;
             return View(comments.Data);
+        }
+        public JsonResult CountiesList(int cityId)
+        {
+          
+                                        
+
+
+            return Json("deneme");
         }
     }
 }

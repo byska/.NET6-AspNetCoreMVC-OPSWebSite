@@ -13,7 +13,7 @@
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 @{
-    var inStockColor = JsonSerializer.Serialize(Model.Colors);
+    
     var inStockSize = JsonSerializer.Serialize(Model.Size);
     ProductWithCategoryVM category = ViewBag.ProductCategory as ProductWithCategoryVM;
     List<ColorVM> colors = ViewBag.Colors as List<ColorVM>;
@@ -35,98 +35,127 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-12 col-lg-3">
-                <div id="carousel-@Model.Id" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        @for (int i = 0; i < Model.Photos.Count; i++)
-                        {
-                            <div class="carousel-item @(i == 0 ? "active" : "")">
-                                <a href="javascript:void(0);" onclick="redirectToProductDetail(@Model.Id)"> <img src="~/img/@Model.Photos[i]" class="d-block w-100 " alt="@Model.Name"></a>
-                            </div>
-                        }
-                    </div>
-                    <a class="carousel-control-prev" href="#carousel-@Model.Id" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carousel-@Model.Id" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-            <div class="col-12 col-lg-5">
-                <div class="single_product_desc">
-                    <form class="cart clearfix" method="post" asp-area="Customer" asp-controller="Shopping" asp-action="AddItemCart">
-                        <!-- Product Meta Data -->
-                        <div class="product-meta-data">
-                            <div class="line"></div>
-                            <p asp-for="@Model.Price" class="product-price" id="product-priceid">@Model.Price ₺</p>
-                            <h6 asp-for="@Model.Name" id="product-name">@Model.Name</h6>
-                            <!-- Ratings & Review -->
-                            <!-- Avaiable --> <!--Stok Durumu-->
-                            @* @if(Model.Stock == null)
-                            {
-                            <p class="avaibility"><i class="fa fa-check-circle text-success"></i>Stok</p>
-                            }
-                            else
-                            {
-                            <p class="avaibility"><i class="fa fa-circle"></i>Stok</p>
-                            }*@
 
-                        </div>
-                        <br />
-                        <div class="short_overview my-5">
-                            <p id="product-description">@Model.Description</p>
-                        </div>
-                        <!-- Add to Cart Form -->
+		<div id="fh5co-product">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1 animate-box">
+						<div class="owl-carousel owl-carousel-fullwidth product-carousel">
+							@foreach(var photo in Model.Photos)
+							{
+								<div class="item">
+									<div class="active text-center">
+										<figure>
+											<img src="@photo" alt="user">
+										</figure>
+									</div>
+								</div>
+							}
+							
+						</div>
+						<div class="row animate-box">
+							<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+								<h2>@Model.Name</h2>
+								<p>
+                                    <button asp-controller="Shopping" asp-action="AddItemCart" asp-route-id="@Model.Id" type="submit" name="addtocart" value="5" class="btn amado-btn" id="centered-btn">Sepete Ekle</button>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<div class="fh5co-tabs animate-box">
+							<ul class="fh5co-tab-nav">
+								<li class="active"><a href="#" data-tab="1"><span class="icon visible-xs"><i class="icon-file"></i></span><span class="hidden-xs">Seçenekler</span></a></li>
+								<li><a href="#" data-tab="2"><span class="icon visible-xs"><i class="icon-bar-graph"></i></span><span class="hidden-xs">Ürün Detayları</span></a></li>
+								<li><a href="#" data-tab="3"><span class="icon visible-xs"><i class="icon-star"></i></span><span class="hidden-xs">Yorumlar</span></a></li>
+							</ul>
 
-                        <div class="cart-btn d-flex" id="Adet">
-                            <label for="quantity">Adet</label>
-                            <div class="quantity">
-                                <button type="button" class="qty-btn" onclick="decreaseQuantity()">-</button>
-                                <input  type="number" class="qty-text" id="quantity" step="1" min="1" max="10" name="quantity" value="1">
-                                <button type="button" class="qty-btn" onclick="increaseQuantity()">+</button>
-                            </div>
-                        </div>
-                        <div class="cart-btn d-flex" id="Adet">
-                            <label for="size">Beden</label>
-                            <div class="custom-dropdown ">
-                                <label id="selectedSize">
-                                    Seçiniz
-                                </label>
-                                <div class="dropdown-content">
-                                    <a href="#" onclick="selectSize('S')">S</a>
-                                    <a href="#" onclick="selectSize('M')">M</a>
-                                    <a href="#" onclick="selectSize('L')">L</a>
-                                    <a href="#" onclick="selectSize('XL')">XL</a>
-                                    <a href="#" onclick="selectSize('XXL')">XXL</a>
-                                </div>
-                            </div>
-                            <input type="hidden" id="size" name="size" value="">
-                        </div>
-                        <button asp-controller="Shopping" asp-action="AddItemCart" asp-route-id="@Model.Id" type="submit" name="addtocart" value="5" class="btn amado-btn" id="centered-btn">Sepete Ekle</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-12 col-lg-4 " id="comments">
-                <div>
-                    @foreach (var comment in comments)
-                    {
-                        <div class="comment">
-                            <p><strong class="form-name">@comment.Name</strong> @comment.Description</p>
-                            <div class="rating">
-                                @for (int i = 1; i <= 5; i++)
+							<!-- Tabs -->
+							<div class="fh5co-tab-content-wrap">
+
+								<div class="fh5co-tab-content tab-content active" data-tab-content="1">
+									<div class="col-md-10 col-md-offset-1">
+										<span class="price">@Model.Price ₺</span>
+										<h2>@Model.Name</h2>
+                                        <div class="cart-btn d-flex" id="Adet">
+                                            <label for="quantity">Adet</label>
+                                            <div class="quantity">
+                                                <button type="button" class="qty-btn" onclick="decreaseQuantity()">-</button>
+                                                <input type="number" class="qty-text" id="quantity" step="1" min="1" max="10" name="quantity" value="1">
+                                                <button type="button" class="qty-btn" onclick="increaseQuantity()">+</button>
+                                            </div>
+                                        </div>
+                                        <div class="cart-btn d-flex" id="Adet">
+                                            <label for="size">Beden</label>
+                                            <div class="custom-dropdown ">
+                                                <label id="selectedSize">
+                                                    Seçiniz
+                                                </label>
+                                                <div class="dropdown-content">
+                                                    <a href="#" onclick="selectSize('S')">S</a>
+                                                    <a href="#" onclick="selectSize('M')">M</a>
+                                                    <a href="#" onclick="selectSize('L')">L</a>
+                                                    <a href="#" onclick="selectSize('XL')">XL</a>
+                                                    <a href="#" onclick="selectSize('XXL')">XXL</a>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="size" name="size" value="">
+                                        </div>
+
+									</div>
+								</div>
+
+								<div class="fh5co-tab-content tab-content" data-tab-content="2">
+									<div class="col-md-10 col-md-offset-1">
+										<h3>@Model.Name</h3>
+										<p>@Model.Description</p>
+
+										<div class="row">
+											<div class="col-md-6">
+												<h2 class="uppercase">Keep it simple</h2>
+												<p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+											</div>
+											<div class="col-md-6">
+												<h2 class="uppercase">Less is more</h2>
+												<p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="fh5co-tab-content tab-content" data-tab-content="3">
+									<div class="col-md-10 col-md-offset-1">
+										<h3>Yorumlar</h3>
+										<div class="feed">
+											<div>
+												@foreach(var comment in comments)
+												{
+													<blockquote>
+														<p>@comment.Description</p>
+													</blockquote>
+													<h3>&mdash; @comment.Name</h3>
+													<span class="rate">
+														@for (int i = 1; i <= 5; i++)
                                 {
                                     <span class="star @(i <= comment.Mark ? "filled" : "")">&#9733;</span>
                                 }
-                            </div>
-                        </div>
-                    }
-                </div>
-            </div>
-        </div>
+													</span>
+												}
+												
+											</div>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
 </div>
 
